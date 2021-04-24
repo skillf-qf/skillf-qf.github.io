@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"www.skillf.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备  注意：最小CD镜像的安装，必须要在联网下进行！！！另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。 如果提示**needs updat">
+  <meta name="description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。 如果提示 needs upda">
 <meta property="og:type" content="article">
 <meta property="og:title" content="根据Gentoo handbook安装——gentoo基本系统+UEFI引导">
 <meta property="og:url" content="https://www.skillf.xyz/2018/09/23/%E6%A0%B9%E6%8D%AEGentoo-handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/index.html">
 <meta property="og:site_name" content="老F的个人博客">
-<meta property="og:description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备  注意：最小CD镜像的安装，必须要在联网下进行！！！另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。 如果提示**needs updat">
+<meta property="og:description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。 如果提示 needs upda">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://www.skillf.xyz/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2.png">
 <meta property="og:image" content="https://www.skillf.xyz/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E6%BA%90%E7%9B%AE%E5%BD%95.png">
@@ -64,7 +64,7 @@
 <meta property="og:image" content="https://www.skillf.xyz/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/win10%E4%B8%8Egentoo%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E7%95%8C%E9%9D%A2.png">
 <meta property="og:image" content="https://www.skillf.xyz/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png">
 <meta property="article:published_time" content="2018-09-23T04:32:19.000Z">
-<meta property="article:modified_time" content="2021-04-24T15:43:54.872Z">
+<meta property="article:modified_time" content="2021-04-24T16:20:08.043Z">
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="Gentoo">
 <meta property="article:tag" content="UEFI">
@@ -258,7 +258,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-24 23:43:54" itemprop="dateModified" datetime="2021-04-24T23:43:54+08:00">2021-04-24</time>
+                <time title="Modified: 2021-04-25 00:20:08" itemprop="dateModified" datetime="2021-04-25T00:20:08+08:00">2021-04-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,7 +276,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>6.7k</span>
+              <span>6.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -298,22 +298,22 @@
         <ul>
 <li>折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 <a target="_blank" rel="noopener" href="https://wiki.gentoo.org/wiki/Handbook:AMD64">Gentoo Handbook</a> 来一步步记录装gentoo的详细过程。<h4 id="A-安装前的一些准备"><a href="#A-安装前的一些准备" class="headerlink" title="A.安装前的一些准备"></a>A.安装前的一些准备</h4></li>
 </ul>
-<p><strong><code>注意：最小CD镜像的安装，必须要在联网下进行！！！</code></strong><br><strong><code>另外：安装过程中提示 需要添加 USE 时，请按照提示在 /etc/protage/make.conf 文件中添加 USE=“ 提示的USE关键字 ” 即可。</code></strong></p>
-<p>如果提示**<code>needs updating</code>**<br>则运行：</p>
+<p> <strong><code>注意：最小CD镜像的安装，必须要在联网下进行！！！</code></strong><br> <strong><code>另外：安装过程中提示 需要添加 USE 时，请按照提示在 /etc/protage/make.conf 文件中添加 USE=“ 提示的USE关键字 ” 即可。</code></strong></p>
+<p>如果提示 <strong><code>needs updating</code></strong><br>则运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">etc-update</span><br></pre></td></tr></table></figure>
-<p>然后输入**<code>-3</code>** -&gt; 回车 -&gt; yes ,之后在重新装一次即可。</p>
+<p>然后输入 <strong><code>-3</code></strong> -&gt; 回车 -&gt; yes ,之后在重新装一次即可。</p>
 <h6 id="1-本次安装使用台式机电脑"><a href="#1-本次安装使用台式机电脑" class="headerlink" title="1.本次安装使用台式机电脑"></a>1.本次安装使用台式机电脑</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CPU: Intel Core i7-7700 @ 8x 4.2GHz</span><br><span class="line">GPU: GeForce GTX 1060 6GB </span><br></pre></td></tr></table></figure>
-<h6 id="2-下载镜像-amd64"><a href="#2-下载镜像-amd64" class="headerlink" title="2.下载镜像(amd64)"></a>2.下载镜像(amd64)</h6><p><strong>gentoo的安装使用了最小镜像+stage3的方式</strong><br>这里只下载最小镜像 <a target="_blank" rel="noopener" href="http://distfiles.gentoo.org/releases/amd64/autobuilds/20180920T214502Z/install-amd64-minimal-20180920T214502Z.iso">install-amd64-minimal-20180920T214502Z.iso</a> 即可，文件网址可能失效，建议去<a target="_blank" rel="noopener" href="https://gentoo.org/">Gentoo官网</a><br>下载。<br><strong><code>最小CD镜像：Minimal Installation CD 2018-09-20</code></strong><br><strong><code>stage archives: Stage3 2018-09-20</code></strong></p>
+<h6 id="2-下载镜像-amd64"><a href="#2-下载镜像-amd64" class="headerlink" title="2.下载镜像(amd64)"></a>2.下载镜像(amd64)</h6><p><strong>gentoo的安装使用了最小镜像+stage3的方式</strong><br>这里只下载最小镜像 <a target="_blank" rel="noopener" href="http://distfiles.gentoo.org/releases/amd64/autobuilds/20180920T214502Z/install-amd64-minimal-20180920T214502Z.iso">install-amd64-minimal-20180920T214502Z.iso</a> 即可，文件网址可能失效，建议去<a target="_blank" rel="noopener" href="https://gentoo.org/">Gentoo官网</a><br>下载。<br> <strong><code>最小CD镜像：Minimal Installation CD 2018-09-20</code></strong><br> <strong><code>stage archives: Stage3 2018-09-20</code></strong></p>
 <p>默认镜像源是国外的服务器，所以下载镜像时，需要选择国内镜像源来下载，否则奇慢无比！</p>
 <ul>
 <li>进入官网下载页面<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2.png" alt="进入下载页面.png"></li>
 <li>选择国内镜像源目录<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E6%BA%90%E7%9B%AE%E5%BD%95.png" alt="镜像源目录.png"></li>
 <li>选择镜像源<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F%E6%BA%90.png" alt="选择镜像源.png"><br>点击镜像源之后进入文件下载网站。然后依次点击：</li>
 </ul>
-<p><strong><code>releases -&gt; amd64 -&gt; autobuilds -&gt; current-install-amd64-minimal </code></strong><br>最后来到下面这个页面，点击如图所示文件，即可下载最新镜像文件：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD.png" alt="镜像下载"></p>
+<p> <strong><code>releases -&gt; amd64 -&gt; autobuilds -&gt; current-install-amd64-minimal </code></strong><br>最后来到下面这个页面，点击如图所示文件，即可下载最新镜像文件：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD.png" alt="镜像下载"></p>
 <h6 id="3-刻录优盘"><a href="#3-刻录优盘" class="headerlink" title="3.刻录优盘"></a>3.刻录优盘</h6><p>下载完镜像文件后，在linux下可以采用dd镜像写入方式，在win下可以使用一些常见的优盘启动制作软件，比如：rufus等。</p>
 <ul>
-<li><p>Linux下使用**<code>dd</code>**命令：</p>
+<li><p>Linux下使用 **<code>dd</code>**命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＃linux 下</span><br><span class="line">$ sudo <span class="keyword">if</span>=iospath of=usb</span><br></pre></td></tr></table></figure>
 <p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/dd.png" alt="dd"></p>
 </li>
@@ -344,16 +344,16 @@
 <p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA.png" alt="磁盘分区"></p>
 <p><strong>2.1 针对 /dev/nvme0n1 固态的分区(分区工具有fdisk、cfdisk、parted等)：</strong></p>
 <ul>
-<li><strong><code>使用 UEFI 做引导时，可以同时识别 MBR 和 GPT 分区</code></strong></li>
-<li><strong><code>但是在 Windows 系统下只能使用 GPT 分区类型</code></strong></li>
-<li><strong><code>为方便以后装双系统，这里使用 GPT 分区类型</code></strong></li>
+<li> <strong><code>使用 UEFI 做引导时，可以同时识别 MBR 和 GPT 分区</code></strong></li>
+<li> <strong><code>但是在 Windows 系统下只能使用 GPT 分区类型</code></strong></li>
+<li> <strong><code>为方便以后装双系统，这里使用 GPT 分区类型</code></strong></li>
 </ul>
 <p>分区数量：/grub、/boot、/</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＃使用 parted 分区工具</span><br><span class="line">parted /dev/nvme0n1</span><br></pre></td></tr></table></figure>
 <p><em><strong>parted基本操作</strong></em></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">＃查看操作说明</span><br><span class="line">(parted) <span class="built_in">help</span></span><br><span class="line">＃设置 gpt 分区类型 注意：这个设置会格式化整个磁盘</span><br><span class="line">(parted) mklabe gpt</span><br><span class="line">＃容量查看 MB</span><br><span class="line">(parted) unit mib</span><br><span class="line">＃分区大小 start：起始容量 end：结束容量，分区大小：end - start</span><br><span class="line">(parted) mkpart primary start end</span><br><span class="line">＃打印整个磁盘分区</span><br><span class="line">(parted) <span class="built_in">print</span></span><br></pre></td></tr></table></figure>
 <h6 id="a-启动分区：10MB"><a href="#a-启动分区：10MB" class="headerlink" title="a. 启动分区：10MB"></a>a. 启动分区：10MB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(parted) mkpart primary 1 11</span><br><span class="line">(parted) name 1 grub</span><br><span class="line">(parted) <span class="built_in">set</span> 1 bios_grub on</span><br></pre></td></tr></table></figure>
-<h6 id="b-引导分区：128MB"><a href="#b-引导分区：128MB" class="headerlink" title="b. 引导分区：128MB"></a>b. 引导分区：128MB</h6><p><strong><code>注意：如果你是在 win10（举例） 下安装的 gentoo ,想组双系统的话，那么你需要保证已有一个 EFI分区（这个分区在你安装 win10 时会自动生成），此时直接跳过 ‘引导分区’ 这一步。</code></strong><br>使用UEFI接口引导系统（而不是BIOS）时，将引导分区标记为EFI系统分区。当在分区上设置引导选项时，Parted会自动执行此操作，完成后会有一个esp标志：</p>
+<h6 id="b-引导分区：128MB"><a href="#b-引导分区：128MB" class="headerlink" title="b. 引导分区：128MB"></a>b. 引导分区：128MB</h6><p> <strong><code>注意：如果你是在 win10（举例） 下安装的 gentoo ,想组双系统的话，那么你需要保证已有一个 EFI分区（这个分区在你安装 win10 时会自动生成），此时直接跳过 ‘引导分区’ 这一步。</code></strong><br>使用UEFI接口引导系统（而不是BIOS）时，将引导分区标记为EFI系统分区。当在分区上设置引导选项时，Parted会自动执行此操作，完成后会有一个esp标志：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(parted) mkpart primary 11 139</span><br><span class="line">(parted) name 2 boot</span><br><span class="line">(parted) <span class="built_in">set</span> 2 boot on</span><br></pre></td></tr></table></figure>
 <h6 id="c-根分区：110GB"><a href="#c-根分区：110GB" class="headerlink" title="c. 根分区：110GB"></a>c. 根分区：110GB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(parted) mkpart primary 139 112779</span><br><span class="line">(parted) name 3 root</span><br></pre></td></tr></table></figure>
 <h6 id="d-M-2固态分区过程图"><a href="#d-M-2固态分区过程图" class="headerlink" title="d. M.2固态分区过程图"></a>d. M.2固态分区过程图</h6><p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/M.2%E5%9B%BA%E6%80%81%E5%88%86%E5%8C%BA.png" alt="M.2固态分区"><br><strong>2.2 针对 /dev/sda机械硬盘1的分区(分区工具有fdisk、cfdisk、parted等)：</strong></p>
@@ -389,12 +389,12 @@
 </tr>
 </tbody></table>
 <h6 id="a-格式化启动分区"><a href="#a-格式化启动分区" class="headerlink" title="a. 格式化启动分区"></a>a. 格式化启动分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext2 /dev/nvme0n1p</span><br></pre></td></tr></table></figure>
-<h6 id="b-格式化引导分区"><a href="#b-格式化引导分区" class="headerlink" title="b. 格式化引导分区"></a>b. 格式化引导分区</h6><p>官方<a target="_blank" rel="noopener" href="http://www.uefi.org/sites/default/files/resources/UEFI%202_5.pdf">UEFI规范</a>表示UEFI固件将识别FAT12,16或32文件系统，但建议ESP使用FAT32。继续将ESP格式化为FAT32：<br><strong><code>注意：如果你是在 win10（举例） 下安装的 gentoo ,想组双系统的话，那么你需要保证已有一个 EFI分区（这个分区在你安装 win10 时会自动生成），此时直接跳过 ‘格式化引导分区’ 这一步。</code></strong></p>
+<h6 id="b-格式化引导分区"><a href="#b-格式化引导分区" class="headerlink" title="b. 格式化引导分区"></a>b. 格式化引导分区</h6><p>官方<a target="_blank" rel="noopener" href="http://www.uefi.org/sites/default/files/resources/UEFI%202_5.pdf">UEFI规范</a>表示UEFI固件将识别FAT12,16或32文件系统，但建议ESP使用FAT32。继续将ESP格式化为FAT32：<br> <strong><code>注意：如果你是在 win10（举例） 下安装的 gentoo ,想组双系统的话，那么你需要保证已有一个 EFI分区（这个分区在你安装 win10 时会自动生成），此时直接跳过 ‘格式化引导分区’ 这一步。</code></strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.fat -F 32 &#x2F;dev&#x2F;nvme0n1p2</span><br></pre></td></tr></table></figure>
 <h6 id="c-格式化根分区"><a href="#c-格式化根分区" class="headerlink" title="c. 格式化根分区"></a>c. 格式化根分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/nvme0n1p3</span><br></pre></td></tr></table></figure>
 <h6 id="d-格式化home分区"><a href="#d-格式化home分区" class="headerlink" title="d. 格式化home分区"></a>d. 格式化home分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/sda3</span><br></pre></td></tr></table></figure>
 <h6 id="e-格式化并启用swap"><a href="#e-格式化并启用swap" class="headerlink" title="e. 格式化并启用swap"></a>e. 格式化并启用swap</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkswap /dev/sda2</span><br><span class="line">swapon /dev/sda2</span><br></pre></td></tr></table></figure>
-<h5 id="4-挂载分区"><a href="#4-挂载分区" class="headerlink" title="4. 挂载分区"></a>4. 挂载分区</h5><p>所有分区格式化完成之后，挂载分区到/mnt/gentoo下：<br><strong><code>注意：EFI 引导需要在 boot 下创建一个 efi 目录</code></strong></p>
+<h5 id="4-挂载分区"><a href="#4-挂载分区" class="headerlink" title="4. 挂载分区"></a>4. 挂载分区</h5><p>所有分区格式化完成之后，挂载分区到/mnt/gentoo下：<br> <strong><code>注意：EFI 引导需要在 boot 下创建一个 efi 目录</code></strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">＃创建boot home目录</span><br><span class="line">mkdir -p /mnt/gentoo/boot/efi </span><br><span class="line">mkdir /mnt/gentoo/home</span><br><span class="line">mount /dev/nvme0n1p3 /mnt/gentoo</span><br><span class="line">mount /dev/nvme0n1p2 /mnt/gentoo/boot/efi</span><br><span class="line">mount /dev/sda3 /mnt/gentoo/home</span><br></pre></td></tr></table></figure>
 <p>挂载完之后可以使用<code>mount 命令</code>检查一下挂载是否成功，没有挂载成功的需要重新挂载一下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount</span><br></pre></td></tr></table></figure>
@@ -404,31 +404,31 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">＃本地时间：9月22日 17:08 2018</span><br><span class="line">＃设置时间： 9月22日 17:08 2018</span><br><span class="line">date 092217082018</span><br></pre></td></tr></table></figure>
 <h6 id="b-下载stage3"><a href="#b-下载stage3" class="headerlink" title="b. 下载stage3"></a>b. 下载stage3</h6><p>官方源默认是国外服务器，所以需要在国内源中下载stage3文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/gentoo</span><br><span class="line">links https://mirrors.163.com/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/</span><br></pre></td></tr></table></figure>
-<p>此时出现一个命令行网页浏览器，选择stage3下载即可。<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E4%B8%8B%E8%BD%BDstage3.png" alt="下载stage3"><br>下载完之后，按 <strong><code>ESC -&gt; 回车 -&gt; Exit -&gt; 回车</code></strong> 退出<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%80%E5%87%BA.png" alt="退出">)</p>
+<p>此时出现一个命令行网页浏览器，选择stage3下载即可。<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E4%B8%8B%E8%BD%BDstage3.png" alt="下载stage3"><br>下载完之后，按  <strong><code>ESC -&gt; 回车 -&gt; Exit -&gt; 回车</code></strong> 退出<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%80%E5%87%BA.png" alt="退出">)</p>
 <h6 id="c-解压stage3"><a href="#c-解压stage3" class="headerlink" title="c. 解压stage3"></a>c. 解压stage3</h6><p>文件名按自己下载的为准</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time tar xvf stage3-amd64-20180920T214502Z.tar.xz</span><br></pre></td></tr></table></figure>
 <p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%A7%A3%E5%8E%8Bstage3.png" alt="解压stage3"></p>
 <h6 id="d-配置-etc-portage-make-conf"><a href="#d-配置-etc-portage-make-conf" class="headerlink" title="d. 配置 /etc/portage/make.conf"></a>d. 配置 /etc/portage/make.conf</h6><p>首先，要知道自己的电脑cpu核心数<br><strong>然后设置变量 ：MAKEOPTS=”-j核心数+1”</strong><br>检查电脑核心数：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep processor</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/cpu%E6%A0%B8%E5%BF%83%E6%95%B0.png" alt="cpu核心数"><br>还有一种比较简单的方法，使用**<code>top</code><strong>命令，然后按数字键 1，就会出现所有cpu的数量 : <strong><code>%Cpu0 - %Cpun 核心数就是 n+1</code></strong><br>所以我的电脑设置是：</strong><code>MAKEOPTS=&quot;-j9&quot;</code>**<br>执行以下命令在最后一行添加配置变量</p>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/cpu%E6%A0%B8%E5%BF%83%E6%95%B0.png" alt="cpu核心数"><br>还有一种比较简单的方法，使用 **<code>top</code>**命令，然后按数字键 1，就会出现所有cpu的数量 :  <strong><code>%Cpu0 - %Cpun 核心数就是 n+1</code></strong><br>所以我的电脑设置是： <strong><code>MAKEOPTS=&quot;-j9&quot;</code></strong><br>执行以下命令在最后一行添加配置变量</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;MAKEOPTS=&quot;-j9&quot;&#x27;</span> &gt;&gt; /etc/portage/make.conf</span><br></pre></td></tr></table></figure>
 
 
-<h6 id="e-选择镜像"><a href="#e-选择镜像" class="headerlink" title="e. 选择镜像"></a>e. 选择镜像</h6><p>将光标移至所有国内镜像地址，然后按**<code>空格键</code><strong>确认，所有选完后，按</strong><code>回车</code>**即可：</p>
+<h6 id="e-选择镜像"><a href="#e-选择镜像" class="headerlink" title="e. 选择镜像"></a>e. 选择镜像</h6><p>将光标移至所有国内镜像地址，然后按 **<code>空格键</code>**确认，所有选完后，按 **<code>回车</code>**即可：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mirrorselect -i -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf</span><br></pre></td></tr></table></figure>
 <p>配置Gentoo ebuild存储库：此文件包含更新软件包存储库所需的同步信息（包含Portage下载和安装软件包所需的所有信息的ebuild和相关文件的集合）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir --parents /mnt/gentoo/etc/portage/repos.conf</span><br></pre></td></tr></table></figure>
 <p>接下来，将Portage提供的Gentoo存储库配置文件复制到（新创建的）repos.conf目录中：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf</span><br></pre></td></tr></table></figure>
-<h6 id="f-复制DNS信息"><a href="#f-复制DNS信息" class="headerlink" title="f. 复制DNS信息"></a>f. 复制DNS信息</h6><p>确保在接下来chroot之后依然能连上网络<br>**<code>--dereference</code>**：确保复制的是文件本身而不是符号链接。</p>
+<h6 id="f-复制DNS信息"><a href="#f-复制DNS信息" class="headerlink" title="f. 复制DNS信息"></a>f. 复制DNS信息</h6><p>确保在接下来chroot之后依然能连上网络<br> **<code>--dereference</code>**：确保复制的是文件本身而不是符号链接。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp --dereference /etc/resolv.conf /mnt/gentoo/etc/</span><br></pre></td></tr></table></figure>
 <h6 id="g-挂载文件系统"><a href="#g-挂载文件系统" class="headerlink" title="g. 挂载文件系统"></a>g. 挂载文件系统</h6><p>gentoo默认的init系统是OpenRC类型，所有要挂载相关系统文件，不然有些命令无法使用，在以后修复系统的时候，也要记得挂载一下。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount --types proc /proc /mnt/gentoo/proc</span><br><span class="line">mount --rbind /sys /mnt/gentoo/sys</span><br><span class="line">mount --rbind /dev /mnt/gentoo/dev</span><br></pre></td></tr></table></figure>
-<p>如果是安装init系统为systemd的，则需要加 <strong><code>--make-rslave</code></strong></p>
+<p>如果是安装init系统为systemd的，则需要加  <strong><code>--make-rslave</code></strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mount --types proc /proc /mnt/gentoo/proc</span><br><span class="line">mount --rbind /sys /mnt/gentoo/sys</span><br><span class="line">mount --make-rslave /mnt/gentoo/sys</span><br><span class="line">mount --rbind /dev /mnt/gentoo/dev</span><br><span class="line">mount --make-rslave /mnt/gentoo/dev</span><br></pre></td></tr></table></figure>
 <h6 id="h-进入新环境"><a href="#h-进入新环境" class="headerlink" title="h. 进入新环境"></a>h. 进入新环境</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chroot /mnt/gentoo /bin/bash</span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;(chroot) <span class="variable">$&#123;PS1&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
 <h6 id="i-从Web安装ebuild存储库快照"><a href="#i-从Web安装ebuild存储库快照" class="headerlink" title="i. 从Web安装ebuild存储库快照"></a>i. 从Web安装ebuild存储库快照</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge-webrsync</span><br></pre></td></tr></table></figure>
-<p>注意：这一步跟上面的选择镜像有关，如果发现一直处于执行状态，那么检查一下文件  <strong><code>/mnt/gentoo/etc/portage/make.conf</code></strong> 是否正确。</p>
+<p>注意：这一步跟上面的选择镜像有关，如果发现一直处于执行状态，那么检查一下文件   <strong><code>/mnt/gentoo/etc/portage/make.conf</code></strong> 是否正确。</p>
 <h6 id="j-选择配置"><a href="#j-选择配置" class="headerlink" title="j. 选择配置"></a>j. 选择配置</h6><p>配置列表是实时更新的，所以需要根据实际做出选择，这里选择默认12即可，如果是systemd，则需要选择带systemd字样的配置。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eselect profile list</span><br><span class="line">eselect profile <span class="built_in">set</span> 12</span><br></pre></td></tr></table></figure>
 <p>配置列表<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%85%8D%E7%BD%AE.png" alt="选择配置"></p>
@@ -449,16 +449,16 @@
 <h6 id="o-安装内核源码"><a href="#o-安装内核源码" class="headerlink" title="o. 安装内核源码"></a>o. 安装内核源码</h6><p>对于基于amd64的系统，Gentoo推荐使用<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/sys-kernel/gentoo-sources">sys-kernel / gentoo-sources</a>包。</p>
 <p>选择适当的内核源并使用emerge安装它：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask sys-kernel/gentoo-sources</span><br></pre></td></tr></table></figure>
-<p>如果提示**<code>needs updating</code>**<br>则运行：</p>
+<p>如果提示 <strong><code>needs updating</code></strong><br>则运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">etc-update</span><br></pre></td></tr></table></figure>
-<p>然后输入**<code>-3</code>** -&gt; 回车 -&gt; yes ,之后在重新装一次即可。</p>
+<p>然后输入 <strong><code>-3</code></strong> -&gt; 回车 -&gt; yes ,之后在重新装一次即可。</p>
 <h6 id="p-配置kernel"><a href="#p-配置kernel" class="headerlink" title="p. 配置kernel"></a>p. 配置kernel</h6><p>这里使用自动配置方式，需要手动配置的请看Gentoo Wiki。</p>
 <p>安装kernel自动配置工具genkernel</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time emerge --ask --quiet sys-kernel/genkernel</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85genkernel.png" alt="安装genkernel"><br>安装时如果提示 **<code>USE changes</code>**，则运行：</p>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85genkernel.png" alt="安装genkernel"><br>安装时如果提示  **<code>USE changes</code>**，则运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">etc-update</span><br></pre></td></tr></table></figure>
-<p>然后输入**<code>-3</code>** -&gt; 回车 -&gt; yes ,之后在重新执行 **<code>time emerge --ask --quiet sys-kernel/genkernel</code>**即可。</p>
-<p>安装完成之后，编辑 <strong><code>/etc/fstab</code></strong> 系统的挂载点：</p>
+<p>然后输入 <strong><code>-3</code></strong> -&gt; 回车 -&gt; yes ,之后在重新执行  **<code>time emerge --ask --quiet sys-kernel/genkernel</code>**即可。</p>
+<p>安装完成之后，编辑  <strong><code>/etc/fstab</code></strong> 系统的挂载点：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/fstab</span><br></pre></td></tr></table></figure>
 <p>添加如下挂载点：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%8C%82%E8%BD%BD%E7%82%B9.png" alt="挂载点"></p>
 <p>然后开始编译kernel：<br>这需要不少的时间，可以喝杯茶放松一下~</p>
@@ -470,11 +470,11 @@
 <h6 id="r-修改主机名"><a href="#r-修改主机名" class="headerlink" title="r. 修改主机名"></a>r. 修改主机名</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/conf.d/hostname</span><br><span class="line">＃将hostname变量设置为自己取的主机名字</span><br><span class="line">hostname =“Guard”</span><br></pre></td></tr></table></figure>
 <p>其次，如果需要域名，请在/etc/conf.d/net中设置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/conf.d/net</span><br><span class="line">＃将dns_domain_lo变量设置为所选域名</span><br><span class="line">dns_domain_lo =“homenetwork”</span><br></pre></td></tr></table></figure>
-<p>如果设置域名，登录屏幕会显示**<code>This is hostname.(none)</code>**<br>想要将它去掉，只需要修改：</p>
+<p>如果设置域名，登录屏幕会显示 <strong><code>This is hostname.(none)</code></strong><br>想要将它去掉，只需要修改：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/issue</span><br><span class="line">＃将 .\O 删掉即可</span><br></pre></td></tr></table></figure>
 <h6 id="s-配置网络"><a href="#s-配置网络" class="headerlink" title="s. 配置网络"></a>s. 配置网络</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time emerge --ask  --quiet --noreplace net-misc/netifrc</span><br></pre></td></tr></table></figure>
 <p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C.png" alt="配置网络"></p>
-<h6 id="t-设置启动时自动启动网络"><a href="#t-设置启动时自动启动网络" class="headerlink" title="t. 设置启动时自动启动网络"></a>t. 设置启动时自动启动网络</h6><p>要在引导时激活网络接口，需要将它们添加到默认运行级别。<br>首先需要知道网络接口名称：<br>使用 **<code>ifconfig</code>**查看是 **<code>eth0</code>**，还是 <strong><code>enp3s0</code></strong><br>这里使用 enp3s0：</p>
+<h6 id="t-设置启动时自动启动网络"><a href="#t-设置启动时自动启动网络" class="headerlink" title="t. 设置启动时自动启动网络"></a>t. 设置启动时自动启动网络</h6><p>要在引导时激活网络接口，需要将它们添加到默认运行级别。<br>首先需要知道网络接口名称：<br>使用  **<code>ifconfig</code>**查看是  **<code>eth0</code>**，还是  <strong><code>enp3s0</code></strong><br>这里使用 enp3s0：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/init.d</span><br><span class="line">ln -s net.lo net.enp3s0</span><br><span class="line">rc-update add net.enp3s0 default</span><br></pre></td></tr></table></figure>
 <p>如果在启动系统后我们发现有关网络接口名称（当前记录为eth0）的假设是错误的，那么执行以下步骤来纠正这个问题：</p>
 <ul>
@@ -485,11 +485,11 @@
 <li>使用rc-update del net.eth0 default删除旧的。</li>
 </ul>
 <h6 id="u-设置主机hosts"><a href="#u-设置主机hosts" class="headerlink" title="u. 设置主机hosts"></a>u. 设置主机hosts</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/hosts</span><br></pre></td></tr></table></figure>
-<p>按如下设置hosts文件，这里以**<code>Guard</code>**为主机名<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/hosts.png" alt="hosts"></p>
+<p>按如下设置hosts文件，这里以 **<code>Guard</code>**为主机名<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/hosts.png" alt="hosts"></p>
 <h6 id="v-设置root密码"><a href="#v-设置root密码" class="headerlink" title="v. 设置root密码"></a>v. 设置root密码</h6><p>使用passwd命令设置root密码。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure>
 <h6 id="w-设置时钟"><a href="#w-设置时钟" class="headerlink" title="w. 设置时钟"></a>w. 设置时钟</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/conf.d/hwclock</span><br><span class="line">＃修改：clock=<span class="string">&quot;local&quot;</span></span><br></pre></td></tr></table></figure>
-<p>如果硬件时钟未使用UTC，则必须**<code>clock=&quot;local&quot;</code>**在文件中进行设置。否则系统可能会显示时钟偏差行为。</p>
+<p>如果硬件时钟未使用UTC，则必须 **<code>clock=&quot;local&quot;</code>**在文件中进行设置。否则系统可能会显示时钟偏差行为。</p>
 <h6 id="x-安装工具"><a href="#x-安装工具" class="headerlink" title="x. 安装工具"></a>x. 安装工具</h6><ol>
 <li>系统日志记录<br>提供传统的系统日志记录守护程序集。默认的日志记录配置可以很好地开箱即用，这使得这个软件包成为初学者的一个很好的选择。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask app-admin/sysklogd</span><br><span class="line">rc-update add sysklogd default</span><br></pre></td></tr></table></figure></li>
 <li>Cron守护程序<br>cron守护程序执行计划的命令。如果需要定期执行某些命令（例如每天，每周或每月），则非常方便。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask sys-process/cronie</span><br><span class="line">rc-update add cronie default</span><br></pre></td></tr></table></figure></li>
@@ -526,14 +526,14 @@ GRUB2软件现已合并到系统中，但尚未安装。</li>
 <ol start="2">
 <li>安装GRUB2软件</li>
 </ol>
-<p>接下来，通过<code>grub-install</code>命令将必要的GRUB2文件安装到**<code>/boot/grub</code><strong>目录。假定第一个磁盘（系统从中引导的磁盘）是</strong><code>/dev/sda</code>**，以下命令之一将执行：</p>
+<p>接下来，通过<code>grub-install</code>命令将必要的GRUB2文件安装到 **<code>/boot/grub</code>**目录。假定第一个磁盘（系统从中引导的磁盘）是 **<code>/dev/sda</code>**，以下命令之一将执行：</p>
 <ul>
 <li>UEFI用户：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot/efi</span><br></pre></td></tr></table></figure>
 如果grub_install返回类似的错误<code>Could not prepare Boot variable: Read-only file system</code>，可能需要将efivars特殊挂载重新安装为读写才能成功：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -o remount,rw /sys/firmware/efi/efivars</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>**<code>另外需要注意</code>**：<br>一些主板制造商似乎只支持EFI系统分区（ESP）中的.EFI文件的 /boot/efi 目录位置(挂载的引导分区目录)。GRUB安装程序可以使用该<code>--removable</code>选项自动执行此操作。在运行以下命令之前验证是否已安装ESP。假设ESP安装在/boot/efi（如前所述），执行：</p>
+<p> **<code>另外需要注意</code>**：<br>一些主板制造商似乎只支持EFI系统分区（ESP）中的.EFI文件的 /boot/efi 目录位置(挂载的引导分区目录)。GRUB安装程序可以使用该<code>--removable</code>选项自动执行此操作。在运行以下命令之前验证是否已安装ESP。假设ESP安装在/boot/efi（如前所述），执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot/efi --removable</span><br></pre></td></tr></table></figure>
-<p>这将创建由UEFI规范定义的默认目录，然后自动将 grubx64.efi 文件复制到由相同规范定义的“默认”EFI文件位置。<br>我的电脑主板是华硕的，只支持EFI系统分区（ESP）中的.EFI文件的 /boot/efi 目录位置(挂载的引导分区目录)。所以得加  <strong><code>--removable</code></strong><br>如果发现自己的系统引导不了，出现 GRUB 字样，则尝试加 <strong><code>--removable</code></strong><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85EFI%E5%BC%95%E5%AF%BC.png" alt="安装EFI引导"></p>
+<p>这将创建由UEFI规范定义的默认目录，然后自动将 grubx64.efi 文件复制到由相同规范定义的“默认”EFI文件位置。<br>我的电脑主板是华硕的，只支持EFI系统分区（ESP）中的.EFI文件的 /boot/efi 目录位置(挂载的引导分区目录)。所以得加   <strong><code>--removable</code></strong><br>如果发现自己的系统引导不了，出现 GRUB 字样，则尝试加  <strong><code>--removable</code></strong><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85EFI%E5%BC%95%E5%AF%BC.png" alt="安装EFI引导"></p>
 <ul>
 <li>BIOS用户：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grub-install /dev/sda </span><br><span class="line">＃/dev/sda 为 /boot 挂载分区</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -549,11 +549,11 @@ GRUB2软件现已合并到系统中，但尚未安装。</li>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-mkconfig -o /boot/efi/grub/grub.cfg</span><br></pre></td></tr></table></figure>
 
 <p>如果是win10与gentoo双系统则：<br><code>如果检测不到win系统，则可以先继续执行下一步，等全部安装完毕之后，重启系统，再执行 os-prober -&gt; grub-mkconfig -o /boot/grub/grub.cfg 即可。</code><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/win10%E4%B8%8Egentoo%E5%8F%8C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E5%BC%95%E5%AF%BC.png" alt="win10与gentoo双系统配置引导"></p>
-<p>假如没有出现**<code>Found</code>**开头的文字，则表明检测不到系统，此时：</p>
+<p>假如没有出现 **<code>Found</code>**开头的文字，则表明检测不到系统，此时：</p>
 <ul>
-<li>运行 **<code>ls /boot/kernel* /boot/initramfs*</code>**查看是否会输出两个文件；<pre><code>如果没有，则运行**`ls /boot/efi/kernel* /boot/efi/initramfs*`**，查看是否会输出两个文件，如果有输出，则将两个文件复制到**`/boot`**目录下，之后重新**`grub-mkconfig -o /boot/efi/grub/grub.cfg`**即可。
+<li>运行  **<code>ls /boot/kernel* /boot/initramfs **</code>**查看是否会输出两个文件；<pre><code>如果没有，则运行 **`ls /boot/efi/kernel* /boot/efi/initramfs **`**，查看是否会输出两个文件，如果有输出，则将两个文件复制到 **`/boot`**目录下，之后重新 **`grub-mkconfig -o /boot/efi/grub/grub.cfg`**即可。
 </code></pre>
-如果都没有输出，则重新**<code>genkernel all</code>**一下，然后在自动生成GRUB2配置。</li>
+如果都没有输出，则重新 **<code>genkernel all</code>**一下，然后在自动生成GRUB2配置。</li>
 </ul>
 <h6 id="z-重新启动系统"><a href="#z-重新启动系统" class="headerlink" title="z. 重新启动系统"></a>z. 重新启动系统</h6><p>退出chroot环境并卸载所有已安装的分区。<br>然后重新启动：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
