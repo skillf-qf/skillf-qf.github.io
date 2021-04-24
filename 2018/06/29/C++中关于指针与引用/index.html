@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="老F的个人博客">
 <meta property="og:description" content="1摘抄自————《C++ Primer中文第五版》 1.引用(reference)：为对象起了另外一个名字，引用类型引用(refers to)另外一种类型。通过将声明符写成 &amp;d (&amp;:取地址操作符)的形式来定义引用类型，其中d是声明的变量名： 123int ival &#x3D; 1024;int &amp;referVal &#x3D; ival;   &#x2F;&#x2F;refVal指向ival(是ival的另">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7237812-7513970ce543e439.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://www.skillf.xyz/images/C++%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/%E6%8C%87%E5%90%91%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E9%92%88.png">
 <meta property="article:published_time" content="2018-06-29T07:27:04.000Z">
-<meta property="article:modified_time" content="2021-04-23T08:14:44.514Z">
+<meta property="article:modified_time" content="2021-04-24T14:14:48.711Z">
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7237812-7513970ce543e439.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://www.skillf.xyz/images/C++%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/%E6%8C%87%E5%90%91%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E9%92%88.png">
 
 <link rel="canonical" href="https://www.skillf.xyz/2018/06/29/C++%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/">
 
@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-23 16:14:44" itemprop="dateModified" datetime="2021-04-23T16:14:44+08:00">2021-04-23</time>
+                <time title="Modified: 2021-04-24 22:14:48" itemprop="dateModified" datetime="2021-04-24T22:14:48+08:00">2021-04-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,7 +282,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> obj = <span class="number">3.14</span>, *pd = &amp;obj;</span><br><span class="line"><span class="comment">// 正确：void* 能存放任意类型对象的地址</span></span><br><span class="line"><span class="keyword">void</span> *pv = &amp;obj;  <span class="comment">// obj可以是任意类型的对象</span></span><br><span class="line">pv = pd;   <span class="comment">// pv可以存放任意类型的指针</span></span><br></pre></td></tr></table></figure>
 <p><strong>2.6 指向指针的指针</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ival = <span class="number">1024</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = &amp;ival;  <span class="comment">// pi 指向一个int型的数</span></span><br><span class="line"><span class="keyword">int</span> **ppi = &amp;pi;  <span class="comment">// ppi 指向一个int型的指针</span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这里pi是指向int型数的指针，而ppi是指向int型指针的指针，如图：<br><img src="https://upload-images.jianshu.io/upload_images/7237812-7513970ce543e439.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="指向指针的指针.png"><br>&emsp;&emsp;解引用 int 型指针会得到一个int型的数，同样，解引用指向指针的指针会得到一个指针。此时为了访问最原始的那个对象，需要对指针的指针做两次解引用：</p>
+<p>&emsp;&emsp;这里pi是指向int型数的指针，而ppi是指向int型指针的指针，如图：<br><img src="/images/C++%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/%E6%8C%87%E5%90%91%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E9%92%88.png" alt="指向指针的指针.png"><br>&emsp;&emsp;解引用 int 型指针会得到一个int型的数，同样，解引用指向指针的指针会得到一个指针。此时为了访问最原始的那个对象，需要对指针的指针做两次解引用：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>  &lt;&lt; <span class="string">&quot;The value of ival\n&quot;</span></span><br><span class="line">      &lt;&lt; <span class="string">&quot;direct value: &quot;</span> &lt;&lt; ival &lt;&lt; <span class="string">&quot;\n&quot;</span></span><br><span class="line">      &lt;&lt; <span class="string">&quot;indirect value: &quot;</span> &lt;&lt; *pi &lt;&lt; <span class="string">&quot;\n&quot;</span></span><br><span class="line">      &lt;&lt; <span class="string">&quot;double indirect value: &quot;</span> &lt;&lt; **ppi</span><br><span class="line">      &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;该程序使用三种不同的方式输出了变量 ival 的值： 第一种直接输出；第二种通过int型指针pi输出；第三种两次解引用ppi，取得ival的值。</p>
 <p><strong>2.7 指向指针的引用</strong><br>&emsp;&emsp;引用本身不是一个对象，因此不能定义指向引用的指针。但指针是对象，所以存在对指针的引用：</p>

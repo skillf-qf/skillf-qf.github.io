@@ -27,17 +27,17 @@
 <meta property="og:site_name" content="老F的个人博客">
 <meta property="og:description" content="出现这种情况的原因是因为：DNS投毒 或者叫 DNS污染。 从客户端向DNS服务器发出查询IP的请求，到响应返回到客户端的这段时间里，如果有黑客或者其他一些不可说的设施伪造返回了一个错误的DNS应答，那么用户将不能访问到真正的资源。 所以有两种解决方式：1、短期处理方法 2、从根源解决问题#####1. 短期处理方法 [1]网上绝大部分的回答，都是修改 host 文件，已到达手动指定DNS解析的目">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7237812-430d3bf1ff023000.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7237812-139fe7e42fb6391e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7237812-e8e93aebabcec1f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7237812-470a58e175919cc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://www.skillf.xyz/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90github.com.png">
+<meta property="og:image" content="https://www.skillf.xyz/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90avatars.githubusercontent.com.png">
+<meta property="og:image" content="https://www.skillf.xyz/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/Google%20DNS.png">
+<meta property="og:image" content="https://www.skillf.xyz/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E6%B7%B7%E5%90%88DNS%E4%BD%BF%E7%94%A8.png">
 <meta property="article:published_time" content="2021-04-20T03:00:49.000Z">
-<meta property="article:modified_time" content="2021-04-23T08:46:26.823Z">
+<meta property="article:modified_time" content="2021-04-24T14:23:44.501Z">
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="Github">
 <meta property="article:tag" content="DNS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7237812-430d3bf1ff023000.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://www.skillf.xyz/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90github.com.png">
 
 <link rel="canonical" href="https://www.skillf.xyz/2021/04/20/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
 
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-23 16:46:26" itemprop="dateModified" datetime="2021-04-23T16:46:26+08:00">2021-04-23</time>
+                <time title="Modified: 2021-04-24 22:23:44" itemprop="dateModified" datetime="2021-04-24T22:23:44+08:00">2021-04-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,13 +265,13 @@
       
         <p>出现这种情况的原因是因为：<code>DNS投毒</code> 或者叫 <code>DNS污染</code>。</p>
 <p><code>从客户端向DNS服务器发出查询IP的请求，到响应返回到客户端的这段时间里，如果有黑客或者其他一些不可说的设施伪造返回了一个错误的DNS应答，那么用户将不能访问到真正的资源。</code></p>
-<p><code>所以有两种解决方式：1、短期处理方法 2、从根源解决问题</code><br>#####1. 短期处理方法 [1]<br>网上绝大部分的回答，都是修改 host 文件，已到达手动指定DNS解析的目的，此方法只能临时解决该问题，等过一段时间之后，会发现又开始打不开网页、图片无法加载、访问很慢等问题。<br>步骤如下<br>######1.1 获得真实ip地址：<br>打开【<a target="_blank" rel="noopener" href="https://www.ipaddress.com】网页,输入想要解析的网址【github.com】与【avatars.githubusercontent.com】/">https://www.ipaddress.com】网页，输入想要解析的网址【github.com】与【avatars.githubusercontent.com】</a><br>红色方框地址就是我们想要的目标IP<br><img src="https://upload-images.jianshu.io/upload_images/7237812-430d3bf1ff023000.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解析github.com"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7237812-139fe7e42fb6391e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解析avatars.githubusercontent.com"><br>######1.2 修改host文件<br>获得IP之后，找到host文件，【C:\Windows\System32\drivers\etc\host】<br>在文件末尾按如下格式添加即可</p>
+<p><code>所以有两种解决方式：1、短期处理方法 2、从根源解决问题</code><br>#####1. 短期处理方法 [1]<br>网上绝大部分的回答，都是修改 host 文件，已到达手动指定DNS解析的目的，此方法只能临时解决该问题，等过一段时间之后，会发现又开始打不开网页、图片无法加载、访问很慢等问题。<br>步骤如下<br>######1.1 获得真实ip地址：<br>打开【<a target="_blank" rel="noopener" href="https://www.ipaddress.com】网页,输入想要解析的网址【github.com】与【avatars.githubusercontent.com】/">https://www.ipaddress.com】网页，输入想要解析的网址【github.com】与【avatars.githubusercontent.com】</a><br>红色方框地址就是我们想要的目标IP<br><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90github.com.png" alt="解析github.com"></p>
+<p><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90avatars.githubusercontent.com.png" alt="解析avatars.githubusercontent.com"><br>######1.2 修改host文件<br>获得IP之后，找到host文件，【C:\Windows\System32\drivers\etc\host】<br>在文件末尾按如下格式添加即可</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># GitHub Host Start</span><br><span class="line">140.82.113.3	github.com</span><br><span class="line">185.199.108.133	avatars.githubusercontent.com</span><br><span class="line">185.199.109.133	avatars.githubusercontent.com</span><br><span class="line">185.199.110.133	avatars.githubusercontent.com</span><br><span class="line">185.199.111.133	avatars.githubusercontent.com</span><br></pre></td></tr></table></figure>
-<p>这种方式需要每隔一段时间就去获取一次IP，不然会重新出现打不开网页、无法加载、打开慢等问题。<br>#####2. 从根源解决问题 [2]<br>因为国内的DNS很容易被劫持污染无法直接指向目标地址，那么可以尝试直接使用Google提供的DNS服务器地址<code>8.8.8.8; 8.8.4.4</code>，直接指向目标地址<br><img src="https://upload-images.jianshu.io/upload_images/7237812-e8e93aebabcec1f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Google DNS"><br>但是这种方法会引出新的问题：当访问国内网页时，会出现访问Github时的情况：打不开网页、无法加载、打开慢等问题。</p>
+<p>这种方式需要每隔一段时间就去获取一次IP，不然会重新出现打不开网页、无法加载、打开慢等问题。<br>#####2. 从根源解决问题 [2]<br>因为国内的DNS很容易被劫持污染无法直接指向目标地址，那么可以尝试直接使用Google提供的DNS服务器地址<code>8.8.8.8; 8.8.4.4</code>，直接指向目标地址<br><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/Google%20DNS.png" alt="Google DNS"><br>但是这种方法会引出新的问题：当访问国内网页时，会出现访问Github时的情况：打不开网页、无法加载、打开慢等问题。</p>
 <p>那么问题回到了起点，有没有两种都适用的方法？<br>很明显是有的！</p>
 <p>在这之前先要弄明白什么是首选(Preferred)DNS服务器与备选(Alternate)DNS服务器：<br>首选DNS和备用DNS都是一种域名系统，正常情况下都是使用首选DNS服务器，只有当首选DNS服务器无法正常解析时，才会使用备选DNS服务器。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7237812-470a58e175919cc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="混合DNS使用"><br>所以我们可以将首选DNS服务器填写国内常用DNS地址[3]：<code>114.114.114.114</code><br>备选DNS服务器填写Google提供的DNS地址：<code>8.8.8.8 或者 8.8.4.4</code></p>
+<p><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E6%B7%B7%E5%90%88DNS%E4%BD%BF%E7%94%A8.png" alt="混合DNS使用"><br>所以我们可以将首选DNS服务器填写国内常用DNS地址[3]：<code>114.114.114.114</code><br>备选DNS服务器填写Google提供的DNS地址：<code>8.8.8.8 或者 8.8.4.4</code></p>
 <blockquote>
 <p>114.114.114.114是国内移动、电信和联通通用的DNS，手机和电脑端都可以使用，干净无广告，解析成功率相对来说更高，国内用户使用的比较多，而且速度相对快、稳定，是国内用户上网常用的DNS。<br>8.8.8.8是Google提供的DNS，该地址是全球通用的，相对来说，更适合国外以及访问国外网站的用户使用。</p>
 </blockquote>
