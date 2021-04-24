@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.skillf.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="socket一直没去好好学习一下，因为太懒了 -.-!! 1234小知识点：1.计算机中一般可以见到这样的IP地址127.0.0.1，意思是本机地址，即始终指向当前计算机2.关于有效端口号：范围0～65535（其中小于1024的端口号预留给了系统），如果使用linux，   那么可以在&#x2F;etc&#x2F;servuices文件中查看预留端口的列表（以及服务器&#x2F;协议 和 套接字类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中的 socket 套接字">
+<meta property="og:url" content="https://www.skillf.xyz/2017/09/21/Python%E4%B8%AD%E7%9A%84-socket-%E5%A5%97%E6%8E%A5%E5%AD%97/index.html">
+<meta property="og:site_name" content="小破站">
+<meta property="og:description" content="socket一直没去好好学习一下，因为太懒了 -.-!! 1234小知识点：1.计算机中一般可以见到这样的IP地址127.0.0.1，意思是本机地址，即始终指向当前计算机2.关于有效端口号：范围0～65535（其中小于1024的端口号预留给了系统），如果使用linux，   那么可以在&#x2F;etc&#x2F;servuices文件中查看预留端口的列表（以及服务器&#x2F;协议 和 套接字类">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-09-20T17:28:45.000Z">
+<meta property="article:modified_time" content="2021-04-23T08:19:27.998Z">
+<meta property="article:author" content="南方老F">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.skillf.xyz/2017/09/21/Python%E4%B8%AD%E7%9A%84-socket-%E5%A5%97%E6%8E%A5%E5%AD%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Python中的 socket 套接字 | 小破站</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小破站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">26</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.skillf.xyz/2017/09/21/Python%E4%B8%AD%E7%9A%84-socket-%E5%A5%97%E6%8E%A5%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/coffeeBoy.png">
+      <meta itemprop="name" content="南方老F">
+      <meta itemprop="description" content="午后，一杯茶，一本书，一种心情。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小破站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python中的 socket 套接字
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-09-21 01:28:45" itemprop="dateCreated datePublished" datetime="2017-09-21T01:28:45+08:00">2017-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-23 16:19:27" itemprop="dateModified" datetime="2021-04-23T16:19:27+08:00">2021-04-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>269</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>socket一直没去好好学习一下，因为太懒了 -.-!!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">小知识点：</span><br><span class="line">1.计算机中一般可以见到这样的IP地址127.0.0.1，意思是本机地址，即始终指向当前计算机</span><br><span class="line">2.关于有效端口号：范围0～65535（其中小于1024的端口号预留给了系统），如果使用linux，</span><br><span class="line">   那么可以在&#x2F;etc&#x2F;servuices文件中查看预留端口的列表（以及服务器&#x2F;协议 和 套接字类型）。</span><br></pre></td></tr></table></figure>
+<p>###目录<br>######<a href="#%E5%85%B3%E4%BA%8Esocket">1. 关于socket</a><br>######<a href="#%E5%88%9B%E5%BB%BA%E5%A5%97%E6%8E%A5%E5%AD%97">2. 创建套接字</a><br>######<a href="#%E5%88%9B%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF-%3E%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9E%B6%E6%9E%84">3. 创建简单的客户端-&gt;服务器架构</a></p>
+<p>#####1. 关于socket<br>首先需要有大概的认知：什么是 客户端-&gt;服务器模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.服务器：简单来讲就是一个被动接受请求信息并处理相关请求的一系列硬件或软件。</span><br><span class="line">2.客户端：就是主动请求服务器，希望获得相关的服务。</span><br></pre></td></tr></table></figure>
+<p>套接字：通俗一点就是用于相互通讯。<br>套接字有两种类型：基于文件的和面向网络的。<br>在python中有个模块就叫 socket,包含socket()函数： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket(socket_family,socket_type,protocol=<span class="number">0</span>)   <span class="comment"># socket()函数原型</span></span><br></pre></td></tr></table></figure>
+<p>这里需要注意一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">socket_family  : 代表 地址家族(address family，缩写AF)，python只支持</span><br><span class="line">                 AF_UNIX、AF_NETLINK、AF_TIPC、AF_INET这几个家族，python网络编程使用的地址家族：AF_INET;</span><br><span class="line">  </span><br><span class="line">  socket_type  : TCP/IP 面向连接的套接字类型 SOCK_STREAM（协议：传输控制协议（TCP））;</span><br><span class="line">                 UDP/IP 无连接的套接字类型 SOCK_DGRAM（协议：用户数据报协议（UDP））</span><br><span class="line"></span><br><span class="line">    protocol   : 通常省略，默认为<span class="number">0</span>。</span><br><span class="line">````</span><br><span class="line"><span class="comment">#####2. 创建套接字</span></span><br><span class="line">```python</span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *   <span class="comment"># 导入 socket 模块</span></span><br><span class="line"><span class="comment"># 创建 TCP/IP 套接字</span></span><br><span class="line">tcp_socket = socket(AF_INET,SOCK_STREAM )   <span class="comment"># 调用 socket() 函数  </span></span><br><span class="line"><span class="comment"># 创建 UDP/IP 套接字</span></span><br><span class="line">udp_socket = socket(AF_INET,SOCK_DGRAM)</span><br></pre></td></tr></table></figure>
+<p>#####3. 创建简单的客户端-&gt;服务器架构<br>这里使用两个python的解释器来模拟客户端和服务器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个python解释器：服务器</span></span><br><span class="line">▶ python</span><br><span class="line">Python <span class="number">3.6</span><span class="number">.2</span> (default, Jul <span class="number">20</span> <span class="number">2017</span>, 03:<span class="number">52</span>:<span class="number">27</span>) </span><br><span class="line">[GCC <span class="number">7.1</span><span class="number">.1</span> <span class="number">20170630</span>] on linux</span><br><span class="line"><span class="type">Type</span> <span class="string">&quot;help&quot;</span>, <span class="string">&quot;copyright&quot;</span>, <span class="string">&quot;credits&quot;</span> <span class="keyword">or</span> <span class="string">&quot;license&quot;</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> socket <span class="keyword">import</span> *                  <span class="comment"># 导入 socket 模块</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tcp_server = socket(AF_INET,SOCK_STREAM)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tcp_server.bind((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">12345</span>))  <span class="comment"># 因为是同一台计算机，所以用本地IP，端口号随意一个有效位</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tcp_server.listen(<span class="number">1</span>)                  <span class="comment"># 监听连接，并且在连接被转接或拒绝之前，设置传入连接请求的最大数，这里是 1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tcp_socket,addr = tcp_server.accept() <span class="comment"># accept() 之后将一直处于等待状态，直到连接被建立。</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tcp_socket.send(<span class="string">b&#x27;hello,i\&#x27;m server&#x27;</span>) <span class="comment"># 成功建立连接之后，利用send()发送信息，注意不支持utf-8,则用 send(b&#x27;字符串&#x27;) 的模式</span></span><br><span class="line"><span class="number">16</span>                                        <span class="comment"># 发送的字节数</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line"></span><br><span class="line">---------------------------------------------------我是分割线-------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个python解释器：客户端</span></span><br><span class="line">▶ python</span><br><span class="line">Python <span class="number">3.6</span><span class="number">.2</span> (default, Jul <span class="number">20</span> <span class="number">2017</span>, 03:<span class="number">52</span>:<span class="number">27</span>) </span><br><span class="line">[GCC <span class="number">7.1</span><span class="number">.1</span> <span class="number">20170630</span>] on linux</span><br><span class="line"><span class="type">Type</span> <span class="string">&quot;help&quot;</span>, <span class="string">&quot;copyright&quot;</span>, <span class="string">&quot;credits&quot;</span> <span class="keyword">or</span> <span class="string">&quot;license&quot;</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> socket <span class="keyword">import</span> *                        <span class="comment"># 导入 socket 模块</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tcp_client = socket(AF_INET,SOCK_STREAM)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tcp_client.connect((<span class="string">&#x27;127.0.0.1&#x27;</span>,<span class="number">12345</span>))     <span class="comment"># 确认sccept() 的连接，即这里将建立连接</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>masg = tcp_client.recv(<span class="number">1024</span>)                <span class="comment"># 接收TCP消息，1024为缓冲区即 1 KB，此参数可根据网络性能和程序需要来更改。</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(masg)                                 <span class="comment"># 打印接收到的TCP消息</span></span><br><span class="line"><span class="string">b&quot;hello,i&#x27;m server&quot;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br></pre></td></tr></table></figure>
+
+<p><em>未完…待续…</em></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>南方老F
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://www.skillf.xyz/2017/09/21/Python%E4%B8%AD%E7%9A%84-socket-%E5%A5%97%E6%8E%A5%E5%AD%97/" title="Python中的 socket 套接字">https://www.skillf.xyz/2017/09/21/Python中的-socket-套接字/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/09/03/%E5%9C%A8Arch%E4%B8%8B%E5%AE%89%E8%A3%85pip/" rel="prev" title="在Arch下安装pip">
+      <i class="fa fa-chevron-left"></i> 在Arch下安装pip
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/09/23/python%E4%B9%8B%E5%87%BD%E6%95%B0%E5%B8%B8%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" rel="next" title="python之函数常用小技巧">
+      python之函数常用小技巧 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="南方老F"
+      src="/images/coffeeBoy.png">
+  <p class="site-author-name" itemprop="name">南方老F</p>
+  <div class="site-description" itemprop="description">午后，一杯茶，一本书，一种心情。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/skillf-qf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;skillf-qf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/e681c959a455" title="简书 → https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;e681c959a455" rel="noopener" target="_blank"><i class="heartbeat fa-fw"></i>简书</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">南方老F</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
