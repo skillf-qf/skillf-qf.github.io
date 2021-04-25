@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://www.skillf.xyz/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/Google%20DNS.png">
 <meta property="og:image" content="https://www.skillf.xyz/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E6%B7%B7%E5%90%88DNS%E4%BD%BF%E7%94%A8.png">
 <meta property="article:published_time" content="2021-04-20T03:00:49.000Z">
-<meta property="article:modified_time" content="2021-04-25T01:37:42.264Z">
+<meta property="article:modified_time" content="2021-04-25T01:39:42.138Z">
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="Github">
 <meta property="article:tag" content="DNS">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-25 09:37:42" itemprop="dateModified" datetime="2021-04-25T09:37:42+08:00">2021-04-25</time>
+                <time title="Modified: 2021-04-25 09:39:42" itemprop="dateModified" datetime="2021-04-25T09:39:42+08:00">2021-04-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,7 +267,7 @@
 <p><code>从客户端向DNS服务器发出查询IP的请求，到响应返回到客户端的这段时间里，如果有黑客或者其他一些不可说的设施伪造返回了一个错误的DNS应答，那么用户将不能访问到真正的资源。</code></p>
 <p><code>所以有两种解决方式：1、短期处理方法 2、从根源解决问题</code></p>
 <h5 id="1-短期处理方法-1"><a href="#1-短期处理方法-1" class="headerlink" title="1. 短期处理方法 [1]"></a>1. 短期处理方法 [1]</h5><p>网上绝大部分的回答，都是修改 host 文件，已到达手动指定DNS解析的目的，此方法只能临时解决该问题，等过一段时间之后，会发现又开始打不开网页、图片无法加载、访问很慢等问题。<br>步骤如下</p>
-<h6 id="1-1-获得真实ip地址："><a href="#1-1-获得真实ip地址：" class="headerlink" title="1.1 获得真实ip地址："></a>1.1 获得真实ip地址：</h6><p>打开<a target="_blank" rel="noopener" href="https://www.ipaddress.com/">ipaddress</a> 网页，输入想要解析的网址 <code>github.com</code> 与   <code>avatars.githubusercontent.com</code><br>红色方框地址就是我们想要的目标IP<br><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90github.com.png" alt="解析github.com"></p>
+<h6 id="1-1-获得真实ip地址："><a href="#1-1-获得真实ip地址：" class="headerlink" title="1.1 获得真实ip地址："></a>1.1 获得真实ip地址：</h6><p>打开<a target="_blank" rel="noopener" href="https://www.ipaddress.com/">ipaddress.com</a> 的网页，输入想要解析的网址信息，这里输入 <code>github.com</code> 与   <code>avatars.githubusercontent.com</code><br>红色方框地址就是我们想要的目标IP<br><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90github.com.png" alt="解析github.com"></p>
 <p><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90avatars.githubusercontent.com.png" alt="解析avatars.githubusercontent.com"></p>
 <h6 id="1-2-修改host文件"><a href="#1-2-修改host文件" class="headerlink" title="1.2 修改host文件"></a>1.2 修改host文件</h6><p>获得IP之后，找到host文件，【C:\Windows\System32\drivers\etc\host】<br>在文件末尾按如下格式添加即可</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#  GitHub Host Start</span><br><span class="line">140.82.113.3	github.com</span><br><span class="line">185.199.108.133	avatars.githubusercontent.com</span><br><span class="line">185.199.109.133	avatars.githubusercontent.com</span><br><span class="line">185.199.110.133	avatars.githubusercontent.com</span><br><span class="line">185.199.111.133	avatars.githubusercontent.com</span><br></pre></td></tr></table></figure>
