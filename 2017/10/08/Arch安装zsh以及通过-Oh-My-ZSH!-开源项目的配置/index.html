@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.skillf.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+    var CONFIG = {"hostname":"www.skillf.live","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
   <meta name="description" content="1 首先：安装官方源的 zsh 1$ sudo pacman -S zsh  oh-my-zsh安装方式有两种，下面选其中一种即可1.1 脚本一键自动安装 oh-my-zsh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arch安装zsh以及通过 Oh-My-ZSH! 开源项目的配置">
-<meta property="og:url" content="https://www.skillf.xyz/2017/10/08/Arch%E5%AE%89%E8%A3%85zsh%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87-Oh-My-ZSH!-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:url" content="https://www.skillf.live/2017/10/08/Arch%E5%AE%89%E8%A3%85zsh%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87-Oh-My-ZSH!-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="老F的个人博客">
 <meta property="og:description" content="1 首先：安装官方源的 zsh 1$ sudo pacman -S zsh  oh-my-zsh安装方式有两种，下面选其中一种即可1.1 脚本一键自动安装 oh-my-zsh">
 <meta property="og:locale" content="en_US">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://www.skillf.xyz/2017/10/08/Arch%E5%AE%89%E8%A3%85zsh%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87-Oh-My-ZSH!-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE/">
+<link rel="canonical" href="https://www.skillf.live/2017/10/08/Arch%E5%AE%89%E8%A3%85zsh%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87-Oh-My-ZSH!-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE/">
 
 
 <script id="page-configurations">
@@ -190,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://www.skillf.xyz/2017/10/08/Arch%E5%AE%89%E8%A3%85zsh%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87-Oh-My-ZSH!-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://www.skillf.live/2017/10/08/Arch%E5%AE%89%E8%A3%85zsh%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87-Oh-My-ZSH!-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/coffeeBoy.png">
@@ -299,7 +299,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://www.skillf.xyz/2017/10/08/Arch%E5%AE%89%E8%A3%85zsh%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87-Oh-My-ZSH!-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE/" title="Arch安装zsh以及通过 Oh-My-ZSH! 开源项目的配置">https://www.skillf.xyz/2017/10/08/Arch安装zsh以及通过-Oh-My-ZSH!-开源项目的配置/</a>
+    <a href="https://www.skillf.live/2017/10/08/Arch%E5%AE%89%E8%A3%85zsh%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87-Oh-My-ZSH!-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%85%8D%E7%BD%AE/" title="Arch安装zsh以及通过 Oh-My-ZSH! 开源项目的配置">https://www.skillf.live/2017/10/08/Arch安装zsh以及通过-Oh-My-ZSH!-开源项目的配置/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -451,7 +451,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
