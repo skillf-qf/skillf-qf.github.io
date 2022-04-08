@@ -17,26 +17,26 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.skillf.live","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+    var CONFIG = {"hostname":"skillf.live","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
   <meta name="description" content="0x00 前言rEFInd对于UEFI下的多系统引导非常有优势，可以自动的识别所有不同系统下的引导文件，并生成启动条目。rEFInd有多种安装方式，其中比较方便的是使用自带的脚本命令refind-install即可一键安装。也可以使用手动方式一步步安装所需文件，本文采用手动安装方式。谨以此文作为个人安装笔记方便以后查阅。  本文所使用的环境：  VMware： Workstation 16 Pro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多系统引导 —— rEFInd手动安装记录">
-<meta property="og:url" content="https://www.skillf.live/2022/03/04/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="https://skillf.live/2022/03/04/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="老F的个人博客">
 <meta property="og:description" content="0x00 前言rEFInd对于UEFI下的多系统引导非常有优势，可以自动的识别所有不同系统下的引导文件，并生成启动条目。rEFInd有多种安装方式，其中比较方便的是使用自带的脚本命令refind-install即可一键安装。也可以使用手动方式一步步安装所需文件，本文采用手动安装方式。谨以此文作为个人安装笔记方便以后查阅。  本文所使用的环境：  VMware： Workstation 16 Pro">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://www.skillf.live/images/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/rEFInd.png">
+<meta property="og:image" content="https://skillf.live/images/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/rEFInd.png">
 <meta property="article:published_time" content="2022-03-04T03:03:03.000Z">
 <meta property="article:modified_time" content="2022-04-08T07:54:25.172Z">
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="rEFInd">
 <meta property="article:tag" content="ArchLinux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.skillf.live/images/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/rEFInd.png">
+<meta name="twitter:image" content="https://skillf.live/images/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/rEFInd.png">
 
-<link rel="canonical" href="https://www.skillf.live/2022/03/04/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="https://skillf.live/2022/03/04/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
 
 
 <script id="page-configurations">
@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://www.skillf.live/2022/03/04/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="https://skillf.live/2022/03/04/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/coffeeBoy.png">
@@ -339,7 +339,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://www.skillf.live/2022/03/04/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" title="多系统引导 —— rEFInd手动安装记录">https://www.skillf.live/2022/03/04/多系统引导 —— rEFInd手动安装记录/</a>
+    <a href="https://skillf.live/2022/03/04/%E5%A4%9A%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%20%E2%80%94%E2%80%94%20rEFInd%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" title="多系统引导 —— rEFInd手动安装记录">https://skillf.live/2022/03/04/多系统引导 —— rEFInd手动安装记录/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
