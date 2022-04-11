@@ -1,32 +1,28 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"skillf.live","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
-  </script>
-
-  <meta name="description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。  如果提示 needs upd">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/coffeeBoy.png">
+  <link rel="icon" href="/img/coffeeBoy.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="南方老F">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。  如果提示 needs upd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="根据Gentoo handbook安装——gentoo基本系统+UEFI引导">
 <meta property="og:url" content="https://skillf.live/p/2f73d7ce288e.html">
 <meta property="og:site_name" content="老F的个人博客">
 <meta property="og:description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。  如果提示 needs upd">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://skillf.live/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2.png">
 <meta property="og:image" content="https://skillf.live/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E6%BA%90%E7%9B%AE%E5%BD%95.png">
 <meta property="og:image" content="https://skillf.live/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F%E6%BA%90.png">
@@ -68,284 +64,294 @@
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="Gentoo">
 <meta property="article:tag" content="UEFI">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://skillf.live/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2.png">
+  
+  
+  <title>根据Gentoo handbook安装——gentoo基本系统+UEFI引导 - 老F的个人博客</title>
 
-<link rel="canonical" href="https://skillf.live/p/2f73d7ce288e.html">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
 
-  <title>根据Gentoo handbook安装——gentoo基本系统+UEFI引导 | 老F的个人博客</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
+  
+<link rel="stylesheet" href="/css/custom.css">
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"skillf.live","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+  <header>
+    
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">老F的个人博客</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>南方老F</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">24</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">15</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">29</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-  </ul>
 </nav>
 
+  
 
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://skillf.live/p/2f73d7ce288e.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/coffeeBoy.png">
-      <meta itemprop="name" content="南方老F">
-      <meta itemprop="description" content="午后，一杯茶，一本书，一种心情。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老F的个人博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          根据Gentoo handbook安装——gentoo基本系统+UEFI引导
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-09-23 12:32:19" itemprop="dateCreated datePublished" datetime="2018-09-23T12:32:19+08:00">2018-09-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-25 09:54:04" itemprop="dateModified" datetime="2021-04-25T09:54:04+08:00">2021-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Technology/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>6.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>6 mins.</span>
-            </span>
-
+            <span id="subtitle" data-typed-text="根据Gentoo handbook安装——gentoo基本系统+UEFI引导"></span>
+          
         </div>
-      </header>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2018-09-23 12:32" pubdate>
+          2018年9月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          88 分钟
+        
+      </span>
+    
 
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
 
       
-        <ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">根据Gentoo handbook安装——gentoo基本系统+UEFI引导</h1>
+            
+            <div class="markdown-body">
+              
+              <ul>
 <li>折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 <a target="_blank" rel="noopener" href="https://wiki.gentoo.org/wiki/Handbook:AMD64">Gentoo Handbook</a> 来一步步记录装gentoo的详细过程。<h4 id="A-安装前的一些准备"><a href="#A-安装前的一些准备" class="headerlink" title="A.安装前的一些准备"></a>A.安装前的一些准备</h4></li>
 </ul>
 <p> <strong><code>注意：最小CD镜像的安装，必须要在联网下进行！！！</code></strong><br> <strong><code>另外：安装过程中提示 需要添加 USE 时，请按照提示在 /etc/protage/make.conf 文件中添加 USE=“ 提示的USE关键字 ” 即可。</code></strong> </p>
 <p>如果提示 <strong><code>needs updating</code></strong><br>则运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">etc-update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">etc-update<br></code></pre></td></tr></table></figure>
 <p>然后输入 <strong><code>-3</code></strong>  -&gt; 回车 -&gt; yes ,之后在重新装一次即可。</p>
-<h6 id="1-本次安装使用台式机电脑"><a href="#1-本次安装使用台式机电脑" class="headerlink" title="1.本次安装使用台式机电脑"></a>1.本次安装使用台式机电脑</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CPU: Intel Core i7-7700 @ 8x 4.2GHz</span><br><span class="line">GPU: GeForce GTX 1060 6GB </span><br></pre></td></tr></table></figure>
+<h6 id="1-本次安装使用台式机电脑"><a href="#1-本次安装使用台式机电脑" class="headerlink" title="1.本次安装使用台式机电脑"></a>1.本次安装使用台式机电脑</h6><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">CPU</span>: Intel Core i<span class="hljs-number">7</span>-<span class="hljs-number">7700</span> @ <span class="hljs-number">8</span>x <span class="hljs-number">4</span>.<span class="hljs-number">2</span>GHz<br><span class="hljs-attribute">GPU</span>: GeForce GTX <span class="hljs-number">1060</span> <span class="hljs-number">6</span>GB <br></code></pre></td></tr></table></figure>
 <h6 id="2-下载镜像-amd64"><a href="#2-下载镜像-amd64" class="headerlink" title="2.下载镜像(amd64)"></a>2.下载镜像(amd64)</h6><p><strong>gentoo的安装使用了最小镜像+stage3的方式</strong><br>这里只下载最小镜像 <a target="_blank" rel="noopener" href="http://distfiles.gentoo.org/releases/amd64/autobuilds/20180920T214502Z/install-amd64-minimal-20180920T214502Z.iso">install-amd64-minimal-20180920T214502Z.iso</a> 即可，文件网址可能失效，建议去<a target="_blank" rel="noopener" href="https://gentoo.org/">Gentoo官网</a><br>下载。<br> <strong><code>最小CD镜像：Minimal Installation CD 2018-09-20</code></strong><br> <strong><code>stage archives: Stage3 2018-09-20</code></strong> </p>
 <p>默认镜像源是国外的服务器，所以下载镜像时，需要选择国内镜像源来下载，否则奇慢无比！</p>
 <ul>
-<li>进入官网下载页面<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2.png" alt="进入下载页面.png"></li>
-<li>选择国内镜像源目录<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E6%BA%90%E7%9B%AE%E5%BD%95.png" alt="镜像源目录.png"></li>
-<li>选择镜像源<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F%E6%BA%90.png" alt="选择镜像源.png"><br>点击镜像源之后进入文件下载网站。然后依次点击：</li>
+<li>进入官网下载页面<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2.png" srcset="/img/loading.gif" lazyload alt="进入下载页面.png"></li>
+<li>选择国内镜像源目录<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E6%BA%90%E7%9B%AE%E5%BD%95.png" srcset="/img/loading.gif" lazyload alt="镜像源目录.png"></li>
+<li>选择镜像源<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F%E6%BA%90.png" srcset="/img/loading.gif" lazyload alt="选择镜像源.png"><br>点击镜像源之后进入文件下载网站。然后依次点击：</li>
 </ul>
-<p> <strong><code>releases -&gt; amd64 -&gt; autobuilds -&gt; current-install-amd64-minimal </code></strong><br>最后来到下面这个页面，点击如图所示文件，即可下载最新镜像文件：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD.png" alt="镜像下载"></p>
+<p> <strong><code>releases -&gt; amd64 -&gt; autobuilds -&gt; current-install-amd64-minimal </code></strong><br>最后来到下面这个页面，点击如图所示文件，即可下载最新镜像文件：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD.png" srcset="/img/loading.gif" lazyload alt="镜像下载"></p>
 <h6 id="3-刻录优盘"><a href="#3-刻录优盘" class="headerlink" title="3.刻录优盘"></a>3.刻录优盘</h6><p>下载完镜像文件后，在linux下可以采用dd镜像写入方式，在win下可以使用一些常见的优盘启动制作软件，比如：rufus等。</p>
 <ul>
 <li><p>Linux下使用 <strong><code>dd</code></strong> 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＃linux 下</span><br><span class="line">$ sudo <span class="keyword">if</span>=iospath of=usb</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/dd.png" alt="dd"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃linux 下<br>$ sudo <span class="hljs-keyword">if</span>=iospath of=usb<br></code></pre></td></tr></table></figure>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/dd.png" srcset="/img/loading.gif" lazyload alt="dd"></p>
 </li>
 <li><p>windows下使用 rufus 软件：<br>选择分区方案： <code>&#39;用于UEFI 计算机的GPT分区方案&#39;</code></p>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.png" alt="选择分区方案"></p>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.png" srcset="/img/loading.gif" lazyload alt="选择分区方案"></p>
 </li>
 </ul>
 <p>选择下载好的镜像文件</p>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6.png" alt="选择镜像文件"><br>底部会提示使用的镜像文件，然后点击 开始<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%BC%80%E5%A7%8B%E5%88%B6%E4%BD%9C.png" alt="开始制作"><br>选择镜像写入方式<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F%E5%86%99%E5%85%A5%E6%96%B9%E5%BC%8F.png" alt="选择镜像写入方式"><br>写入中<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%95%88%E6%9E%9C%E5%9B%BE.png" alt="写入中"><br>写入完成后提示准备就绪，关闭软件即可<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%86%99%E5%85%A5%E5%AE%8C%E6%88%90.png" alt="写入完成"></p>
-<h4 id="B-开始安装"><a href="#B-开始安装" class="headerlink" title="B. 开始安装"></a>B. 开始安装</h4><p>将刻录的优盘插入待安装的电脑，然后使用默认gentoo内核启动，<code>由于版本更新，启动方式可能不同。</code><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/gentoo%E5%86%85%E6%A0%B8%E5%90%AF%E5%8A%A8.png" alt="gentoo内核启动"><br>启动之后<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%90%AF%E5%8A%A8%E4%B9%8B%E5%90%8E.png" alt="启动之后"></p>
-<h6 id="1-检查网络"><a href="#1-检查网络" class="headerlink" title="1.检查网络"></a>1.检查网络</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
-<p>执行之后，能ping通的话，说明可以正常连上网络：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/ping.png" alt="ping"></p>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6.png" srcset="/img/loading.gif" lazyload alt="选择镜像文件"><br>底部会提示使用的镜像文件，然后点击 开始<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%BC%80%E5%A7%8B%E5%88%B6%E4%BD%9C.png" srcset="/img/loading.gif" lazyload alt="开始制作"><br>选择镜像写入方式<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F%E5%86%99%E5%85%A5%E6%96%B9%E5%BC%8F.png" srcset="/img/loading.gif" lazyload alt="选择镜像写入方式"><br>写入中<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%95%88%E6%9E%9C%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="写入中"><br>写入完成后提示准备就绪，关闭软件即可<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%86%99%E5%85%A5%E5%AE%8C%E6%88%90.png" srcset="/img/loading.gif" lazyload alt="写入完成"></p>
+<h4 id="B-开始安装"><a href="#B-开始安装" class="headerlink" title="B. 开始安装"></a>B. 开始安装</h4><p>将刻录的优盘插入待安装的电脑，然后使用默认gentoo内核启动，<code>由于版本更新，启动方式可能不同。</code><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/gentoo%E5%86%85%E6%A0%B8%E5%90%AF%E5%8A%A8.png" srcset="/img/loading.gif" lazyload alt="gentoo内核启动"><br>启动之后<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%90%AF%E5%8A%A8%E4%B9%8B%E5%90%8E.png" srcset="/img/loading.gif" lazyload alt="启动之后"></p>
+<h6 id="1-检查网络"><a href="#1-检查网络" class="headerlink" title="1.检查网络"></a>1.检查网络</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ping www.baidu.com<br></code></pre></td></tr></table></figure>
+<p>执行之后，能ping通的话，说明可以正常连上网络：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/ping.png" srcset="/img/loading.gif" lazyload alt="ping"></p>
 <p>如果是台式机用的有线网，所有基本上不用怎么配置，<br>但如果是笔记本的话，则要配置一下无线网络，具体的配置方式请看 <a target="_blank" rel="noopener" href="https://wiki.gentoo.org/wiki/Handbook:AMD64">Gentoo Handbook</a> ，这里仅作参考：<br><code>系统安装优盘启动之后默认是锁定wifi的，以我的笔记本为例：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rfkill list all</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/wifi%E9%94%81%E5%AE%9A.png" alt="wifi锁定"></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">rfkill list <span class="hljs-keyword">all</span><br></code></pre></td></tr></table></figure>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/wifi%E9%94%81%E5%AE%9A.png" srcset="/img/loading.gif" lazyload alt="wifi锁定"></p>
 <p><code>此时需要解锁:</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rfkill unblock all</span><br><span class="line">rfkill list all</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/wifi%E8%A7%A3%E9%94%81.png" alt="wifi解锁"></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">rfkill unblock <span class="hljs-keyword">all</span><br>rfkill list <span class="hljs-keyword">all</span><br></code></pre></td></tr></table></figure>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/wifi%E8%A7%A3%E9%94%81.png" srcset="/img/loading.gif" lazyload alt="wifi解锁"></p>
 <p><code>然后启用wifi端口:</code><br><code>注意：wlp0s20f3 为本机WiFi网卡名称，具体的名称以自己的为主，查看网卡名称的命令： ls /sys/class/net</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link set dev wlp0s20f3 up</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">ip</span> link set dev wlp<span class="hljs-number">0</span>s<span class="hljs-number">20</span>f<span class="hljs-number">3</span> up<br></code></pre></td></tr></table></figure>
 
 <p><code>最后连接wifi：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net-setup wlp0s20f3</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">net</span>-setup wlp<span class="hljs-number">0</span>s<span class="hljs-number">20</span>f<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
 <p><code>根据提示输入wifi 名称和密码即可。</code><br><code>检查是否连上wifi:</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iw dev wlp0s20f3 link</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">iw</span> dev wlp<span class="hljs-number">0</span>s<span class="hljs-number">20</span>f<span class="hljs-number">3</span> link<br></code></pre></td></tr></table></figure>
 <p><code>如果没连上会提示 No connect,否则会出现连上的wifi信息。</code></p>
 <h6 id="2-磁盘分区"><a href="#2-磁盘分区" class="headerlink" title="2.磁盘分区"></a>2.磁盘分区</h6><p><strong>关于磁盘分区，需要根据自己的硬盘做出调整，以下的分区方式仅供参考！</strong><br>此时的电脑上有一个M.2的固态，和两个机械硬盘，一个优盘<br>  磁盘               |说明|分区列表<br> —                   |:-:|:-:|<br>/dev/nvme0n1 |   M.2固态    | /grub、/boot、/<br>/dev/sda          |机械硬盘1    | /home、swap<br>/dev/sdb          | 机械硬盘2   |未分区<br>/dev/sdc          | 优盘            |未分区</p>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA.png" alt="磁盘分区"></p>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA.png" srcset="/img/loading.gif" lazyload alt="磁盘分区"></p>
 <p><strong>2.1 针对 /dev/nvme0n1 固态的分区(分区工具有fdisk、cfdisk、parted等)：</strong></p>
 <ul>
 <li> <strong><code>使用 UEFI 做引导时，可以同时识别 MBR 和 GPT 分区</code></strong> </li>
@@ -353,21 +359,21 @@
 <li> <strong><code>为方便以后装双系统，这里使用 GPT 分区类型</code></strong> </li>
 </ul>
 <p>分区数量：/grub、/boot、/</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＃使用 parted 分区工具</span><br><span class="line">parted /dev/nvme0n1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃使用 parted 分区工具<br>parted /dev/nvme0n1<br></code></pre></td></tr></table></figure>
 <p><em><strong>parted基本操作</strong></em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">＃查看操作说明</span><br><span class="line">(parted) <span class="built_in">help</span></span><br><span class="line">＃设置 gpt 分区类型 注意：这个设置会格式化整个磁盘</span><br><span class="line">(parted) mklabe gpt</span><br><span class="line">＃容量查看 MB</span><br><span class="line">(parted) unit mib</span><br><span class="line">＃分区大小 start：起始容量 end：结束容量，分区大小：end - start</span><br><span class="line">(parted) mkpart primary start end</span><br><span class="line">＃打印整个磁盘分区</span><br><span class="line">(parted) <span class="built_in">print</span></span><br></pre></td></tr></table></figure>
-<h6 id="a-启动分区：10MB"><a href="#a-启动分区：10MB" class="headerlink" title="a. 启动分区：10MB"></a>a. 启动分区：10MB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(parted) mkpart primary 1 11</span><br><span class="line">(parted) name 1 grub</span><br><span class="line">(parted) <span class="built_in">set</span> 1 bios_grub on</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃查看操作说明<br>(parted) <span class="hljs-built_in">help</span><br>＃设置 gpt 分区类型 注意：这个设置会格式化整个磁盘<br>(parted) mklabe gpt<br>＃容量查看 MB<br>(parted) unit mib<br>＃分区大小 start：起始容量 end：结束容量，分区大小：end - start<br>(parted) mkpart primary start end<br>＃打印整个磁盘分区<br>(parted) <span class="hljs-built_in">print</span><br></code></pre></td></tr></table></figure>
+<h6 id="a-启动分区：10MB"><a href="#a-启动分区：10MB" class="headerlink" title="a. 启动分区：10MB"></a>a. 启动分区：10MB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">(parted) mkpart primary 1 11<br>(parted) name 1 grub<br>(parted) <span class="hljs-built_in">set</span> 1 bios_grub on<br></code></pre></td></tr></table></figure>
 <h6 id="b-引导分区：128MB"><a href="#b-引导分区：128MB" class="headerlink" title="b. 引导分区：128MB"></a>b. 引导分区：128MB</h6><p> <strong><code>注意：如果你是在 win10（举例） 下安装的 gentoo ,想组双系统的话，那么你需要保证已有一个 EFI分区（这个分区在你安装 win10 时会自动生成），此时直接跳过 ‘引导分区’ 这一步。</code></strong><br>使用UEFI接口引导系统（而不是BIOS）时，将引导分区标记为EFI系统分区。当在分区上设置引导选项时，Parted会自动执行此操作，完成后会有一个esp标志：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(parted) mkpart primary 11 139</span><br><span class="line">(parted) name 2 boot</span><br><span class="line">(parted) <span class="built_in">set</span> 2 boot on</span><br></pre></td></tr></table></figure>
-<h6 id="c-根分区：110GB"><a href="#c-根分区：110GB" class="headerlink" title="c. 根分区：110GB"></a>c. 根分区：110GB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(parted) mkpart primary 139 112779</span><br><span class="line">(parted) name 3 root</span><br></pre></td></tr></table></figure>
-<h6 id="d-M-2固态分区过程图"><a href="#d-M-2固态分区过程图" class="headerlink" title="d. M.2固态分区过程图"></a>d. M.2固态分区过程图</h6><p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/M.2%E5%9B%BA%E6%80%81%E5%88%86%E5%8C%BA.png" alt="M.2固态分区"><br><strong>2.2 针对 /dev/sda机械硬盘1的分区(分区工具有fdisk、cfdisk、parted等)：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">(parted) mkpart primary 11 139<br>(parted) name 2 boot<br>(parted) <span class="hljs-built_in">set</span> 2 boot on<br></code></pre></td></tr></table></figure>
+<h6 id="c-根分区：110GB"><a href="#c-根分区：110GB" class="headerlink" title="c. 根分区：110GB"></a>c. 根分区：110GB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">(parted) mkpart primary 139 112779<br>(parted) name 3 root<br></code></pre></td></tr></table></figure>
+<h6 id="d-M-2固态分区过程图"><a href="#d-M-2固态分区过程图" class="headerlink" title="d. M.2固态分区过程图"></a>d. M.2固态分区过程图</h6><p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/M.2%E5%9B%BA%E6%80%81%E5%88%86%E5%8C%BA.png" srcset="/img/loading.gif" lazyload alt="M.2固态分区"><br><strong>2.2 针对 /dev/sda机械硬盘1的分区(分区工具有fdisk、cfdisk、parted等)：</strong></p>
 <p>分区数量：/home、swap</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">＃使用 parted 分区工具</span><br><span class="line">parted /dev/sda</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃使用 parted 分区工具<br>parted /dev/sda<br></code></pre></td></tr></table></figure>
 <p><em><strong>parted基本操作</strong></em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">＃查看操作说明</span><br><span class="line">(parted) <span class="built_in">help</span></span><br><span class="line">＃容量查看 GB</span><br><span class="line">(parted) unit Gib</span><br><span class="line">＃分区大小 start：起始容量 end：结束容量，分区大小：end - start</span><br><span class="line">(parted) mkpart primary start end</span><br><span class="line">＃打印整个磁盘空闲分区</span><br><span class="line">(parted) <span class="built_in">print</span> free</span><br></pre></td></tr></table></figure>
-<h6 id="a-swap分区：10GB"><a href="#a-swap分区：10GB" class="headerlink" title="a. swap分区：10GB"></a>a. swap分区：10GB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(parted) mkpart primary 0 10</span><br></pre></td></tr></table></figure>
-<h6 id="b-home分区：290GB"><a href="#b-home分区：290GB" class="headerlink" title="b. home分区：290GB"></a>b. home分区：290GB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(parted) mkpart primary 10 300</span><br></pre></td></tr></table></figure>
-<h6 id="c-机械硬盘1分区过程图"><a href="#c-机械硬盘1分区过程图" class="headerlink" title="c. 机械硬盘1分区过程图"></a>c. 机械硬盘1分区过程图</h6><p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%981%E5%88%86%E5%8C%BA.png" alt="机械硬盘1分区"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃查看操作说明<br>(parted) <span class="hljs-built_in">help</span><br>＃容量查看 GB<br>(parted) unit Gib<br>＃分区大小 start：起始容量 end：结束容量，分区大小：end - start<br>(parted) mkpart primary start end<br>＃打印整个磁盘空闲分区<br>(parted) <span class="hljs-built_in">print</span> free<br></code></pre></td></tr></table></figure>
+<h6 id="a-swap分区：10GB"><a href="#a-swap分区：10GB" class="headerlink" title="a. swap分区：10GB"></a>a. swap分区：10GB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">(parted) mkpart primary 0 10<br></code></pre></td></tr></table></figure>
+<h6 id="b-home分区：290GB"><a href="#b-home分区：290GB" class="headerlink" title="b. home分区：290GB"></a>b. home分区：290GB</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">(parted) mkpart primary 10 300<br></code></pre></td></tr></table></figure>
+<h6 id="c-机械硬盘1分区过程图"><a href="#c-机械硬盘1分区过程图" class="headerlink" title="c. 机械硬盘1分区过程图"></a>c. 机械硬盘1分区过程图</h6><p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%981%E5%88%86%E5%8C%BA.png" srcset="/img/loading.gif" lazyload alt="机械硬盘1分区"></p>
 <h5 id="3-格式化分区"><a href="#3-格式化分区" class="headerlink" title="3. 格式化分区"></a>3. 格式化分区</h5><table>
 <thead>
 <tr>
@@ -392,94 +398,94 @@
 <td align="center">none</td>
 </tr>
 </tbody></table>
-<h6 id="a-格式化启动分区"><a href="#a-格式化启动分区" class="headerlink" title="a. 格式化启动分区"></a>a. 格式化启动分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext2 /dev/nvme0n1p</span><br></pre></td></tr></table></figure>
+<h6 id="a-格式化启动分区"><a href="#a-格式化启动分区" class="headerlink" title="a. 格式化启动分区"></a>a. 格式化启动分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkfs.ext2 /dev/nvme0n1p<br></code></pre></td></tr></table></figure>
 <h6 id="b-格式化引导分区"><a href="#b-格式化引导分区" class="headerlink" title="b. 格式化引导分区"></a>b. 格式化引导分区</h6><p>官方<a target="_blank" rel="noopener" href="http://www.uefi.org/sites/default/files/resources/UEFI%202_5.pdf">UEFI规范</a>表示UEFI固件将识别FAT12,16或32文件系统，但建议ESP使用FAT32。继续将ESP格式化为FAT32：<br> <strong><code>注意：如果你是在 win10（举例） 下安装的 gentoo ,想组双系统的话，那么你需要保证已有一个 EFI分区（这个分区在你安装 win10 时会自动生成），此时直接跳过 ‘格式化引导分区’ 这一步。</code></strong> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.fat -F 32 &#x2F;dev&#x2F;nvme0n1p2</span><br></pre></td></tr></table></figure>
-<h6 id="c-格式化根分区"><a href="#c-格式化根分区" class="headerlink" title="c. 格式化根分区"></a>c. 格式化根分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/nvme0n1p3</span><br></pre></td></tr></table></figure>
-<h6 id="d-格式化home分区"><a href="#d-格式化home分区" class="headerlink" title="d. 格式化home分区"></a>d. 格式化home分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/sda3</span><br></pre></td></tr></table></figure>
-<h6 id="e-格式化并启用swap"><a href="#e-格式化并启用swap" class="headerlink" title="e. 格式化并启用swap"></a>e. 格式化并启用swap</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkswap /dev/sda2</span><br><span class="line">swapon /dev/sda2</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mkfs</span>.fat -F <span class="hljs-number">32</span> /dev/nvme<span class="hljs-number">0</span>n<span class="hljs-number">1</span>p<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<h6 id="c-格式化根分区"><a href="#c-格式化根分区" class="headerlink" title="c. 格式化根分区"></a>c. 格式化根分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkfs.ext4 /dev/nvme0n1p3<br></code></pre></td></tr></table></figure>
+<h6 id="d-格式化home分区"><a href="#d-格式化home分区" class="headerlink" title="d. 格式化home分区"></a>d. 格式化home分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkfs.ext4 /dev/sda3<br></code></pre></td></tr></table></figure>
+<h6 id="e-格式化并启用swap"><a href="#e-格式化并启用swap" class="headerlink" title="e. 格式化并启用swap"></a>e. 格式化并启用swap</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkswap /dev/sda2<br>swapon /dev/sda2<br></code></pre></td></tr></table></figure>
 <h5 id="4-挂载分区"><a href="#4-挂载分区" class="headerlink" title="4. 挂载分区"></a>4. 挂载分区</h5><p>所有分区格式化完成之后，挂载分区到/mnt/gentoo下：<br> <strong><code>注意：EFI 引导需要在 boot 下创建一个 efi 目录</code></strong> </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">＃创建boot home目录</span><br><span class="line">mkdir -p /mnt/gentoo/boot/efi </span><br><span class="line">mkdir /mnt/gentoo/home</span><br><span class="line">mount /dev/nvme0n1p3 /mnt/gentoo</span><br><span class="line">mount /dev/nvme0n1p2 /mnt/gentoo/boot/efi</span><br><span class="line">mount /dev/sda3 /mnt/gentoo/home</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃创建boot home目录<br>mkdir -p /mnt/gentoo/boot/efi <br>mkdir /mnt/gentoo/home<br>mount /dev/nvme0n1p3 /mnt/gentoo<br>mount /dev/nvme0n1p2 /mnt/gentoo/boot/efi<br>mount /dev/sda3 /mnt/gentoo/home<br></code></pre></td></tr></table></figure>
 <p>挂载完之后可以使用<code>mount 命令</code>检查一下挂载是否成功，没有挂载成功的需要重新挂载一下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount<br></code></pre></td></tr></table></figure>
 <h5 id="5-下载stage3"><a href="#5-下载stage3" class="headerlink" title="5.下载stage3"></a>5.下载stage3</h5><h6 id="a-验证时间"><a href="#a-验证时间" class="headerlink" title="a. 验证时间"></a>a. 验证时间</h6><p>当前时间：9月22日 17:08 2018</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">date</span><br><span class="line">＃Sat Sep 22 09:12:08 UTC 2018</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">date<br>＃Sat Sep 22 09:12:08 UTC 2018<br></code></pre></td></tr></table></figure>
 <p>时间显示应与当前日期为准<br>举例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">＃本地时间：9月22日 17:08 2018</span><br><span class="line">＃设置时间： 9月22日 17:08 2018</span><br><span class="line">date 092217082018</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃本地时间：9月22日 17:08 2018<br>＃设置时间： 9月22日 17:08 2018<br>date 092217082018<br></code></pre></td></tr></table></figure>
 <h6 id="b-下载stage3"><a href="#b-下载stage3" class="headerlink" title="b. 下载stage3"></a>b. 下载stage3</h6><p>官方源默认是国外服务器，所以需要在国内源中下载stage3文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/gentoo</span><br><span class="line">links https://mirrors.163.com/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/</span><br></pre></td></tr></table></figure>
-<p>此时出现一个命令行网页浏览器，选择stage3下载即可。<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E4%B8%8B%E8%BD%BDstage3.png" alt="下载stage3"><br>下载完之后，按  <strong><code>ESC -&gt; 回车 -&gt; Exit -&gt; 回车</code></strong>  退出<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%80%E5%87%BA.png" alt="退出">)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /mnt/gentoo<br>links https://mirrors.163.com/gentoo/releases/amd64/autobuilds/current-install-amd64-minimal/<br></code></pre></td></tr></table></figure>
+<p>此时出现一个命令行网页浏览器，选择stage3下载即可。<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E4%B8%8B%E8%BD%BDstage3.png" srcset="/img/loading.gif" lazyload alt="下载stage3"><br>下载完之后，按  <strong><code>ESC -&gt; 回车 -&gt; Exit -&gt; 回车</code></strong>  退出<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%80%E5%87%BA.png" srcset="/img/loading.gif" lazyload alt="退出">)</p>
 <h6 id="c-解压stage3"><a href="#c-解压stage3" class="headerlink" title="c. 解压stage3"></a>c. 解压stage3</h6><p>文件名按自己下载的为准</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time tar xvf stage3-amd64-20180920T214502Z.tar.xz</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%A7%A3%E5%8E%8Bstage3.png" alt="解压stage3"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">time tar xvf stage3-amd64-20180920T214502Z.tar.xz<br></code></pre></td></tr></table></figure>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%A7%A3%E5%8E%8Bstage3.png" srcset="/img/loading.gif" lazyload alt="解压stage3"></p>
 <h6 id="d-配置-etc-portage-make-conf"><a href="#d-配置-etc-portage-make-conf" class="headerlink" title="d. 配置 /etc/portage/make.conf"></a>d. 配置 /etc/portage/make.conf</h6><p>首先，要知道自己的电脑cpu核心数<br><strong>然后设置变量 ：MAKEOPTS=”-j核心数+1”</strong><br>检查电脑核心数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep processor</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/cpu%E6%A0%B8%E5%BF%83%E6%95%B0.png" alt="cpu核心数"><br>还有一种比较简单的方法，使用 <strong><code>top</code></strong> 命令，然后按数字键 1，就会出现所有cpu的数量 :  <strong><code>%Cpu0 - %Cpun 核心数就是 n+1</code></strong><br>所以我的电脑设置是： <strong><code>MAKEOPTS=&quot;-j9&quot;</code></strong><br>执行以下命令在最后一行添加配置变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;MAKEOPTS=&quot;-j9&quot;&#x27;</span> &gt;&gt; /etc/portage/make.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cat /proc/cpuinfo | grep processor<br></code></pre></td></tr></table></figure>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/cpu%E6%A0%B8%E5%BF%83%E6%95%B0.png" srcset="/img/loading.gif" lazyload alt="cpu核心数"><br>还有一种比较简单的方法，使用 <strong><code>top</code></strong> 命令，然后按数字键 1，就会出现所有cpu的数量 :  <strong><code>%Cpu0 - %Cpun 核心数就是 n+1</code></strong><br>所以我的电脑设置是： <strong><code>MAKEOPTS=&quot;-j9&quot;</code></strong><br>执行以下命令在最后一行添加配置变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;MAKEOPTS=&quot;-j9&quot;&#x27;</span> &gt;&gt; /etc/portage/make.conf<br></code></pre></td></tr></table></figure>
 
 
 <h6 id="e-选择镜像"><a href="#e-选择镜像" class="headerlink" title="e. 选择镜像"></a>e. 选择镜像</h6><p>将光标移至所有国内镜像地址，然后按 <strong><code>空格键</code></strong> 确认，所有选完后，按 <strong><code>回车</code></strong> 即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mirrorselect -i -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mirrorselect -i -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf<br></code></pre></td></tr></table></figure>
 <p>配置Gentoo ebuild存储库：此文件包含更新软件包存储库所需的同步信息（包含Portage下载和安装软件包所需的所有信息的ebuild和相关文件的集合）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir --parents /mnt/gentoo/etc/portage/repos.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkdir --parents /mnt/gentoo/etc/portage/repos.conf<br></code></pre></td></tr></table></figure>
 <p>接下来，将Portage提供的Gentoo存储库配置文件复制到（新创建的）repos.conf目录中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf<br></code></pre></td></tr></table></figure>
 <h6 id="f-复制DNS信息"><a href="#f-复制DNS信息" class="headerlink" title="f. 复制DNS信息"></a>f. 复制DNS信息</h6><p>确保在接下来chroot之后依然能连上网络<br> <strong><code>--dereference</code></strong> ：确保复制的是文件本身而不是符号链接。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp --dereference /etc/resolv.conf /mnt/gentoo/etc/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cp --dereference /etc/resolv.conf /mnt/gentoo/etc/<br></code></pre></td></tr></table></figure>
 <h6 id="g-挂载文件系统"><a href="#g-挂载文件系统" class="headerlink" title="g. 挂载文件系统"></a>g. 挂载文件系统</h6><p>gentoo默认的init系统是OpenRC类型，所有要挂载相关系统文件，不然有些命令无法使用，在以后修复系统的时候，也要记得挂载一下。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount --types proc /proc /mnt/gentoo/proc</span><br><span class="line">mount --rbind /sys /mnt/gentoo/sys</span><br><span class="line">mount --rbind /dev /mnt/gentoo/dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount --types proc /proc /mnt/gentoo/proc<br>mount --rbind /sys /mnt/gentoo/sys<br>mount --rbind /dev /mnt/gentoo/dev<br></code></pre></td></tr></table></figure>
 <p>如果是安装init系统为systemd的，则需要加  <strong><code>--make-rslave</code></strong> </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mount --types proc /proc /mnt/gentoo/proc</span><br><span class="line">mount --rbind /sys /mnt/gentoo/sys</span><br><span class="line">mount --make-rslave /mnt/gentoo/sys</span><br><span class="line">mount --rbind /dev /mnt/gentoo/dev</span><br><span class="line">mount --make-rslave /mnt/gentoo/dev</span><br></pre></td></tr></table></figure>
-<h6 id="h-进入新环境"><a href="#h-进入新环境" class="headerlink" title="h. 进入新环境"></a>h. 进入新环境</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chroot /mnt/gentoo /bin/bash</span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;(chroot) <span class="variable">$&#123;PS1&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
-<h6 id="i-从Web安装ebuild存储库快照"><a href="#i-从Web安装ebuild存储库快照" class="headerlink" title="i. 从Web安装ebuild存储库快照"></a>i. 从Web安装ebuild存储库快照</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge-webrsync</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount --types proc /proc /mnt/gentoo/proc<br>mount --rbind /sys /mnt/gentoo/sys<br>mount --make-rslave /mnt/gentoo/sys<br>mount --rbind /dev /mnt/gentoo/dev<br>mount --make-rslave /mnt/gentoo/dev<br></code></pre></td></tr></table></figure>
+<h6 id="h-进入新环境"><a href="#h-进入新环境" class="headerlink" title="h. 进入新环境"></a>h. 进入新环境</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">chroot /mnt/gentoo /bin/bash<br><span class="hljs-built_in">source</span> /etc/profile<br><span class="hljs-built_in">export</span> PS1=<span class="hljs-string">&quot;(chroot) <span class="hljs-variable">$&#123;PS1&#125;</span>&quot;</span><br></code></pre></td></tr></table></figure>
+<h6 id="i-从Web安装ebuild存储库快照"><a href="#i-从Web安装ebuild存储库快照" class="headerlink" title="i. 从Web安装ebuild存储库快照"></a>i. 从Web安装ebuild存储库快照</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge-webrsync<br></code></pre></td></tr></table></figure>
 <p>注意：这一步跟上面的选择镜像有关，如果发现一直处于执行状态，那么检查一下文件   <strong><code>/mnt/gentoo/etc/portage/make.conf</code></strong>  是否正确。</p>
 <h6 id="j-选择配置"><a href="#j-选择配置" class="headerlink" title="j. 选择配置"></a>j. 选择配置</h6><p>配置列表是实时更新的，所以需要根据实际做出选择，这里选择默认12即可，如果是systemd，则需要选择带systemd字样的配置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eselect profile list</span><br><span class="line">eselect profile <span class="built_in">set</span> 12</span><br></pre></td></tr></table></figure>
-<p>配置列表<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%85%8D%E7%BD%AE.png" alt="选择配置"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">eselect profile list<br>eselect profile <span class="hljs-built_in">set</span> 12<br></code></pre></td></tr></table></figure>
+<p>配置列表<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E9%85%8D%E7%BD%AE.png" srcset="/img/loading.gif" lazyload alt="选择配置"></p>
 <h6 id="k-更新-world集"><a href="#k-更新-world集" class="headerlink" title="k. 更新@world集"></a>k. 更新@world集</h6><p>因为没有选择桌面环境，所有更新时间会短一些。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time emerge --ask --quiet --update --deep --newuse @world</span><br></pre></td></tr></table></figure>
-<p>这里使用了 <strong>–quiet</strong> 静默安装，不会输出安装过程。<br>安装过程图<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%9B%B4%E6%96%B0@world%E9%9B%86.png" alt="更新@world集"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">time emerge --ask --quiet --update --deep --newuse @world<br></code></pre></td></tr></table></figure>
+<p>这里使用了 <strong>–quiet</strong> 静默安装，不会输出安装过程。<br>安装过程图<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%9B%B4%E6%96%B0@world%E9%9B%86.png" srcset="/img/loading.gif" lazyload alt="更新@world集"></p>
 <h6 id="l-时区"><a href="#l-时区" class="headerlink" title="l. 时区"></a>l. 时区</h6><p>选择本地时区</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls /usr/share/zoneinfo/Asia</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Asia/Shanghai&quot;</span> &gt; /etc/timezone</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ls /usr/share/zoneinfo/Asia<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Asia/Shanghai&quot;</span> &gt; /etc/timezone<br></code></pre></td></tr></table></figure>
 <p>更新时区</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge --config sys-libs/timezone-data</span><br></pre></td></tr></table></figure>
-<h6 id="m-配置语言环境"><a href="#m-配置语言环境" class="headerlink" title="m. 配置语言环境"></a>m. 配置语言环境</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/locale.gen</span><br></pre></td></tr></table></figure>
-<p>根据如下修改，这里需要注意，gentoo默认不支持zh_CN.UTF-8，需要<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%85%8D%E7%BD%AE%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83.png" alt="配置语言环境"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --config sys-libs/timezone-data<br></code></pre></td></tr></table></figure>
+<h6 id="m-配置语言环境"><a href="#m-配置语言环境" class="headerlink" title="m. 配置语言环境"></a>m. 配置语言环境</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano -w /etc/locale.gen<br></code></pre></td></tr></table></figure>
+<p>根据如下修改，这里需要注意，gentoo默认不支持zh_CN.UTF-8，需要<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%85%8D%E7%BD%AE%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83.png" srcset="/img/loading.gif" lazyload alt="配置语言环境"></p>
 <p>下一步是运行locale-gen。它将生成/etc/locale.gen文件中指定的所有语言环境。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">locale-gen</span><br><span class="line">eselect locale list</span><br><span class="line">eselect locale <span class="built_in">set</span> 8</span><br></pre></td></tr></table></figure>
-<p>这里设置中文语言<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E8%AF%AD%E8%A8%80.png" alt="选择语言.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">locale-gen<br>eselect locale list<br>eselect locale <span class="hljs-built_in">set</span> 8<br></code></pre></td></tr></table></figure>
+<p>这里设置中文语言<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%80%89%E6%8B%A9%E8%AF%AD%E8%A8%80.png" srcset="/img/loading.gif" lazyload alt="选择语言.png"></p>
 <p>确保设置了区域设置，否则系统会在内核构建期间以及安装后期的其他软件部署中显示警告和错误。</p>
-<h6 id="n-重新加载环境："><a href="#n-重新加载环境：" class="headerlink" title="n. 重新加载环境："></a>n. 重新加载环境：</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env-update &amp;&amp; <span class="built_in">source</span> /etc/profile &amp;&amp; <span class="built_in">export</span> PS1=<span class="string">&quot;(chroot) <span class="variable">$PS1</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<h6 id="n-重新加载环境："><a href="#n-重新加载环境：" class="headerlink" title="n. 重新加载环境："></a>n. 重新加载环境：</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">env-update &amp;&amp; <span class="hljs-built_in">source</span> /etc/profile &amp;&amp; <span class="hljs-built_in">export</span> PS1=<span class="hljs-string">&quot;(chroot) <span class="hljs-variable">$PS1</span>&quot;</span><br></code></pre></td></tr></table></figure>
 <h6 id="o-安装内核源码"><a href="#o-安装内核源码" class="headerlink" title="o. 安装内核源码"></a>o. 安装内核源码</h6><p>对于基于amd64的系统，Gentoo推荐使用<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/sys-kernel/gentoo-sources">sys-kernel / gentoo-sources</a>包。</p>
 <p>选择适当的内核源并使用emerge安装它：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask sys-kernel/gentoo-sources</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask sys-kernel/gentoo-sources<br></code></pre></td></tr></table></figure>
 <p>如果提示 <strong><code>needs updating</code></strong><br>则运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">etc-update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">etc-update<br></code></pre></td></tr></table></figure>
 <p>然后输入 <strong><code>-3</code></strong>  -&gt; 回车 -&gt; yes ,之后在重新装一次即可。</p>
 <h6 id="p-配置kernel"><a href="#p-配置kernel" class="headerlink" title="p. 配置kernel"></a>p. 配置kernel</h6><p>这里使用自动配置方式，需要手动配置的请看Gentoo Wiki。</p>
 <p>安装kernel自动配置工具genkernel</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time emerge --ask --quiet sys-kernel/genkernel</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85genkernel.png" alt="安装genkernel"><br>安装时如果提示  <strong><code>USE changes</code></strong> ，则运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">etc-update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">time emerge --ask --quiet sys-kernel/genkernel<br></code></pre></td></tr></table></figure>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85genkernel.png" srcset="/img/loading.gif" lazyload alt="安装genkernel"><br>安装时如果提示  <strong><code>USE changes</code></strong> ，则运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">etc-update<br></code></pre></td></tr></table></figure>
 <p>然后输入 <strong><code>-3</code></strong>  -&gt; 回车 -&gt; yes ,之后在重新执行  <strong><code>time emerge --ask --quiet sys-kernel/genkernel</code></strong> 即可。</p>
 <p>安装完成之后，编辑  <strong><code>/etc/fstab</code></strong>  系统的挂载点：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/fstab</span><br></pre></td></tr></table></figure>
-<p>添加如下挂载点：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%8C%82%E8%BD%BD%E7%82%B9.png" alt="挂载点"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano -w /etc/fstab<br></code></pre></td></tr></table></figure>
+<p>添加如下挂载点：<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E6%8C%82%E8%BD%BD%E7%82%B9.png" srcset="/img/loading.gif" lazyload alt="挂载点"></p>
 <p>然后开始编译kernel：<br>这需要不少的时间，可以喝杯茶放松一下~</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time genkernel all</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8.png" alt="编译内核"><br>编译完成之后，检查一下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls /boot/kernel* /boot/initramfs*</span><br><span class="line">＃会显示两个文件　　</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">time genkernel all<br></code></pre></td></tr></table></figure>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8.png" srcset="/img/loading.gif" lazyload alt="编译内核"><br>编译完成之后，检查一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ls /boot/kernel* /boot/initramfs*<br>＃会显示两个文件　　<br></code></pre></td></tr></table></figure>
 <h6 id="q-安装固件"><a href="#q-安装固件" class="headerlink" title="q. 安装固件"></a>q. 安装固件</h6><p>某些驱动程序在工作之前需要在系统上安装其他固件。这通常是网络接口的情况，尤其是无线网络接口。此外，在使用开源驱动程序时，来自AMD，Nvidia和Intel等供应商的现代视频芯片通常需要外部固件文件。大多数固件都封装在<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/sys-kernel/linux-firmware">sys-kernel / linux-firmware</a>中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time emerge --ask --quiet sys-kernel/linux-firmware</span><br></pre></td></tr></table></figure>
-<h6 id="r-修改主机名"><a href="#r-修改主机名" class="headerlink" title="r. 修改主机名"></a>r. 修改主机名</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/conf.d/hostname</span><br><span class="line">＃将hostname变量设置为自己取的主机名字</span><br><span class="line">hostname =“Guard”</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">time emerge --ask --quiet sys-kernel/linux-firmware<br></code></pre></td></tr></table></figure>
+<h6 id="r-修改主机名"><a href="#r-修改主机名" class="headerlink" title="r. 修改主机名"></a>r. 修改主机名</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano -w /etc/conf.d/hostname<br>＃将hostname变量设置为自己取的主机名字<br>hostname =“Guard”<br></code></pre></td></tr></table></figure>
 <p>其次，如果需要域名，请在/etc/conf.d/net中设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/conf.d/net</span><br><span class="line">＃将dns_domain_lo变量设置为所选域名</span><br><span class="line">dns_domain_lo =“homenetwork”</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano -w /etc/conf.d/net<br>＃将dns_domain_lo变量设置为所选域名<br>dns_domain_lo =“homenetwork”<br></code></pre></td></tr></table></figure>
 <p>如果设置域名，登录屏幕会显示 <strong><code>This is hostname.(none)</code></strong><br>想要将它去掉，只需要修改：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/issue</span><br><span class="line">＃将 .\O 删掉即可</span><br></pre></td></tr></table></figure>
-<h6 id="s-配置网络"><a href="#s-配置网络" class="headerlink" title="s. 配置网络"></a>s. 配置网络</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time emerge --ask  --quiet --noreplace net-misc/netifrc</span><br></pre></td></tr></table></figure>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C.png" alt="配置网络"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano -w /etc/issue<br>＃将 .\O 删掉即可<br></code></pre></td></tr></table></figure>
+<h6 id="s-配置网络"><a href="#s-配置网络" class="headerlink" title="s. 配置网络"></a>s. 配置网络</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">time emerge --ask  --quiet --noreplace net-misc/netifrc<br></code></pre></td></tr></table></figure>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C.png" srcset="/img/loading.gif" lazyload alt="配置网络"></p>
 <h6 id="t-设置启动时自动启动网络"><a href="#t-设置启动时自动启动网络" class="headerlink" title="t. 设置启动时自动启动网络"></a>t. 设置启动时自动启动网络</h6><p>要在引导时激活网络接口，需要将它们添加到默认运行级别。<br>首先需要知道网络接口名称：<br>使用  <strong><code>ifconfig</code></strong> 查看是  <strong><code>eth0</code></strong> ，还是  <strong><code>enp3s0</code></strong><br>这里使用 enp3s0：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/init.d</span><br><span class="line">ln -s net.lo net.enp3s0</span><br><span class="line">rc-update add net.enp3s0 default</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/init.d<br>ln -s net.lo net.enp3s0<br>rc-update add net.enp3s0 default<br></code></pre></td></tr></table></figure>
 <p>如果在启动系统后我们发现有关网络接口名称（当前记录为eth0）的假设是错误的，那么执行以下步骤来纠正这个问题：</p>
 <ul>
 <li>使用正确的接口名称更新/etc/conf.d/net文件（enp3s0而不是eth0）。</li>
@@ -488,27 +494,27 @@
 <li>将新的添加到默认运行级别。</li>
 <li>使用rc-update del net.eth0 default删除旧的。</li>
 </ul>
-<h6 id="u-设置主机hosts"><a href="#u-设置主机hosts" class="headerlink" title="u. 设置主机hosts"></a>u. 设置主机hosts</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/hosts</span><br></pre></td></tr></table></figure>
-<p>按如下设置hosts文件，这里以 <strong><code>Guard</code></strong> 为主机名<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/hosts.png" alt="hosts"></p>
+<h6 id="u-设置主机hosts"><a href="#u-设置主机hosts" class="headerlink" title="u. 设置主机hosts"></a>u. 设置主机hosts</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano -w /etc/hosts<br></code></pre></td></tr></table></figure>
+<p>按如下设置hosts文件，这里以 <strong><code>Guard</code></strong> 为主机名<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/hosts.png" srcset="/img/loading.gif" lazyload alt="hosts"></p>
 <h6 id="v-设置root密码"><a href="#v-设置root密码" class="headerlink" title="v. 设置root密码"></a>v. 设置root密码</h6><p>使用passwd命令设置root密码。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure>
-<h6 id="w-设置时钟"><a href="#w-设置时钟" class="headerlink" title="w. 设置时钟"></a>w. 设置时钟</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/conf.d/hwclock</span><br><span class="line">＃修改：clock=<span class="string">&quot;local&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">passwd<br></code></pre></td></tr></table></figure>
+<h6 id="w-设置时钟"><a href="#w-设置时钟" class="headerlink" title="w. 设置时钟"></a>w. 设置时钟</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano -w /etc/conf.d/hwclock<br>＃修改：clock=<span class="hljs-string">&quot;local&quot;</span><br></code></pre></td></tr></table></figure>
 <p>如果硬件时钟未使用UTC，则必须 <strong><code>clock=&quot;local&quot;</code></strong> 在文件中进行设置。否则系统可能会显示时钟偏差行为。</p>
 <h6 id="x-安装工具"><a href="#x-安装工具" class="headerlink" title="x. 安装工具"></a>x. 安装工具</h6><ol>
-<li>系统日志记录<br>提供传统的系统日志记录守护程序集。默认的日志记录配置可以很好地开箱即用，这使得这个软件包成为初学者的一个很好的选择。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask app-admin/sysklogd</span><br><span class="line">rc-update add sysklogd default</span><br></pre></td></tr></table></figure></li>
-<li>Cron守护程序<br>cron守护程序执行计划的命令。如果需要定期执行某些命令（例如每天，每周或每月），则非常方便。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask sys-process/cronie</span><br><span class="line">rc-update add cronie default</span><br></pre></td></tr></table></figure></li>
+<li>系统日志记录<br>提供传统的系统日志记录守护程序集。默认的日志记录配置可以很好地开箱即用，这使得这个软件包成为初学者的一个很好的选择。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask app-admin/sysklogd<br>rc-update add sysklogd default<br></code></pre></td></tr></table></figure></li>
+<li>Cron守护程序<br>cron守护程序执行计划的命令。如果需要定期执行某些命令（例如每天，每周或每月），则非常方便。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask sys-process/cronie<br>rc-update add cronie default<br></code></pre></td></tr></table></figure></li>
 <li>文件索引<br>要索引文件系统以提供更快的文件位置功能，请安装<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/sys-apps/mlocate">sys-apps / mlocate</a>。</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask sys-apps/mlocate</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask sys-apps/mlocate<br></code></pre></td></tr></table></figure>
 <ol start="4">
-<li>远程访问<br>要在安装后远程访问系统，请将sshd init脚本添加到默认运行级别：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rc-update add sshd default</span><br></pre></td></tr></table></figure></li>
-<li>如果需要串行控制台访问（在远程服务器的情况下可以访问），请取消注释/ etc / inittab中的串行控制台部分：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nano -w /etc/inittab</span><br><span class="line">＃SERIAL CONSOLES</span><br><span class="line">s0：12345：respawn：/ sbin / agetty 9600 ttyS0 vt100</span><br><span class="line">s1：12345：respawn：/ sbin / agetty 9600 ttyS1 vt100</span><br></pre></td></tr></table></figure></li>
+<li>远程访问<br>要在安装后远程访问系统，请将sshd init脚本添加到默认运行级别：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rc-update add sshd default<br></code></pre></td></tr></table></figure></li>
+<li>如果需要串行控制台访问（在远程服务器的情况下可以访问），请取消注释/ etc / inittab中的串行控制台部分：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano -w /etc/inittab<br>＃SERIAL CONSOLES<br>s0：12345：respawn：/ sbin / agetty 9600 ttyS0 vt100<br>s1：12345：respawn：/ sbin / agetty 9600 ttyS1 vt100<br></code></pre></td></tr></table></figure></li>
 <li>网络工具</li>
 </ol>
 <ul>
-<li>6.1 安装DHCP客户端<br>为了使系统能够使用netifrc脚本自动获取一个或多个网络接口的IP地址，必须安装DHCP客户端。我们建议使用<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-misc/dhcpcd">net-misc / dhcpcd，</a>尽管通过Gentoo存储库可以获得许多其他DHCP客户端：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask net-misc/dhcpcd</span><br></pre></td></tr></table></figure>
+<li>6.1 安装DHCP客户端<br>为了使系统能够使用netifrc脚本自动获取一个或多个网络接口的IP地址，必须安装DHCP客户端。我们建议使用<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-misc/dhcpcd">net-misc / dhcpcd，</a>尽管通过Gentoo存储库可以获得许多其他DHCP客户端：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask net-misc/dhcpcd<br></code></pre></td></tr></table></figure>
 <ul>
-<li>6.2安装无线网络工具<br><code>如果不需要无线可以跳过此步骤</code><br>如果系统将连接到无线网络，请为Open或WEP网络安装：<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-wireless/iw">net-wireless / iw</a>；<br>WPA或WPA2网络安装：<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-wireless/wpa_supplicant">net-wireless / wpa_supplicant</a>；<br>iw也是用于扫描无线网络的有用的基本诊断工具。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask net-wireless/iw </span><br><span class="line">emerge --ask net-wireless/wpa_supplicant</span><br></pre></td></tr></table></figure>
+<li>6.2安装无线网络工具<br><code>如果不需要无线可以跳过此步骤</code><br>如果系统将连接到无线网络，请为Open或WEP网络安装：<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-wireless/iw">net-wireless / iw</a>；<br>WPA或WPA2网络安装：<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-wireless/wpa_supplicant">net-wireless / wpa_supplicant</a>；<br>iw也是用于扫描无线网络的有用的基本诊断工具。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask net-wireless/iw <br>emerge --ask net-wireless/wpa_supplicant<br></code></pre></td></tr></table></figure>
 <h6 id="y-配置引导加载程序"><a href="#y-配置引导加载程序" class="headerlink" title="y. 配置引导加载程序"></a>y. 配置引导加载程序</h6></li>
 </ul>
 </li>
@@ -520,11 +526,11 @@
 <li>UEFI用户注意事项：</li>
 </ul>
 <p>用户需要确保<code>GRUB_PLATFORMS=&quot;efi-64&quot;</code>已启用（默认情况下是这种情况）。如果不是设置的情况，<code>GRUB_PLATFORMS=&quot;efi-64&quot;</code>则需要在出现GRUB2 之前将其添加到<code>/etc/portage/make.conf</code>文件中，然后在安装GRUB2 ：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;GRUB_PLATFORMS=&quot;efi-64&quot;&#x27;</span> &gt;&gt; /etc/portage/make.conf</span><br><span class="line">emerge --ask sys-boot/grub:2</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;GRUB_PLATFORMS=&quot;efi-64&quot;&#x27;</span> &gt;&gt; /etc/portage/make.conf<br>emerge --ask sys-boot/grub:2<br></code></pre></td></tr></table></figure>
 <p>如果GRUB2以某种方式出现而没有启用<code>GRUB_PLATFORMS=&quot;efi-64&quot;</code>，则可以将该行（<code>GRUB_PLATFORMS=&quot;efi-64&quot;</code>）添加到make.conf中，然后通过将选项传递给emerge来重新计算<a target="_blank" rel="noopener" href="https://wiki.gentoo.org/wiki/World_set_(Portage)" title="世界集（波蒂奇）">世界包集的</a>依赖关系：<code>--update --newuse</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask --update --newuse --verbose sys-boot/grub:2</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask --update --newuse --verbose sys-boot/grub:2<br></code></pre></td></tr></table></figure>
 <ul>
-<li>使用仅支持MBR分区表的旧BIOS系统时，不需要其他配置就能显示GRUB：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask --verbose sys-boot/grub:2</span><br></pre></td></tr></table></figure>
+<li>使用仅支持MBR分区表的旧BIOS系统时，不需要其他配置就能显示GRUB：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask --verbose sys-boot/grub:2<br></code></pre></td></tr></table></figure>
 GRUB2软件现已合并到系统中，但尚未安装。</li>
 </ul>
 <ol start="2">
@@ -532,289 +538,450 @@ GRUB2软件现已合并到系统中，但尚未安装。</li>
 </ol>
 <p>接下来，通过<code>grub-install</code>命令将必要的GRUB2文件安装到 <strong><code>/boot/grub</code></strong> 目录。假定第一个磁盘（系统从中引导的磁盘）是 <strong><code>/dev/sda</code></strong> ，以下命令之一将执行：</p>
 <ul>
-<li>UEFI用户：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot/efi</span><br></pre></td></tr></table></figure>
-如果grub_install返回类似的错误<code>Could not prepare Boot variable: Read-only file system</code>，可能需要将efivars特殊挂载重新安装为读写才能成功：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -o remount,rw /sys/firmware/efi/efivars</span><br></pre></td></tr></table></figure></li>
+<li>UEFI用户：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-install --target=x86_64-efi --efi-directory=/boot/efi<br></code></pre></td></tr></table></figure>
+如果grub_install返回类似的错误<code>Could not prepare Boot variable: Read-only file system</code>，可能需要将efivars特殊挂载重新安装为读写才能成功：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount -o remount,rw /sys/firmware/efi/efivars<br></code></pre></td></tr></table></figure></li>
 </ul>
 <p> <strong><code>另外需要注意</code></strong> ：<br>一些主板制造商似乎只支持EFI系统分区（ESP）中的.EFI文件的 /boot/efi 目录位置(挂载的引导分区目录)。GRUB安装程序可以使用该<code>--removable</code>选项自动执行此操作。在运行以下命令之前验证是否已安装ESP。假设ESP安装在/boot/efi（如前所述），执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot/efi --removable</span><br></pre></td></tr></table></figure>
-<p>这将创建由UEFI规范定义的默认目录，然后自动将 grubx64.efi 文件复制到由相同规范定义的“默认”EFI文件位置。<br>我的电脑主板是华硕的，只支持EFI系统分区（ESP）中的.EFI文件的 /boot/efi 目录位置(挂载的引导分区目录)。所以得加   <strong><code>--removable</code></strong><br>如果发现自己的系统引导不了，出现 GRUB 字样，则尝试加  <strong><code>--removable</code></strong><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85EFI%E5%BC%95%E5%AF%BC.png" alt="安装EFI引导"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-install --target=x86_64-efi --efi-directory=/boot/efi --removable<br></code></pre></td></tr></table></figure>
+<p>这将创建由UEFI规范定义的默认目录，然后自动将 grubx64.efi 文件复制到由相同规范定义的“默认”EFI文件位置。<br>我的电脑主板是华硕的，只支持EFI系统分区（ESP）中的.EFI文件的 /boot/efi 目录位置(挂载的引导分区目录)。所以得加   <strong><code>--removable</code></strong><br>如果发现自己的系统引导不了，出现 GRUB 字样，则尝试加  <strong><code>--removable</code></strong><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85EFI%E5%BC%95%E5%AF%BC.png" srcset="/img/loading.gif" lazyload alt="安装EFI引导"></p>
 <ul>
-<li>BIOS用户：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grub-install /dev/sda </span><br><span class="line">＃/dev/sda 为 /boot 挂载分区</span><br></pre></td></tr></table></figure></li>
+<li>BIOS用户：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-install /dev/sda <br>＃/dev/sda 为 /boot 挂载分区<br></code></pre></td></tr></table></figure></li>
 </ul>
 <ol start="3">
 <li>GRUB2配置</li>
 </ol>
 <p>注意：如果是安装win10 与gentoo 双系统，需要另外安装 <code>os-prober</code> 用以检测 win10 的引导：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">emerge --ask os-prober</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask os-prober<br></code></pre></td></tr></table></figure>
 <p>然后执行 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os-prober</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">os-prober<br></code></pre></td></tr></table></figure>
 
 <p>接下来，根据 /etc/default/grub 文件和 /etc/grub.d 脚本中指定的用户配置生成GRUB2配置。<br>在大多数情况下，用户不需要配置，因为GRUB2将自动检测要引导的内核来生成最终的GRUB2配置，<br>请运行 grub-mkconfig 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-mkconfig -o /boot/efi/grub/grub.cfg</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-mkconfig -o /boot/efi/grub/grub.cfg<br></code></pre></td></tr></table></figure>
 
-<p>如果是win10与gentoo双系统则：<br><code>如果检测不到win系统，则可以先继续执行下一步，等全部安装完毕之后，重启系统，再执行 os-prober -&gt; grub-mkconfig -o /boot/grub/grub.cfg 即可。</code><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/win10%E4%B8%8Egentoo%E5%8F%8C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E5%BC%95%E5%AF%BC.png" alt="win10与gentoo双系统配置引导"></p>
+<p>如果是win10与gentoo双系统则：<br><code>如果检测不到win系统，则可以先继续执行下一步，等全部安装完毕之后，重启系统，再执行 os-prober -&gt; grub-mkconfig -o /boot/grub/grub.cfg 即可。</code><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/win10%E4%B8%8Egentoo%E5%8F%8C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E5%BC%95%E5%AF%BC.png" srcset="/img/loading.gif" lazyload alt="win10与gentoo双系统配置引导"></p>
 <p>假如没有出现 <strong><code>Found</code></strong> 开头的文字，则表明检测不到系统，此时：</p>
 <ul>
-<li>运行  <strong><code>ls /boot/kernel* /boot/initramfs **</code></strong> 查看是否会输出两个文件；<pre><code>如果没有，则运行 **`ls /boot/efi/kernel* /boot/efi/initramfs **`** ，查看是否会输出两个文件，如果有输出，则将两个文件复制到 **`/boot`** 目录下，之后重新 **`grub-mkconfig -o /boot/efi/grub/grub.cfg`** 即可。
+<li>运行  <strong><code>ls /boot/kernel* /boot/initramfs **</code></strong> 查看是否会输出两个文件；<pre><code class="hljs">如果没有，则运行 **`ls /boot/efi/kernel* /boot/efi/initramfs **`** ，查看是否会输出两个文件，如果有输出，则将两个文件复制到 **`/boot`** 目录下，之后重新 **`grub-mkconfig -o /boot/efi/grub/grub.cfg`** 即可。
 </code></pre>
 如果都没有输出，则重新 <strong><code>genkernel all</code></strong> 一下，然后在自动生成GRUB2配置。</li>
 </ul>
 <h6 id="z-重新启动系统"><a href="#z-重新启动系统" class="headerlink" title="z. 重新启动系统"></a>z. 重新启动系统</h6><p>退出chroot环境并卸载所有已安装的分区。<br>然后重新启动：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">exit</span><br>reboot<br></code></pre></td></tr></table></figure>
 <p>不要忘记拔掉优盘，否则可能会再次引导CD而不是新的Gentoo系统。</p>
-<p>win10与gentoo双系统引导界面:<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/win10%E4%B8%8Egentoo%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E7%95%8C%E9%9D%A2.png" alt="win10与gentoo双系统引导界面"><br>gentoo命令行登录，此时输入 <code>root -&gt; 回车 -&gt; 输入密码</code>，即可进入gentoo系统。</p>
-<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png" alt="命令行登录界面"></p>
+<p>win10与gentoo双系统引导界面:<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/win10%E4%B8%8Egentoo%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E7%95%8C%E9%9D%A2.png" srcset="/img/loading.gif" lazyload alt="win10与gentoo双系统引导界面"><br>gentoo命令行登录，此时输入 <code>root -&gt; 回车 -&gt; 输入密码</code>，即可进入gentoo系统。</p>
+<p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png" srcset="/img/loading.gif" lazyload alt="命令行登录界面"></p>
 <p>至此，Gentoo的基本系统已安装完成！</p>
 <p>感慨一下：Gentoo确实是一个挺折腾的系统，同时需要更多的耐心！不过折腾完，就会发现对Linux更熟悉了一点！<br>谢谢阅读～</p>
 <p>下一篇：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/31f7ff6ee3d4">根据Gentoo handbook安装——KDE桌面+NVIDIA显卡</a></p>
 
-    </div>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
+<span class="category-chains">
+  
+  
     
-    
-    
+      <span class="category-chain">
         
+  <a href="/categories/Technology/" class="category-chain-item">Technology</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Technology/Linux/" class="category-chain-item">Linux</a>
+  
+  
 
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>南方老F
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://skillf.live/p/2f73d7ce288e.html" title="根据Gentoo handbook安装——gentoo基本系统+UEFI引导">https://skillf.live/p/2f73d7ce288e.html</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Gentoo/">#Gentoo</a>
+      
+        <a href="/tags/UEFI/">#UEFI</a>
+      
+    </div>
+  
 </div>
 
 
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/Gentoo/" rel="tag"><i class="fa fa-tag"></i> Gentoo</a>
-              <a href="/tags/UEFI/" rel="tag"><i class="fa fa-tag"></i> UEFI</a>
-          </div>
+              
+  
 
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/p/476922c206a5.html" rel="prev" title="C++中关于指针与引用">
-      <i class="fa fa-chevron-left"></i> C++中关于指针与引用
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/p/852977a19e28.html" rel="next" title="根据Gentoo handbook安装——KDE桌面+NVIDIA显卡">
-      根据Gentoo handbook安装——KDE桌面+NVIDIA显卡 <i class="fa fa-chevron-right"></i>
-    </a></div>
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>根据Gentoo handbook安装——gentoo基本系统+UEFI引导</div>
+      <div>https://skillf.live/p/2f73d7ce288e.html</div>
     </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>南方老F</div>
         </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2018年9月23日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
           
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-%E5%AE%89%E8%A3%85%E5%89%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">A.安装前的一些准备</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E6%9C%AC%E6%AC%A1%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%8F%B0%E5%BC%8F%E6%9C%BA%E7%94%B5%E8%84%91"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.本次安装使用台式机电脑</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E4%B8%8B%E8%BD%BD%E9%95%9C%E5%83%8F-amd64"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.下载镜像(amd64)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-%E5%88%BB%E5%BD%95%E4%BC%98%E7%9B%98"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.刻录优盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">B. 开始安装</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E6%A3%80%E6%9F%A5%E7%BD%91%E7%BB%9C"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.检查网络</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.磁盘分区</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#a-%E5%90%AF%E5%8A%A8%E5%88%86%E5%8C%BA%EF%BC%9A10MB"><span class="nav-number">2.0.3.</span> <span class="nav-text">a. 启动分区：10MB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#b-%E5%BC%95%E5%AF%BC%E5%88%86%E5%8C%BA%EF%BC%9A128MB"><span class="nav-number">2.0.4.</span> <span class="nav-text">b. 引导分区：128MB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#c-%E6%A0%B9%E5%88%86%E5%8C%BA%EF%BC%9A110GB"><span class="nav-number">2.0.5.</span> <span class="nav-text">c. 根分区：110GB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#d-M-2%E5%9B%BA%E6%80%81%E5%88%86%E5%8C%BA%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="nav-number">2.0.6.</span> <span class="nav-text">d. M.2固态分区过程图</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#a-swap%E5%88%86%E5%8C%BA%EF%BC%9A10GB"><span class="nav-number">2.0.7.</span> <span class="nav-text">a. swap分区：10GB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#b-home%E5%88%86%E5%8C%BA%EF%BC%9A290GB"><span class="nav-number">2.0.8.</span> <span class="nav-text">b. home分区：290GB</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#c-%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%981%E5%88%86%E5%8C%BA%E8%BF%87%E7%A8%8B%E5%9B%BE"><span class="nav-number">2.0.9.</span> <span class="nav-text">c. 机械硬盘1分区过程图</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%88%86%E5%8C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">3. 格式化分区</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#a-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%90%AF%E5%8A%A8%E5%88%86%E5%8C%BA"><span class="nav-number">2.1.1.</span> <span class="nav-text">a. 格式化启动分区</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#b-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%BC%95%E5%AF%BC%E5%88%86%E5%8C%BA"><span class="nav-number">2.1.2.</span> <span class="nav-text">b. 格式化引导分区</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#c-%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%A0%B9%E5%88%86%E5%8C%BA"><span class="nav-number">2.1.3.</span> <span class="nav-text">c. 格式化根分区</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#d-%E6%A0%BC%E5%BC%8F%E5%8C%96home%E5%88%86%E5%8C%BA"><span class="nav-number">2.1.4.</span> <span class="nav-text">d. 格式化home分区</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#e-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%B9%B6%E5%90%AF%E7%94%A8swap"><span class="nav-number">2.1.5.</span> <span class="nav-text">e. 格式化并启用swap</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E6%8C%82%E8%BD%BD%E5%88%86%E5%8C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">4. 挂载分区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E4%B8%8B%E8%BD%BDstage3"><span class="nav-number">2.3.</span> <span class="nav-text">5.下载stage3</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#a-%E9%AA%8C%E8%AF%81%E6%97%B6%E9%97%B4"><span class="nav-number">2.3.1.</span> <span class="nav-text">a. 验证时间</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#b-%E4%B8%8B%E8%BD%BDstage3"><span class="nav-number">2.3.2.</span> <span class="nav-text">b. 下载stage3</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#c-%E8%A7%A3%E5%8E%8Bstage3"><span class="nav-number">2.3.3.</span> <span class="nav-text">c. 解压stage3</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#d-%E9%85%8D%E7%BD%AE-etc-portage-make-conf"><span class="nav-number">2.3.4.</span> <span class="nav-text">d. 配置 &#x2F;etc&#x2F;portage&#x2F;make.conf</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#e-%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F"><span class="nav-number">2.3.5.</span> <span class="nav-text">e. 选择镜像</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#f-%E5%A4%8D%E5%88%B6DNS%E4%BF%A1%E6%81%AF"><span class="nav-number">2.3.6.</span> <span class="nav-text">f. 复制DNS信息</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#g-%E6%8C%82%E8%BD%BD%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.3.7.</span> <span class="nav-text">g. 挂载文件系统</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#h-%E8%BF%9B%E5%85%A5%E6%96%B0%E7%8E%AF%E5%A2%83"><span class="nav-number">2.3.8.</span> <span class="nav-text">h. 进入新环境</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#i-%E4%BB%8EWeb%E5%AE%89%E8%A3%85ebuild%E5%AD%98%E5%82%A8%E5%BA%93%E5%BF%AB%E7%85%A7"><span class="nav-number">2.3.9.</span> <span class="nav-text">i. 从Web安装ebuild存储库快照</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#j-%E9%80%89%E6%8B%A9%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.10.</span> <span class="nav-text">j. 选择配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#k-%E6%9B%B4%E6%96%B0-world%E9%9B%86"><span class="nav-number">2.3.11.</span> <span class="nav-text">k. 更新@world集</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#l-%E6%97%B6%E5%8C%BA"><span class="nav-number">2.3.12.</span> <span class="nav-text">l. 时区</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#m-%E9%85%8D%E7%BD%AE%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83"><span class="nav-number">2.3.13.</span> <span class="nav-text">m. 配置语言环境</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#n-%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-number">2.3.14.</span> <span class="nav-text">n. 重新加载环境：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#o-%E5%AE%89%E8%A3%85%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81"><span class="nav-number">2.3.15.</span> <span class="nav-text">o. 安装内核源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#p-%E9%85%8D%E7%BD%AEkernel"><span class="nav-number">2.3.16.</span> <span class="nav-text">p. 配置kernel</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#q-%E5%AE%89%E8%A3%85%E5%9B%BA%E4%BB%B6"><span class="nav-number">2.3.17.</span> <span class="nav-text">q. 安装固件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#r-%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="nav-number">2.3.18.</span> <span class="nav-text">r. 修改主机名</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#s-%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C"><span class="nav-number">2.3.19.</span> <span class="nav-text">s. 配置网络</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#t-%E8%AE%BE%E7%BD%AE%E5%90%AF%E5%8A%A8%E6%97%B6%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%E7%BD%91%E7%BB%9C"><span class="nav-number">2.3.20.</span> <span class="nav-text">t. 设置启动时自动启动网络</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#u-%E8%AE%BE%E7%BD%AE%E4%B8%BB%E6%9C%BAhosts"><span class="nav-number">2.3.21.</span> <span class="nav-text">u. 设置主机hosts</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#v-%E8%AE%BE%E7%BD%AEroot%E5%AF%86%E7%A0%81"><span class="nav-number">2.3.22.</span> <span class="nav-text">v. 设置root密码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#w-%E8%AE%BE%E7%BD%AE%E6%97%B6%E9%92%9F"><span class="nav-number">2.3.23.</span> <span class="nav-text">w. 设置时钟</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#x-%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7"><span class="nav-number">2.3.24.</span> <span class="nav-text">x. 安装工具</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#y-%E9%85%8D%E7%BD%AE%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.3.25.</span> <span class="nav-text">y. 配置引导加载程序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#z-%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.3.26.</span> <span class="nav-text">z. 重新启动系统</span></a></li></ol></li></ol></li></ol></div>
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/p/852977a19e28.html" title="根据Gentoo handbook安装——KDE桌面+NVIDIA显卡">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">根据Gentoo handbook安装——KDE桌面+NVIDIA显卡</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/p/476922c206a5.html" title="C++中关于指针与引用">
+                        <span class="hidden-mobile">C++中关于指针与引用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-      <!--/noindex-->
+    </div>
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="南方老F"
-      src="/images/coffeeBoy.png">
-  <p class="site-author-name" itemprop="name">南方老F</p>
-  <div class="site-description" itemprop="description">午后，一杯茶，一本书，一种心情。</div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">29</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">15</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">24</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/skillf-qf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;skillf-qf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.jianshu.com/u/e681c959a455" title="简书 → https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;e681c959a455" rel="noopener" target="_blank"><i class="fa fa-heartbeat fa-fw"></i>简书</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
-      </div>
+  </aside>
+
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">南方老F</span>
+  </div>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
-
-        
 
 
 
 
 
+  
 
 
 
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </footer>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
+</div>
 
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
-
-
-
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
   
-//本文件原地址：\themes\next\_layout\_custom\custom.swig 
+</div>
 
+  </footer>
 
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
-  <script async src="/js/cursor/fireworks.js"></script>
-
-
-
-
-  <script src="/js/activate-power-mode.min.js"></script>
   <script>
-    POWERMODE.colorful = true;
-    POWERMODE.shake = false;
-    document.body.addEventListener('input', POWERMODE);
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
-

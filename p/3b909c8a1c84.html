@@ -1,529 +1,697 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"skillf.live","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
-  </script>
-
-  <meta name="description" content="1.安装arch官方源中有plank包，可以直接安装：也可以去查看archwiki的说明文档。 1234567891011$ sudo pacman -S plank正在解决依赖关系...正在查找软件包冲突...软件包 (1) plank-0.11.4-1全部安装大小：  2.07 MiB净更新大小：  0.00 MiB:: 进行安装吗？ [Y&#x2F;n] y 2.运行">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/coffeeBoy.png">
+  <link rel="icon" href="/img/coffeeBoy.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="南方老F">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1.安装arch官方源中有plank包，可以直接安装：也可以去查看archwiki的说明文档。 1234567891011$ sudo pacman -S plank正在解决依赖关系...正在查找软件包冲突...软件包 (1) plank-0.11.4-1全部安装大小：  2.07 MiB净更新大小：  0.00 MiB:: 进行安装吗？ [Y&#x2F;n] y 2.运行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装 plank 及相关配置">
 <meta property="og:url" content="https://skillf.live/p/3b909c8a1c84.html">
 <meta property="og:site_name" content="老F的个人博客">
 <meta property="og:description" content="1.安装arch官方源中有plank包，可以直接安装：也可以去查看archwiki的说明文档。 1234567891011$ sudo pacman -S plank正在解决依赖关系...正在查找软件包冲突...软件包 (1) plank-0.11.4-1全部安装大小：  2.07 MiB净更新大小：  0.00 MiB:: 进行安装吗？ [Y&#x2F;n] y 2.运行">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://skillf.live/images/%E5%AE%89%E8%A3%85%20plank%20%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/plank%E9%85%8D%E7%BD%AE%E6%95%88%E6%9E%9C%E5%9B%BE.png">
 <meta property="article:published_time" content="2017-10-15T11:11:15.000Z">
 <meta property="article:modified_time" content="2021-04-25T01:53:48.980Z">
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Plank">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://skillf.live/images/%E5%AE%89%E8%A3%85%20plank%20%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/plank%E9%85%8D%E7%BD%AE%E6%95%88%E6%9E%9C%E5%9B%BE.png">
+  
+  
+  <title>安装 plank 及相关配置 - 老F的个人博客</title>
 
-<link rel="canonical" href="https://skillf.live/p/3b909c8a1c84.html">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
 
-  <title>安装 plank 及相关配置 | 老F的个人博客</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
+  
+<link rel="stylesheet" href="/css/custom.css">
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"skillf.live","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+  <header>
+    
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">老F的个人博客</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>南方老F</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">24</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">15</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">29</span></a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-  </ul>
 </nav>
 
+  
 
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://skillf.live/p/3b909c8a1c84.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/coffeeBoy.png">
-      <meta itemprop="name" content="南方老F">
-      <meta itemprop="description" content="午后，一杯茶，一本书，一种心情。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老F的个人博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          安装 plank 及相关配置
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-10-15 19:11:15" itemprop="dateCreated datePublished" datetime="2017-10-15T19:11:15+08:00">2017-10-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-25 09:53:48" itemprop="dateModified" datetime="2021-04-25T09:53:48+08:00">2021-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Technology/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>190</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
+            <span id="subtitle" data-typed-text="安装 plank 及相关配置"></span>
+          
         </div>
-      </header>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-10-15 19:11" pubdate>
+          2017年10月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
 
     
     
-    
-    <div class="post-body" itemprop="articleBody">
+  </div>
+
+
+        
+      </div>
 
       
-        <p>1.安装<br>arch官方源中有plank包，可以直接安装：<br>也可以去查看<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Plank">archwiki</a>的说明文档。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S plank</span><br><span class="line"></span><br><span class="line">正在解决依赖关系...</span><br><span class="line">正在查找软件包冲突...</span><br><span class="line"></span><br><span class="line">软件包 (1) plank-0.11.4-1</span><br><span class="line"></span><br><span class="line">全部安装大小：  2.07 MiB</span><br><span class="line">净更新大小：  0.00 MiB</span><br><span class="line"></span><br><span class="line">:: 进行安装吗？ [Y/n] y</span><br></pre></td></tr></table></figure>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">安装 plank 及相关配置</h1>
+            
+            <div class="markdown-body">
+              
+              <p>1.安装<br>arch官方源中有plank包，可以直接安装：<br>也可以去查看<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Plank">archwiki</a>的说明文档。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sudo pacman -S plank<br><br>正在解决依赖关系...<br>正在查找软件包冲突...<br><br>软件包 (1) plank-0.11.4-1<br><br>全部安装大小：  2.07 MiB<br>净更新大小：  0.00 MiB<br><br>:: 进行安装吗？ [Y/n] y<br></code></pre></td></tr></table></figure>
 <p>2.运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  如果直接运行会默认创建 dock1 的主题</span></span><br><span class="line">▶ plank </span><br><span class="line"><span class="comment">#  如果需要取名字则可以如下方式创建一个名为newplank的主题</span></span><br><span class="line">▶ plank -n newdock</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#  如果直接运行会默认创建 dock1 的主题</span><br>▶ plank <br><span class="hljs-comment">#  如果需要取名字则可以如下方式创建一个名为newplank的主题</span><br>▶ plank -n newdock<br></code></pre></td></tr></table></figure>
 <p>3.配置<br>这里设置plank的配置文件在 ：/usr/share/plank/themes/</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">▶ <span class="built_in">cd</span> /usr/share/plank/themes</span><br><span class="line">▶ ls</span><br><span class="line">Default  Matte  Transparent</span><br><span class="line"><span class="comment">#  这里有选用默认的主题配置Default</span></span><br><span class="line">▶ <span class="built_in">cd</span> Default                                                                                                         </span><br><span class="line">▶ ls</span><br><span class="line">dock.theme   <span class="comment"># 这是主题的配置文件</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">▶ <span class="hljs-built_in">cd</span> /usr/share/plank/themes<br>▶ ls<br>Default  Matte  Transparent<br><span class="hljs-comment">#  这里有选用默认的主题配置Default</span><br>▶ <span class="hljs-built_in">cd</span> Default                                                                                                         <br>▶ ls<br>dock.theme   <span class="hljs-comment"># 这是主题的配置文件</span><br></code></pre></td></tr></table></figure>
 <p>配置文件每一行都有相应的注释说明，可以自己修改调试，也可以参考我的配置文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">▶ cat dock.theme </span><br><span class="line"><span class="comment"># This file auto-generated by Plank.</span></span><br><span class="line"><span class="comment"># 2016-03-12T14:53:46+0000</span></span><br><span class="line"></span><br><span class="line">[PlankTheme]</span><br><span class="line"><span class="comment"># The roundness of the top corners.</span></span><br><span class="line">TopRoundness=10</span><br><span class="line"><span class="comment"># The roundness of the bottom corners.</span></span><br><span class="line">BottomRoundness=0</span><br><span class="line"><span class="comment"># The thickness (in pixels) of lines drawn.</span></span><br><span class="line">LineWidth=0</span><br><span class="line"><span class="comment"># The color (RGBA) of the outer stroke.</span></span><br><span class="line">OuterStrokeColor=41;;41;;41;;255</span><br><span class="line"><span class="comment"># The starting color (RGBA) of the fill gradient.</span></span><br><span class="line">FillStartColor=41;;41;;41;;255</span><br><span class="line"><span class="comment"># The ending color (RGBA) of the fill gradient.</span></span><br><span class="line">FillEndColor=80;;80;;80;;255</span><br><span class="line"><span class="comment"># The color (RGBA) of the inner stroke.</span></span><br><span class="line">InnerStrokeColor=255;;255;;255;;255</span><br><span class="line"></span><br><span class="line">[PlankDockTheme]</span><br><span class="line"><span class="comment"># The padding on the left/right dock edges, in tenths of a percent of IconSize.</span></span><br><span class="line">HorizPadding=-100</span><br><span class="line"><span class="comment"># The padding on the top dock edge, in tenths of a percent of IconSize.</span></span><br><span class="line">TopPadding=5</span><br><span class="line"><span class="comment"># The padding on the bottom dock edge, in tenths of a percent of IconSize.</span></span><br><span class="line">BottomPadding=30</span><br><span class="line"><span class="comment"># The padding between items on the dock, in tenths of a percent of IconSize.</span></span><br><span class="line">ItemPadding=6</span><br><span class="line"><span class="comment"># The size of item indicators, in tenths of a percent of IconSize.</span></span><br><span class="line">IndicatorSize=0</span><br><span class="line"><span class="comment"># The size of the icon-shadow behind every item, in tenths of a percent of IconSize.</span></span><br><span class="line">IconShadowSize=10</span><br><span class="line"><span class="comment"># The height (in percent of IconSize) to bounce an icon when the application sets urgent.</span></span><br><span class="line">UrgentBounceHeight=1.6666666666666667</span><br><span class="line"><span class="comment"># The height (in percent of IconSize) to bounce an icon when launching an application.</span></span><br><span class="line">LaunchBounceHeight=0.625</span><br><span class="line"><span class="comment"># The opacity value (0 to 1) to fade the dock to when hiding it.</span></span><br><span class="line">FadeOpacity=1</span><br><span class="line"><span class="comment"># The amount of time (in ms) for click animations.</span></span><br><span class="line">ClickTime=300</span><br><span class="line"><span class="comment"># The amount of time (in ms) to bounce an urgent icon.</span></span><br><span class="line">UrgentBounceTime=600</span><br><span class="line"><span class="comment"># The amount of time (in ms) to bounce an icon when launching an application.</span></span><br><span class="line">LaunchBounceTime=600</span><br><span class="line"><span class="comment"># The amount of time (in ms) for active window indicator animations.</span></span><br><span class="line">ActiveTime=300</span><br><span class="line"><span class="comment"># The amount of time (in ms) to slide icons into/out of the dock.</span></span><br><span class="line">SlideTime=300</span><br><span class="line"><span class="comment"># The time (in ms) to fade the dock in/out on a hide (if FadeOpacity is &lt; 1).</span></span><br><span class="line">FadeTime=250</span><br><span class="line"><span class="comment"># The time (in ms) to slide the dock in/out on a hide (if FadeOpacity is 1).</span></span><br><span class="line">HideTime=250</span><br><span class="line"><span class="comment"># The size of the urgent glow (shown when dock is hidden), in tenths of a percent of IconSize.</span></span><br><span class="line">GlowSize=30</span><br><span class="line"><span class="comment"># The total time (in ms) to show the hidden-dock urgent glow.</span></span><br><span class="line">GlowTime=10000</span><br><span class="line"><span class="comment"># The time (in ms) of each pulse of the hidden-dock urgent glow.</span></span><br><span class="line">GlowPulseTime=2000</span><br><span class="line"><span class="comment"># The hue-shift (-180 to 180) of the urgent indicator color.</span></span><br><span class="line">UrgentHueShift=150</span><br><span class="line"><span class="comment"># The time (in ms) to move an item to its new position or its addition/removal to/from the dock.</span></span><br><span class="line">ItemMoveTime=450</span><br><span class="line"><span class="comment"># Whether background and icons will unhide/hide with different speeds. The top-border of both will leave/hit the screen-edge at the same time.</span></span><br><span class="line">CascadeHide=flase</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs bash">▶ cat dock.theme <br><span class="hljs-comment"># This file auto-generated by Plank.</span><br><span class="hljs-comment"># 2016-03-12T14:53:46+0000</span><br><br>[PlankTheme]<br><span class="hljs-comment"># The roundness of the top corners.</span><br>TopRoundness=10<br><span class="hljs-comment"># The roundness of the bottom corners.</span><br>BottomRoundness=0<br><span class="hljs-comment"># The thickness (in pixels) of lines drawn.</span><br>LineWidth=0<br><span class="hljs-comment"># The color (RGBA) of the outer stroke.</span><br>OuterStrokeColor=41;;41;;41;;255<br><span class="hljs-comment"># The starting color (RGBA) of the fill gradient.</span><br>FillStartColor=41;;41;;41;;255<br><span class="hljs-comment"># The ending color (RGBA) of the fill gradient.</span><br>FillEndColor=80;;80;;80;;255<br><span class="hljs-comment"># The color (RGBA) of the inner stroke.</span><br>InnerStrokeColor=255;;255;;255;;255<br><br>[PlankDockTheme]<br><span class="hljs-comment"># The padding on the left/right dock edges, in tenths of a percent of IconSize.</span><br>HorizPadding=-100<br><span class="hljs-comment"># The padding on the top dock edge, in tenths of a percent of IconSize.</span><br>TopPadding=5<br><span class="hljs-comment"># The padding on the bottom dock edge, in tenths of a percent of IconSize.</span><br>BottomPadding=30<br><span class="hljs-comment"># The padding between items on the dock, in tenths of a percent of IconSize.</span><br>ItemPadding=6<br><span class="hljs-comment"># The size of item indicators, in tenths of a percent of IconSize.</span><br>IndicatorSize=0<br><span class="hljs-comment"># The size of the icon-shadow behind every item, in tenths of a percent of IconSize.</span><br>IconShadowSize=10<br><span class="hljs-comment"># The height (in percent of IconSize) to bounce an icon when the application sets urgent.</span><br>UrgentBounceHeight=1.6666666666666667<br><span class="hljs-comment"># The height (in percent of IconSize) to bounce an icon when launching an application.</span><br>LaunchBounceHeight=0.625<br><span class="hljs-comment"># The opacity value (0 to 1) to fade the dock to when hiding it.</span><br>FadeOpacity=1<br><span class="hljs-comment"># The amount of time (in ms) for click animations.</span><br>ClickTime=300<br><span class="hljs-comment"># The amount of time (in ms) to bounce an urgent icon.</span><br>UrgentBounceTime=600<br><span class="hljs-comment"># The amount of time (in ms) to bounce an icon when launching an application.</span><br>LaunchBounceTime=600<br><span class="hljs-comment"># The amount of time (in ms) for active window indicator animations.</span><br>ActiveTime=300<br><span class="hljs-comment"># The amount of time (in ms) to slide icons into/out of the dock.</span><br>SlideTime=300<br><span class="hljs-comment"># The time (in ms) to fade the dock in/out on a hide (if FadeOpacity is &lt; 1).</span><br>FadeTime=250<br><span class="hljs-comment"># The time (in ms) to slide the dock in/out on a hide (if FadeOpacity is 1).</span><br>HideTime=250<br><span class="hljs-comment"># The size of the urgent glow (shown when dock is hidden), in tenths of a percent of IconSize.</span><br>GlowSize=30<br><span class="hljs-comment"># The total time (in ms) to show the hidden-dock urgent glow.</span><br>GlowTime=10000<br><span class="hljs-comment"># The time (in ms) of each pulse of the hidden-dock urgent glow.</span><br>GlowPulseTime=2000<br><span class="hljs-comment"># The hue-shift (-180 to 180) of the urgent indicator color.</span><br>UrgentHueShift=150<br><span class="hljs-comment"># The time (in ms) to move an item to its new position or its addition/removal to/from the dock.</span><br>ItemMoveTime=450<br><span class="hljs-comment"># Whether background and icons will unhide/hide with different speeds. The top-border of both will leave/hit the screen-edge at the same time.</span><br>CascadeHide=flase<br></code></pre></td></tr></table></figure>
 <p>4.添加底部应用程序<br>配置文件在：/home/fqf/.config/plank</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">▶ <span class="built_in">cd</span> ~/.config/plank </span><br><span class="line">▶ ls      <span class="comment"># 查看创建的plank主题，这里选择默认的 dock1 来作为解释</span></span><br><span class="line">dock1</span><br><span class="line">▶ <span class="built_in">cd</span> ldock1/launchers </span><br><span class="line">▶ ls     <span class="comment"># 添加应用程序的格式  name.dockitem</span></span><br><span class="line">electronic-wechat.dockitem  google-chrome.dockitem  org.kde.dragonplayer.dockitem</span><br><span class="line">firefox.dockitem            nohup.out               org.kde.konsole.dockitem</span><br><span class="line">▶ cat firefox.dockitem      <span class="comment"># name.dockitem内容如下：</span></span><br><span class="line">[PlankDockItemPreferences]</span><br><span class="line">Launcher=file:///usr/share/applications/firefox.desktop</span><br><span class="line"><span class="comment"># ------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">#  所以我们只需要 cp 其中的一个name.dockitem</span></span><br><span class="line"><span class="comment">#  在目录 /usr/share/applications/ 找到你需要添加的应用程序名字</span></span><br><span class="line"><span class="comment">#  Launcher=file:///usr/share/applications/firefox.desktop</span></span><br><span class="line"><span class="comment">#  并在最后替换掉即可</span></span><br><span class="line"><span class="comment">#  Launcher=file:///usr/share/applications/google-chrome.desktop</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">▶ <span class="hljs-built_in">cd</span> ~/.config/plank <br>▶ ls      <span class="hljs-comment"># 查看创建的plank主题，这里选择默认的 dock1 来作为解释</span><br>dock1<br>▶ <span class="hljs-built_in">cd</span> ldock1/launchers <br>▶ ls     <span class="hljs-comment"># 添加应用程序的格式  name.dockitem</span><br>electronic-wechat.dockitem  google-chrome.dockitem  org.kde.dragonplayer.dockitem<br>firefox.dockitem            nohup.out               org.kde.konsole.dockitem<br>▶ cat firefox.dockitem      <span class="hljs-comment"># name.dockitem内容如下：</span><br>[PlankDockItemPreferences]<br>Launcher=file:///usr/share/applications/firefox.desktop<br><span class="hljs-comment"># ------------------------------------------------------------------------</span><br><span class="hljs-comment">#  所以我们只需要 cp 其中的一个name.dockitem</span><br><span class="hljs-comment">#  在目录 /usr/share/applications/ 找到你需要添加的应用程序名字</span><br><span class="hljs-comment">#  Launcher=file:///usr/share/applications/firefox.desktop</span><br><span class="hljs-comment">#  并在最后替换掉即可</span><br><span class="hljs-comment">#  Launcher=file:///usr/share/applications/google-chrome.desktop</span><br></code></pre></td></tr></table></figure>
 <p>最后来一张效果图：</p>
-<p><img src="/images/%E5%AE%89%E8%A3%85%20plank%20%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/plank%E9%85%8D%E7%BD%AE%E6%95%88%E6%9E%9C%E5%9B%BE.png" alt="plank配置效果图"><br>linux 小知识：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">一般在终端执行程序时，当你关掉终端之后，之前打开的程序也随着关掉了，那么可以使用：</span><br><span class="line">nohup 命令 &amp;      <span class="comment">#这句命令意思是当前执行的 程序/命令 不挂起并放置后台运行。</span></span><br><span class="line">eg：</span><br><span class="line">▶ nohup plank &amp;</span><br><span class="line">[1] 14524</span><br><span class="line">nohup: 忽略输入并把输出追加到<span class="string">&#x27;nohup.out&#x27;</span> </span><br></pre></td></tr></table></figure>
+<p><img src="/images/%E5%AE%89%E8%A3%85%20plank%20%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/plank%E9%85%8D%E7%BD%AE%E6%95%88%E6%9E%9C%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="plank配置效果图"><br>linux 小知识：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">一般在终端执行程序时，当你关掉终端之后，之前打开的程序也随着关掉了，那么可以使用：<br>nohup 命令 &amp;      <span class="hljs-comment">#这句命令意思是当前执行的 程序/命令 不挂起并放置后台运行。</span><br>eg：<br>▶ nohup plank &amp;<br>[1] 14524<br>nohup: 忽略输入并把输出追加到<span class="hljs-string">&#x27;nohup.out&#x27;</span> <br></code></pre></td></tr></table></figure>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Technology/" class="category-chain-item">Technology</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Technology/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
 
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>南方老F
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://skillf.live/p/3b909c8a1c84.html" title="安装 plank 及相关配置">https://skillf.live/p/3b909c8a1c84.html</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/">#Linux</a>
+      
+        <a href="/tags/Plank/">#Plank</a>
+      
+    </div>
+  
 </div>
 
 
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
-              <a href="/tags/Plank/" rel="tag"><i class="fa fa-tag"></i> Plank</a>
-          </div>
+              
+  
 
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/p/a67f82a913ce.html" rel="prev" title="Arch安装zsh以及通过 Oh-My-ZSH! 开源项目的配置">
-      <i class="fa fa-chevron-left"></i> Arch安装zsh以及通过 Oh-My-ZSH! 开源项目的配置
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/p/98e15af90d7c.html" rel="next" title="arch安装fcitx输入法">
-      arch安装fcitx输入法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>安装 plank 及相关配置</div>
+      <div>https://skillf.live/p/3b909c8a1c84.html</div>
     </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>南方老F</div>
         </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年10月15日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
           
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
   </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/p/98e15af90d7c.html" title="arch安装fcitx输入法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">arch安装fcitx输入法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/p/a67f82a913ce.html" title="Arch安装zsh以及通过 Oh-My-ZSH! 开源项目的配置">
+                        <span class="hidden-mobile">Arch安装zsh以及通过 Oh-My-ZSH! 开源项目的配置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-      <!--/noindex-->
+    </div>
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="南方老F"
-      src="/images/coffeeBoy.png">
-  <p class="site-author-name" itemprop="name">南方老F</p>
-  <div class="site-description" itemprop="description">午后，一杯茶，一本书，一种心情。</div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">29</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">15</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">24</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/skillf-qf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;skillf-qf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.jianshu.com/u/e681c959a455" title="简书 → https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;e681c959a455" rel="noopener" target="_blank"><i class="fa fa-heartbeat fa-fw"></i>简书</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
 
 
-      </div>
+  </aside>
+
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">南方老F</span>
+  </div>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
-
-        
 
 
 
 
 
+  
 
 
 
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </footer>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
+</div>
 
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
-
-
-
   
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
   
-//本文件原地址：\themes\next\_layout\_custom\custom.swig 
+</div>
 
+  </footer>
 
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
-  <script async src="/js/cursor/fireworks.js"></script>
-
-
-
-
-  <script src="/js/activate-power-mode.min.js"></script>
   <script>
-    POWERMODE.colorful = true;
-    POWERMODE.shake = false;
-    document.body.addEventListener('input', POWERMODE);
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
-
