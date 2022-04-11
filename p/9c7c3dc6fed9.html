@@ -20,28 +20,26 @@
     var CONFIG = {"hostname":"skillf.live","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="0x00 前言随着python项目越来越多很容易出现库的混乱、污染，那么一个隔离的虚拟环境将使不同的项目互不干扰提高开发效率。谨以此文作为个人安装笔记方便以后查阅。  本文所使用的环境： host： Windows 11">
+  <meta name="description" content="出现这种情况的原因是因为：DNS投毒 或者叫 DNS污染。 从客户端向DNS服务器发出查询IP的请求，到响应返回到客户端的这段时间里，如果有黑客或者其他一些不可说的设施伪造返回了一个错误的DNS应答，那么用户将不能访问到真正的资源。 所以有两种解决方式：1、短期处理方法 2、从根源解决问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python 虚拟环境与包安装">
-<meta property="og:url" content="https://skillf.live/p/0396f8b0c8c0">
+<meta property="og:title" content="关于Github网页打不开与图片无法加载解决方法">
+<meta property="og:url" content="https://skillf.live/p/9c7c3dc6fed9.html">
 <meta property="og:site_name" content="老F的个人博客">
-<meta property="og:description" content="0x00 前言随着python项目越来越多很容易出现库的混乱、污染，那么一个隔离的虚拟环境将使不同的项目互不干扰提高开发效率。谨以此文作为个人安装笔记方便以后查阅。  本文所使用的环境： host： Windows 11">
+<meta property="og:description" content="出现这种情况的原因是因为：DNS投毒 或者叫 DNS污染。 从客户端向DNS服务器发出查询IP的请求，到响应返回到客户端的这段时间里，如果有黑客或者其他一些不可说的设施伪造返回了一个错误的DNS应答，那么用户将不能访问到真正的资源。 所以有两种解决方式：1、短期处理方法 2、从根源解决问题">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://skillf.live/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png">
-<meta property="og:image" content="https://skillf.live/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E7%9B%AE%E5%BD%95.png">
-<meta property="og:image" content="https://skillf.live/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png">
-<meta property="og:image" content="https://skillf.live/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E5%85%B3%E9%97%AD%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png">
-<meta property="og:image" content="https://skillf.live/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E5%AF%BC%E5%87%BA%E5%BA%93%E4%BF%A1%E6%81%AF%E5%88%B0%E6%96%87%E4%BB%B6.png">
-<meta property="og:image" content="https://skillf.live/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E4%BB%8E%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85%E5%BA%93.png">
-<meta property="article:published_time" content="2022-03-04T07:33:44.000Z">
-<meta property="article:modified_time" content="2022-04-08T08:06:43.705Z">
+<meta property="og:image" content="https://skillf.live/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90github.com.png">
+<meta property="og:image" content="https://skillf.live/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90avatars.githubusercontent.com.png">
+<meta property="og:image" content="https://skillf.live/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/Google%20DNS.png">
+<meta property="og:image" content="https://skillf.live/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E6%B7%B7%E5%90%88DNS%E4%BD%BF%E7%94%A8.png">
+<meta property="article:published_time" content="2021-04-20T03:00:49.000Z">
+<meta property="article:modified_time" content="2021-04-25T01:53:08.753Z">
 <meta property="article:author" content="南方老F">
-<meta property="article:tag" content="Windows">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="DNS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://skillf.live/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png">
+<meta name="twitter:image" content="https://skillf.live/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90github.com.png">
 
-<link rel="canonical" href="https://skillf.live/p/0396f8b0c8c0">
+<link rel="canonical" href="https://skillf.live/p/9c7c3dc6fed9.html">
 
 
 <script id="page-configurations">
@@ -54,7 +52,7 @@
   };
 </script>
 
-  <title>python 虚拟环境与包安装 | 老F的个人博客</title>
+  <title>关于Github网页打不开与图片无法加载解决方法 | 老F的个人博客</title>
   
 
 
@@ -198,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://skillf.live/p/0396f8b0c8c0">
+    <link itemprop="mainEntityOfPage" href="https://skillf.live/p/9c7c3dc6fed9.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/coffeeBoy.png">
@@ -211,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          python 虚拟环境与包安装
+          关于Github网页打不开与图片无法加载解决方法
         </h1>
 
         <div class="post-meta">
@@ -221,14 +219,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-03-04 15:33:44" itemprop="dateCreated datePublished" datetime="2022-03-04T15:33:44+08:00">2022-03-04</time>
+              <time title="Created: 2021-04-20 11:00:49" itemprop="dateCreated datePublished" datetime="2021-04-20T11:00:49+08:00">2021-04-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-08 16:06:43" itemprop="dateModified" datetime="2022-04-08T16:06:43+08:00">2022-04-08</time>
+                <time title="Modified: 2021-04-25 09:53:08" itemprop="dateModified" datetime="2021-04-25T09:53:08+08:00">2021-04-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,11 +234,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+                  <a href="/categories/Technology/Github/" itemprop="url" rel="index"><span itemprop="name">Github</span></a>
                 </span>
             </span>
 
@@ -250,7 +248,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>808</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -269,39 +267,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h3><p>随着python项目越来越多很容易出现库的混乱、污染，那么一个隔离的虚拟环境将使不同的项目互不干扰提高开发效率。<br><code>谨以此文作为个人安装笔记方便以后查阅。</code></p>
-<ul>
-<li><strong>本文所使用的环境：</strong><ul>
-<li><strong>host：</strong> Windows 11</li>
-</ul>
-</li>
-</ul>
-<h3 id="0x01-安装虚拟环境"><a href="#0x01-安装虚拟环境" class="headerlink" title="0x01 安装虚拟环境"></a>0x01 安装虚拟环境</h3><p>安装虚拟环境库：<code>virtualenv</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenv</span><br></pre></td></tr></table></figure>
-<p>在磁盘中创建一个文件夹用于存虚拟环境安装文件: <code>D:\virtualenv</code><br>然后切换到该目录下，安装虚拟环境：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># env 是存放虚拟环境的目录，名字可以任意</span><br><span class="line">virtualenv env</span><br></pre></td></tr></table></figure>
-<p>执行完命令之后，会自动生成一个<code>env</code>文件夹，里面包含了python所需的新解析环境<br><img src="/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png" alt="安装虚拟环境.png"></p>
-<p><img src="/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E7%9B%AE%E5%BD%95.png" alt="虚拟环境目录.png"><br>注意：</p>
+        <p>出现这种情况的原因是因为：<code>DNS投毒</code> 或者叫 <code>DNS污染</code>。</p>
+<p><code>从客户端向DNS服务器发出查询IP的请求，到响应返回到客户端的这段时间里，如果有黑客或者其他一些不可说的设施伪造返回了一个错误的DNS应答，那么用户将不能访问到真正的资源。</code></p>
+<p><code>所以有两种解决方式：1、短期处理方法 2、从根源解决问题</code></p>
+<h5 id="1-短期处理方法-1"><a href="#1-短期处理方法-1" class="headerlink" title="1. 短期处理方法 [1]"></a>1. 短期处理方法 [1]</h5><p>网上绝大部分的回答，都是修改 host 文件，已到达手动指定DNS解析的目的，此方法只能临时解决该问题，等过一段时间之后，会发现又开始打不开网页、图片无法加载、访问很慢等问题。<br>步骤如下</p>
+<h6 id="1-1-获得真实ip地址："><a href="#1-1-获得真实ip地址：" class="headerlink" title="1.1 获得真实ip地址："></a>1.1 获得真实ip地址：</h6><p>打开<a target="_blank" rel="noopener" href="https://www.ipaddress.com/">ipaddress.com</a> 的网页，输入想要解析的网址信息，这里输入 <code>github.com</code> 与   <code>avatars.githubusercontent.com</code><br>红色方框地址就是我们想要的目标IP<br><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90github.com.png" alt="解析github.com"></p>
+<p><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E8%A7%A3%E6%9E%90avatars.githubusercontent.com.png" alt="解析avatars.githubusercontent.com"></p>
+<h6 id="1-2-修改host文件"><a href="#1-2-修改host文件" class="headerlink" title="1.2 修改host文件"></a>1.2 修改host文件</h6><p>获得IP之后，找到host文件，<code>C:\Windows\System32\drivers\etc\host</code><br>在文件末尾按如下格式添加即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#  GitHub Host Start</span><br><span class="line">140.82.113.3	github.com</span><br><span class="line">185.199.108.133	avatars.githubusercontent.com</span><br><span class="line">185.199.109.133	avatars.githubusercontent.com</span><br><span class="line">185.199.110.133	avatars.githubusercontent.com</span><br><span class="line">185.199.111.133	avatars.githubusercontent.com</span><br></pre></td></tr></table></figure>
+<p>这种方式需要每隔一段时间就去获取一次IP，不然会重新出现打不开网页、无法加载、打开慢等问题。</p>
+<h5 id="2-从根源解决问题-2"><a href="#2-从根源解决问题-2" class="headerlink" title="2. 从根源解决问题 [2]"></a>2. 从根源解决问题 [2]</h5><p>因为国内的DNS很容易被劫持污染无法直接指向目标地址，那么可以尝试直接使用Google提供的DNS服务器地址 <code>8.8.8.8; 8.8.4.4</code>，直接指向目标地址<br><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/Google%20DNS.png" alt="Google DNS"><br>但是这种方法会引出新的问题：当访问国内网页时，会出现访问Github时的情况：打不开网页、无法加载、打开慢等问题。</p>
+<p>那么问题回到了起点，有没有两种都适用的方法？<br>很明显是有的！</p>
+<p>在这之前先要弄明白什么是首选(Preferred)DNS服务器与备选(Alternate)DNS服务器：<br>首选DNS和备用DNS都是一种域名系统，正常情况下都是使用首选DNS服务器，只有当首选DNS服务器无法正常解析时，才会使用备选DNS服务器。</p>
+<p><img src="/images/%E5%85%B3%E4%BA%8EGithub%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E4%B8%8E%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/%E6%B7%B7%E5%90%88DNS%E4%BD%BF%E7%94%A8.png" alt="混合DNS使用"><br>所以我们可以将首选DNS服务器填写国内常用DNS地址[3]：<code>114.114.114.114</code><br>备选DNS服务器填写Google提供的DNS地址：<code>8.8.8.8 或者 8.8.4.4</code></p>
 <blockquote>
-<p>默认生成的虚拟环境是独立，当激活虚拟环境之后只允许到该目录下查找所需库，假如想要访问系统库，则需要使用参数：<code>--system-site-packages</code><br>eg. <code>virtualenv --system-site-packages env</code></p>
+<p>114.114.114.114是国内移动、电信和联通通用的DNS，手机和电脑端都可以使用，干净无广告，解析成功率相对来说更高，国内用户使用的比较多，而且速度相对快、稳定，是国内用户上网常用的DNS。<br>8.8.8.8是Google提供的DNS，该地址是全球通用的，相对来说，更适合国外以及访问国外网站的用户使用。</p>
 </blockquote>
-<h3 id="0x02-激活虚拟环境"><a href="#0x02-激活虚拟环境" class="headerlink" title="0x02 激活虚拟环境"></a>0x02 激活虚拟环境</h3><p>安装完虚拟环境之后还需要激活才可以使用，进入文件夹：<code>D:\virtualenv\env\Scripts</code><br>命令行下直接输入：activate 或者 activate.bat</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">activate</span><br></pre></td></tr></table></figure>
-<p>激活成功之后可以看到命令行多了一个 <code>(env)</code>的前缀<br><img src="/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png" alt="激活虚拟环境.png"><br>然后在此环境下安装的所有库被安装到虚拟环境下，并保存到：<code>D:\virtualenv\env\Lib\site-packages</code></p>
-<h3 id="0x03-关闭虚拟环境"><a href="#0x03-关闭虚拟环境" class="headerlink" title="0x03 关闭虚拟环境"></a>0x03 关闭虚拟环境</h3><p>关闭虚拟环境同样需要进入文件夹：<code>D:\virtualenv\env\Scripts</code><br>命令行下直接输入：deactivate 或者 deactivate.bat</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deactivate</span><br></pre></td></tr></table></figure>
-<p>关闭之后可以看到命令行 <code>(env)</code>的前缀取消了<br><img src="/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E5%85%B3%E9%97%AD%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png" alt="关闭虚拟环境.png"></p>
-<h3 id="0x04-从文件安装库"><a href="#0x04-从文件安装库" class="headerlink" title="0x04 从文件安装库"></a>0x04 从文件安装库</h3><p>为了便于在另一台电脑复刻当前python的库环境，可以使用pip的<code>freeze</code>的选项导出当前使用的所有库信息到<code>requirements.txt</code>中，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
-<p><img src="/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E5%AF%BC%E5%87%BA%E5%BA%93%E4%BF%A1%E6%81%AF%E5%88%B0%E6%96%87%E4%BB%B6.png" alt="导出库信息到文件.png"></p>
-<p>切换电脑时只需重新按文件安装库即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-<p><img src="/images/python%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%E5%AE%89%E8%A3%85/%E4%BB%8E%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85%E5%BA%93.png" alt="从文件安装库.png"></p>
-<p>注意：<br>安装时需要确认当前所属环境的。假如是虚拟环境，则需要确保已激活。</p>
-<p>【参考资料】</p>
-<ul>
-<li>virtualenv 官方手册：<a target="_blank" rel="noopener" href="https://virtualenv.pypa.io/en/latest/user_guide.html">virtualenv user_guide</a></li>
-</ul>
+<p>【参考资料】<br>[1]<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38132105/article/details/107137558">https://blog.csdn.net/qq_38132105/article/details/107137558</a><br>[2]<a target="_blank" rel="noopener" href="https://blog.csdn.net/lr157/article/details/105665798/">https://blog.csdn.net/lr157/article/details/105665798/</a><br>[3]<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/114DNS?fr=aladdin#2">https://baike.baidu.com/item/114DNS?fr=aladdin#2</a></p>
 
     </div>
 
@@ -317,7 +299,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://skillf.live/p/0396f8b0c8c0" title="python 虚拟环境与包安装">https://skillf.live/p/0396f8b0c8c0</a>
+    <a href="https://skillf.live/p/9c7c3dc6fed9.html" title="关于Github网页打不开与图片无法加载解决方法">https://skillf.live/p/9c7c3dc6fed9.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -329,8 +311,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Windows/" rel="tag"><i class="fa fa-tag"></i> Windows</a>
-              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+              <a href="/tags/Github/" rel="tag"><i class="fa fa-tag"></i> Github</a>
+              <a href="/tags/DNS/" rel="tag"><i class="fa fa-tag"></i> DNS</a>
           </div>
 
         
@@ -339,10 +321,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/p/dd4589f11ca9" rel="prev" title="多系统引导 —— rEFInd手动安装记录">
-      <i class="fa fa-chevron-left"></i> 多系统引导 —— rEFInd手动安装记录
+    <a href="/p/1e0af35fd706.html" rel="prev" title="Git同步项目到Github的完整流程——Linux篇">
+      <i class="fa fa-chevron-left"></i> Git同步项目到Github的完整流程——Linux篇
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/p/b3e6f171cd81.html" rel="next" title="Git同步项目到Github的完整流程——Windows篇">
+      Git同步项目到Github的完整流程——Windows篇 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -401,7 +386,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">0x01 安装虚拟环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-number">3.</span> <span class="nav-text">0x02 激活虚拟环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-%E5%85%B3%E9%97%AD%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">0x03 关闭虚拟环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-%E4%BB%8E%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85%E5%BA%93"><span class="nav-number">5.</span> <span class="nav-text">0x04 从文件安装库</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%9F%AD%E6%9C%9F%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95-1"><span class="nav-number">1.</span> <span class="nav-text">1. 短期处理方法 [1]</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1-%E8%8E%B7%E5%BE%97%E7%9C%9F%E5%AE%9Eip%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 获得真实ip地址：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2-%E4%BF%AE%E6%94%B9host%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 修改host文件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E4%BB%8E%E6%A0%B9%E6%BA%90%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98-2"><span class="nav-number">2.</span> <span class="nav-text">2. 从根源解决问题 [2]</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

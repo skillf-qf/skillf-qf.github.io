@@ -20,20 +20,23 @@
     var CONFIG = {"hostname":"skillf.live","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="使用 python版本： 12➜   python3 -VPython 3.6.4 测试平台：">
+  <meta name="description" content="win10 1909更新之时，提示我们无法更新系统保留的分区细查之下发现，之前安装的时候默认使用了win10的分区方案： 123EFI 100MBMSR 16MBRecovery 529MB 因此导致没有足够的空间进行更新。所以才有了接下来安装win10系统前的手动分区操作。可以把之前的默认分区方案适当的扩大一些，如图所示：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="百度语音合成模块">
-<meta property="og:url" content="https://skillf.live/p/78e60a143a15">
+<meta property="og:title" content="安装win10前的diskpart手动分区">
+<meta property="og:url" content="https://skillf.live/p/c951a769a08f.html">
 <meta property="og:site_name" content="老F的个人博客">
-<meta property="og:description" content="使用 python版本： 12➜   python3 -VPython 3.6.4 测试平台：">
+<meta property="og:description" content="win10 1909更新之时，提示我们无法更新系统保留的分区细查之下发现，之前安装的时候默认使用了win10的分区方案： 123EFI 100MBMSR 16MBRecovery 529MB 因此导致没有足够的空间进行更新。所以才有了接下来安装win10系统前的手动分区操作。可以把之前的默认分区方案适当的扩大一些，如图所示：">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2018-04-04T09:55:29.000Z">
-<meta property="article:modified_time" content="2021-04-25T01:54:19.117Z">
+<meta property="og:image" content="https://skillf.live/images/%E5%AE%89%E8%A3%85win10%E5%89%8D%E7%9A%84diskpart%E6%89%8B%E5%8A%A8%E5%88%86%E5%8C%BA/%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E4%BF%9D%E7%95%99%E7%9A%84%E5%88%86%E5%8C%BA.png">
+<meta property="og:image" content="https://skillf.live/images/%E5%AE%89%E8%A3%85win10%E5%89%8D%E7%9A%84diskpart%E6%89%8B%E5%8A%A8%E5%88%86%E5%8C%BA/diskpart%E6%89%8B%E5%8A%A8%E5%88%86%E5%8C%BA%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2021-05-02T11:20:11.000Z">
+<meta property="article:modified_time" content="2022-04-08T07:56:34.258Z">
 <meta property="article:author" content="南方老F">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Win10">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://skillf.live/images/%E5%AE%89%E8%A3%85win10%E5%89%8D%E7%9A%84diskpart%E6%89%8B%E5%8A%A8%E5%88%86%E5%8C%BA/%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E4%BF%9D%E7%95%99%E7%9A%84%E5%88%86%E5%8C%BA.png">
 
-<link rel="canonical" href="https://skillf.live/p/78e60a143a15">
+<link rel="canonical" href="https://skillf.live/p/c951a769a08f.html">
 
 
 <script id="page-configurations">
@@ -46,7 +49,7 @@
   };
 </script>
 
-  <title>百度语音合成模块 | 老F的个人博客</title>
+  <title>安装win10前的diskpart手动分区 | 老F的个人博客</title>
   
 
 
@@ -190,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://skillf.live/p/78e60a143a15">
+    <link itemprop="mainEntityOfPage" href="https://skillf.live/p/c951a769a08f.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/coffeeBoy.png">
@@ -203,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          百度语音合成模块
+          安装win10前的diskpart手动分区
         </h1>
 
         <div class="post-meta">
@@ -213,14 +216,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-04-04 17:55:29" itemprop="dateCreated datePublished" datetime="2018-04-04T17:55:29+08:00">2018-04-04</time>
+              <time title="Created: 2021-05-02 19:20:11" itemprop="dateCreated datePublished" datetime="2021-05-02T19:20:11+08:00">2021-05-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-25 09:54:19" itemprop="dateModified" datetime="2021-04-25T09:54:19+08:00">2021-04-25</time>
+                <time title="Modified: 2022-04-08 15:56:34" itemprop="dateModified" datetime="2022-04-08T15:56:34+08:00">2022-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,11 +231,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Technology/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                  <a href="/categories/Win10/" itemprop="url" rel="index"><span itemprop="name">Win10</span></a>
                 </span>
             </span>
 
@@ -242,7 +241,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>326</span>
+              <span>270</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -261,75 +260,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>使用 python版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜   python3 -V</span><br><span class="line">Python 3.6.4</span><br></pre></td></tr></table></figure>
-<p>测试平台：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArchLinux</span><br></pre></td></tr></table></figure>
-<p>Source code：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !/usr/bin/env python3</span></span><br><span class="line"><span class="comment">#  -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> aip <span class="keyword">import</span> AipSpeech</span><br><span class="line"><span class="keyword">import</span> subprocess,time,tempfile</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaiduTTS</span>():</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;&quot;&quot; 你的 APPID AK SK &quot;&quot;&quot;</span></span><br><span class="line">        self.APP_ID = <span class="string">&#x27;此处填入个人 ID&#x27;</span></span><br><span class="line">        self.API_KEY = <span class="string">&#x27;此处填入个人 KEY&#x27;</span></span><br><span class="line">        self.SECRET_KEY = <span class="string">&#x27;此处填入个人 SECRET KEY&#x27;</span></span><br><span class="line">        self.client = AipSpeech(self.APP_ID, self.API_KEY, self.SECRET_KEY)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">send_request</span>(<span class="params">self,words</span>):</span></span><br><span class="line"></span><br><span class="line">        result  = self.client.synthesis(words, <span class="string">&#x27;zh&#x27;</span>, <span class="number">1</span>, &#123;<span class="string">&#x27;vol&#x27;</span> : <span class="number">5</span>, <span class="string">&#x27;per&#x27;</span> : <span class="number">4</span>&#125; )</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(result, <span class="built_in">dict</span>):</span><br><span class="line">            <span class="keyword">with</span> tempfile.NamedTemporaryFile(suffix=<span class="string">&#x27;.mp3&#x27;</span>,delete=<span class="literal">False</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(result)</span><br><span class="line">                tmpfile = f.name</span><br><span class="line">                <span class="keyword">return</span> tmpfile</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say</span>(<span class="params">self,words</span>):</span></span><br><span class="line"></span><br><span class="line">        tmpfile = self.send_request(words)</span><br><span class="line">        <span class="comment">#time.sleep(0.5)</span></span><br><span class="line">        subprocess.call(<span class="string">&quot;play -q %s&quot;</span>%tmpfile,shell=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"></span><br><span class="line">    b = BaiduTTS()</span><br><span class="line">    b.say(<span class="string">&#x27;我们去打羽毛球吧！&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>获得文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /tmp;ls</span><br><span class="line">tmpuew_6sy9.mp3</span><br><span class="line">$ file tmpuew_6sy9.mp3</span><br><span class="line">tmpuew_6sy9.mp3: MPEG ADTS, layer III, v2,  16 kbps, 16 kHz, Monaural</span><br></pre></td></tr></table></figure>
-<p> 语音合成方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">synthesis(self, text, lang=<span class="string">&#x27;zh&#x27;</span>, ctp=<span class="number">1</span>, options=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="center">类型</th>
-<th align="center">描述</th>
-<th align="center">是否必须</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">text</td>
-<td align="center">String</td>
-<td align="center">合成的文本，使用UTF-8编码，请注意文本长度必须小于1024字节</td>
-<td align="center">是</td>
-</tr>
-<tr>
-<td align="center">lang</td>
-<td align="center">String</td>
-<td align="center">语言选择,填写zh</td>
-<td align="center">是</td>
-</tr>
-<tr>
-<td align="center">ctp</td>
-<td align="center">String</td>
-<td align="center">客户端类型选择，web端填写1</td>
-<td align="center">是</td>
-</tr>
-<tr>
-<td align="center">cuid</td>
-<td align="center">String</td>
-<td align="center">用户唯一标识，用来区分用户，填写机器 MAC 地址或 IMEI 码，长度为60以内</td>
-<td align="center">否</td>
-</tr>
-<tr>
-<td align="center">spd</td>
-<td align="center">String</td>
-<td align="center">语速，取值0-9，默认为5中语速</td>
-<td align="center">否</td>
-</tr>
-<tr>
-<td align="center">pit</td>
-<td align="center">String</td>
-<td align="center">音调，取值0-9，默认为5中语调</td>
-<td align="center">否</td>
-</tr>
-<tr>
-<td align="center">vol</td>
-<td align="center">String</td>
-<td align="center">音量，取值0-15，默认为5中音量</td>
-<td align="center">否</td>
-</tr>
-<tr>
-<td align="center">per</td>
-<td align="center">String</td>
-<td align="center">发音人选择, 0为女声，1为男声，3为情感合成-度逍遥，4为情感合成-度丫丫，默认为 0 普通女声</td>
-<td align="center">否</td>
-</tr>
-</tbody></table>
+        <p>win10 1909更新之时，提示<code>我们无法更新系统保留的分区</code><br><img src="/images/%E5%AE%89%E8%A3%85win10%E5%89%8D%E7%9A%84diskpart%E6%89%8B%E5%8A%A8%E5%88%86%E5%8C%BA/%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E4%BF%9D%E7%95%99%E7%9A%84%E5%88%86%E5%8C%BA.png" alt="无法更新系统保留的分区"><br>细查之下发现，之前安装的时候默认使用了win10的分区方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EFI 100MB</span><br><span class="line">MSR 16MB</span><br><span class="line">Recovery 529MB</span><br></pre></td></tr></table></figure>
+<p>因此导致没有足够的空间进行更新。所以才有了接下来安装win10系统前的手动分区操作。可以把之前的默认分区方案适当的扩大一些，如图所示：<br><img src="/images/%E5%AE%89%E8%A3%85win10%E5%89%8D%E7%9A%84diskpart%E6%89%8B%E5%8A%A8%E5%88%86%E5%8C%BA/diskpart%E6%89%8B%E5%8A%A8%E5%88%86%E5%8C%BA%E7%BB%93%E6%9E%9C.png" alt="diskpart手动分区结果"></p>
+<p>首先，下载win10镜像，制作启动优盘，在win10安装界面出来之后，按快捷键 <code>SHIFT+F10</code>，进入cmd命令行中，然后输入<code>diskpart</code>回车，具体的分区过程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 从cmd进入diskpart分区工具命令行中</span><br><span class="line">diskpart</span><br><span class="line"># 列出当前所有存在的硬盘</span><br><span class="line">list disk</span><br><span class="line"># 这里选择0号硬盘作为操作系统所在的硬盘</span><br><span class="line">select disk 0</span><br><span class="line"># 删除所有分区，在此之前需要确保已经备份好整个硬盘的资料</span><br><span class="line">clean</span><br><span class="line"># 转换硬盘为GPT格式（如果已经是GPT格式，则跳过此操作）</span><br><span class="line">convert gpt</span><br><span class="line"></span><br><span class="line"># 进入正题</span><br><span class="line"></span><br><span class="line"># EFI</span><br><span class="line">create partition efi size&#x3D;512 # 创建一个EFI分区，大小为512MB</span><br><span class="line"># assign letter&#x3D;b # 设置分区盘符，安装系统时可省略这一步</span><br><span class="line">format quick fs&#x3D;fat32 label&#x3D;&quot;EFI&quot; # 格式化EFI分区文件系统为FAT32，标签为EFI</span><br><span class="line"></span><br><span class="line"># MSR</span><br><span class="line"># 对于小于 16 GB 的磁盘，MSR 分区为 32 MB。对于大于 16 GB 的磁盘，MSR 分区为 128 MB。</span><br><span class="line"># 对于在GPT磁盘上的Windows操作系统，MSR分区不是必须的，可以删除不受影响。</span><br><span class="line">create partition msr size&#x3D;128  # 创建一个MSR分区，大小为128MB，Win10 1909 默认是16M</span><br><span class="line"></span><br><span class="line"># Recovery</span><br><span class="line"># recovery 是系统还原分区，删除掉这个分区你将无法还原初始系统；</span><br><span class="line">create partition primary size&#x3D;650 # 创建一个主分区，大小为650MB Win10 1909 默认是529M</span><br><span class="line">format quick fs&#x3D;ntfs label&#x3D;&quot;Recovery&quot; # 格式化Recovery分区文件系统为NTFS，标签为Recovery</span><br><span class="line"># assign letter&#x3D;&quot;R&quot; # 设置分区盘符，安装系统时可省略这一步</span><br><span class="line">set id&#x3D;&quot;de94bba4-06d1-4d40-a16a-bfd50179d6ac&quot;  # 设置主分区类型为恢复分区</span><br><span class="line">gpt attributes&#x3D;0x8000000000000001   #修改主分区属性为“受保护”，8 和 1 之间有14个0</span><br><span class="line"></span><br><span class="line"># 上述全部设置完成之后，退出即可</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>所有的操作记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">Microsoft Windows [版本 10.0.18362.592]</span><br><span class="line">(c) 2019 Microsoft Corporation。保留所有权利。</span><br><span class="line">X:\Sources&gt;diskpart</span><br><span class="line">Microsoft Windows 版本 10.0.18362.1</span><br><span class="line"></span><br><span class="line">Copyright (c) Microsoft Corporation.</span><br><span class="line">在计算机上：MINWINPC</span><br><span class="line"></span><br><span class="line">DISKPART&gt; list disk</span><br><span class="line"> 磁盘 ###  状态             大小       可用      Dyn      Gpt</span><br><span class="line"> -------- ---------------- ---------  -------- -------- -----</span><br><span class="line"> 磁盘 0    联机               931 GB      930 GB             *</span><br><span class="line"> 磁盘 1    联机               953 GB      953 GB             *</span><br><span class="line"> 磁盘 2    联机                14 GB        0 GB             *</span><br><span class="line"></span><br><span class="line">DISKPART&gt; select disk 0</span><br><span class="line">磁盘 0 现在是所选磁盘。</span><br><span class="line">DISKPART&gt; clean</span><br><span class="line">Diskpart 成功地清除了磁盘。</span><br><span class="line">DISKPART&gt; convert gpt</span><br><span class="line">Diskpart 已将所选磁盘成功地转更换为 GPT 格式。</span><br><span class="line">DISKPART&gt; create partition efi size&#x3D;512</span><br><span class="line">Diskpart 成功地创建了指定分区。</span><br><span class="line">DISKPART&gt; format quick fs&#x3D;fat32 label&#x3D;&quot;EFI&quot;</span><br><span class="line"> 100 百分比已完成</span><br><span class="line">Diskpart 成功格式化该卷。</span><br><span class="line">DISKPART&gt; create partition msr size&#x3D;128</span><br><span class="line">Diskpart 成功地创建了指定分区。</span><br><span class="line">DISKPART&gt; create partition primary size&#x3D;650</span><br><span class="line">Diskpart 成功地创建了指定分区。</span><br><span class="line">DISKPART&gt; format quick fs&#x3D;ntfs label&#x3D;&quot;Recovery&quot;</span><br><span class="line"> 100 百分比已完成</span><br><span class="line">Diskpart 成功格式化该卷。</span><br><span class="line">DISKPART&gt; set id&#x3D;&quot;de94bba4-06d1-4d40-a16a-bfd50179d6ac&quot;</span><br><span class="line">Diskpart 成功设置了分区 ID。</span><br><span class="line">DISKPART&gt; gpt attributes&#x3D;0x8000000000000001</span><br><span class="line">Diskpart 成功地将属性分配给选择的 GPT 分区。</span><br><span class="line">DISKPART&gt; exit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>退出后，Windows安装程序中刷新一下磁盘列表，然后即可正常安装win10啦！<br>安装完之后更新一切正常！</p>
 
     </div>
 
@@ -345,7 +283,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://skillf.live/p/78e60a143a15" title="百度语音合成模块">https://skillf.live/p/78e60a143a15</a>
+    <a href="https://skillf.live/p/c951a769a08f.html" title="安装win10前的diskpart手动分区">https://skillf.live/p/c951a769a08f.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -357,7 +295,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/Win10/" rel="tag"><i class="fa fa-tag"></i> Win10</a>
           </div>
 
         
@@ -366,12 +304,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/p/c5657e134020" rel="prev" title="写一个对时间段的判断">
-      <i class="fa fa-chevron-left"></i> 写一个对时间段的判断
+    <a href="/p/b3e6f171cd81.html" rel="prev" title="Git同步项目到Github的完整流程——Windows篇">
+      <i class="fa fa-chevron-left"></i> Git同步项目到Github的完整流程——Windows篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/p/fd21ac97a597" rel="next" title="在Arch下通过jekyll搭建github pages个人博客">
-      在Arch下通过jekyll搭建github pages个人博客 <i class="fa fa-chevron-right"></i>
+    <a href="/p/d69e0eb05c7c.html" rel="next" title="搭建 VMware 共享文件夹">
+      搭建 VMware 共享文件夹 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
