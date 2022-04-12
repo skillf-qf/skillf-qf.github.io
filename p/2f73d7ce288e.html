@@ -16,12 +16,12 @@
   <meta name="author" content="南方老F">
   <meta name="keywords" content="">
   
-    <meta name="description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。  如果提示 needs upd">
+    <meta name="description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。 如果提示 needs upda">
 <meta property="og:type" content="article">
 <meta property="og:title" content="根据Gentoo handbook安装——gentoo基本系统+UEFI引导">
 <meta property="og:url" content="https://skillf.live/p/2f73d7ce288e.html">
 <meta property="og:site_name" content="老F的个人博客">
-<meta property="og:description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。  如果提示 needs upd">
+<meta property="og:description" content="折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 Gentoo Handbook 来一步步记录装gentoo的详细过程。A.安装前的一些准备   注意：最小CD镜像的安装，必须要在联网下进行！！！ 另外：安装过程中提示 需要添加 USE 时，请按照提示在 &#x2F;etc&#x2F;protage&#x2F;make.conf 文件中添加 USE&#x3D;“ 提示的USE关键字 ” 即可。 如果提示 needs upda">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://skillf.live/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2.png">
 <meta property="og:image" content="https://skillf.live/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E9%95%9C%E5%83%8F%E6%BA%90%E7%9B%AE%E5%BD%95.png">
@@ -60,7 +60,7 @@
 <meta property="og:image" content="https://skillf.live/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/win10%E4%B8%8Egentoo%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E7%95%8C%E9%9D%A2.png">
 <meta property="og:image" content="https://skillf.live/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png">
 <meta property="article:published_time" content="2018-09-23T04:32:19.000Z">
-<meta property="article:modified_time" content="2021-04-25T01:54:04.611Z">
+<meta property="article:modified_time" content="2022-04-12T09:15:02.418Z">
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="Gentoo">
 <meta property="article:tag" content="UEFI">
@@ -109,7 +109,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"skillf.live","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"skillf.live","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -223,7 +223,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -303,17 +303,25 @@
             <!-- SEO header -->
             <h1 style="display: none">根据Gentoo handbook安装——gentoo基本系统+UEFI引导</h1>
             
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年4月12日 下午
+                  
+                
+              </p>
+            
             <div class="markdown-body">
               
               <ul>
 <li>折腾gentoo有段时间， 趁着放假，做做笔记；根据官网的 <a target="_blank" rel="noopener" href="https://wiki.gentoo.org/wiki/Handbook:AMD64">Gentoo Handbook</a> 来一步步记录装gentoo的详细过程。<h4 id="A-安装前的一些准备"><a href="#A-安装前的一些准备" class="headerlink" title="A.安装前的一些准备"></a>A.安装前的一些准备</h4></li>
 </ul>
-<p> <strong><code>注意：最小CD镜像的安装，必须要在联网下进行！！！</code></strong><br> <strong><code>另外：安装过程中提示 需要添加 USE 时，请按照提示在 /etc/protage/make.conf 文件中添加 USE=“ 提示的USE关键字 ” 即可。</code></strong> </p>
+<p> <strong><code>注意：最小CD镜像的安装，必须要在联网下进行！！！</code></strong><br> <strong><code>另外：安装过程中提示 需要添加 USE 时，请按照提示在 /etc/protage/make.conf 文件中添加 USE=“ 提示的USE关键字 ” 即可。</code></strong></p>
 <p>如果提示 <strong><code>needs updating</code></strong><br>则运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">etc-update<br></code></pre></td></tr></table></figure>
 <p>然后输入 <strong><code>-3</code></strong>  -&gt; 回车 -&gt; yes ,之后在重新装一次即可。</p>
-<h6 id="1-本次安装使用台式机电脑"><a href="#1-本次安装使用台式机电脑" class="headerlink" title="1.本次安装使用台式机电脑"></a>1.本次安装使用台式机电脑</h6><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">CPU</span>: Intel Core i<span class="hljs-number">7</span>-<span class="hljs-number">7700</span> @ <span class="hljs-number">8</span>x <span class="hljs-number">4</span>.<span class="hljs-number">2</span>GHz<br><span class="hljs-attribute">GPU</span>: GeForce GTX <span class="hljs-number">1060</span> <span class="hljs-number">6</span>GB <br></code></pre></td></tr></table></figure>
-<h6 id="2-下载镜像-amd64"><a href="#2-下载镜像-amd64" class="headerlink" title="2.下载镜像(amd64)"></a>2.下载镜像(amd64)</h6><p><strong>gentoo的安装使用了最小镜像+stage3的方式</strong><br>这里只下载最小镜像 <a target="_blank" rel="noopener" href="http://distfiles.gentoo.org/releases/amd64/autobuilds/20180920T214502Z/install-amd64-minimal-20180920T214502Z.iso">install-amd64-minimal-20180920T214502Z.iso</a> 即可，文件网址可能失效，建议去<a target="_blank" rel="noopener" href="https://gentoo.org/">Gentoo官网</a><br>下载。<br> <strong><code>最小CD镜像：Minimal Installation CD 2018-09-20</code></strong><br> <strong><code>stage archives: Stage3 2018-09-20</code></strong> </p>
+<h6 id="1-本次安装使用台式机电脑"><a href="#1-本次安装使用台式机电脑" class="headerlink" title="1.本次安装使用台式机电脑"></a>1.本次安装使用台式机电脑</h6><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">CPU</span>: Intel Core i<span class="hljs-number">7</span>-<span class="hljs-number">7700</span> @ <span class="hljs-number">8</span>x <span class="hljs-number">4</span>.<span class="hljs-number">2</span>GHz<br><span class="hljs-attribute">GPU</span>: GeForce GTX <span class="hljs-number">1060</span> <span class="hljs-number">6</span>GB<br></code></pre></td></tr></table></figure>
+<h6 id="2-下载镜像-amd64"><a href="#2-下载镜像-amd64" class="headerlink" title="2.下载镜像(amd64)"></a>2.下载镜像(amd64)</h6><p><strong>gentoo的安装使用了最小镜像+stage3的方式</strong><br>这里只下载最小镜像 <a target="_blank" rel="noopener" href="http://distfiles.gentoo.org/releases/amd64/autobuilds/20180920T214502Z/install-amd64-minimal-20180920T214502Z.iso">install-amd64-minimal-20180920T214502Z.iso</a> 即可，文件网址可能失效，建议去<a target="_blank" rel="noopener" href="https://gentoo.org/">Gentoo官网</a><br>下载。<br> <strong><code>最小CD镜像：Minimal Installation CD 2018-09-20</code></strong><br> <strong><code>stage archives: Stage3 2018-09-20</code></strong></p>
 <p>默认镜像源是国外的服务器，所以下载镜像时，需要选择国内镜像源来下载，否则奇慢无比！</p>
 <ul>
 <li>进入官网下载页面<br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%A1%B5%E9%9D%A2.png" srcset="/img/loading.gif" lazyload alt="进入下载页面.png"></li>
@@ -354,9 +362,9 @@
 <p><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA.png" srcset="/img/loading.gif" lazyload alt="磁盘分区"></p>
 <p><strong>2.1 针对 /dev/nvme0n1 固态的分区(分区工具有fdisk、cfdisk、parted等)：</strong></p>
 <ul>
-<li> <strong><code>使用 UEFI 做引导时，可以同时识别 MBR 和 GPT 分区</code></strong> </li>
-<li> <strong><code>但是在 Windows 系统下只能使用 GPT 分区类型</code></strong> </li>
-<li> <strong><code>为方便以后装双系统，这里使用 GPT 分区类型</code></strong> </li>
+<li> <strong><code>使用 UEFI 做引导时，可以同时识别 MBR 和 GPT 分区</code></strong></li>
+<li> <strong><code>但是在 Windows 系统下只能使用 GPT 分区类型</code></strong></li>
+<li> <strong><code>为方便以后装双系统，这里使用 GPT 分区类型</code></strong></li>
 </ul>
 <p>分区数量：/grub、/boot、/</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃使用 parted 分区工具<br>parted /dev/nvme0n1<br></code></pre></td></tr></table></figure>
@@ -399,13 +407,13 @@
 </tr>
 </tbody></table>
 <h6 id="a-格式化启动分区"><a href="#a-格式化启动分区" class="headerlink" title="a. 格式化启动分区"></a>a. 格式化启动分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkfs.ext2 /dev/nvme0n1p<br></code></pre></td></tr></table></figure>
-<h6 id="b-格式化引导分区"><a href="#b-格式化引导分区" class="headerlink" title="b. 格式化引导分区"></a>b. 格式化引导分区</h6><p>官方<a target="_blank" rel="noopener" href="http://www.uefi.org/sites/default/files/resources/UEFI%202_5.pdf">UEFI规范</a>表示UEFI固件将识别FAT12,16或32文件系统，但建议ESP使用FAT32。继续将ESP格式化为FAT32：<br> <strong><code>注意：如果你是在 win10（举例） 下安装的 gentoo ,想组双系统的话，那么你需要保证已有一个 EFI分区（这个分区在你安装 win10 时会自动生成），此时直接跳过 ‘格式化引导分区’ 这一步。</code></strong> </p>
+<h6 id="b-格式化引导分区"><a href="#b-格式化引导分区" class="headerlink" title="b. 格式化引导分区"></a>b. 格式化引导分区</h6><p>官方<a target="_blank" rel="noopener" href="http://www.uefi.org/sites/default/files/resources/UEFI%202_5.pdf">UEFI规范</a>表示UEFI固件将识别FAT12,16或32文件系统，但建议ESP使用FAT32。继续将ESP格式化为FAT32：<br> <strong><code>注意：如果你是在 win10（举例） 下安装的 gentoo ,想组双系统的话，那么你需要保证已有一个 EFI分区（这个分区在你安装 win10 时会自动生成），此时直接跳过 ‘格式化引导分区’ 这一步。</code></strong></p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mkfs</span>.fat -F <span class="hljs-number">32</span> /dev/nvme<span class="hljs-number">0</span>n<span class="hljs-number">1</span>p<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
 <h6 id="c-格式化根分区"><a href="#c-格式化根分区" class="headerlink" title="c. 格式化根分区"></a>c. 格式化根分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkfs.ext4 /dev/nvme0n1p3<br></code></pre></td></tr></table></figure>
 <h6 id="d-格式化home分区"><a href="#d-格式化home分区" class="headerlink" title="d. 格式化home分区"></a>d. 格式化home分区</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkfs.ext4 /dev/sda3<br></code></pre></td></tr></table></figure>
 <h6 id="e-格式化并启用swap"><a href="#e-格式化并启用swap" class="headerlink" title="e. 格式化并启用swap"></a>e. 格式化并启用swap</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkswap /dev/sda2<br>swapon /dev/sda2<br></code></pre></td></tr></table></figure>
-<h5 id="4-挂载分区"><a href="#4-挂载分区" class="headerlink" title="4. 挂载分区"></a>4. 挂载分区</h5><p>所有分区格式化完成之后，挂载分区到/mnt/gentoo下：<br> <strong><code>注意：EFI 引导需要在 boot 下创建一个 efi 目录</code></strong> </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃创建boot home目录<br>mkdir -p /mnt/gentoo/boot/efi <br>mkdir /mnt/gentoo/home<br>mount /dev/nvme0n1p3 /mnt/gentoo<br>mount /dev/nvme0n1p2 /mnt/gentoo/boot/efi<br>mount /dev/sda3 /mnt/gentoo/home<br></code></pre></td></tr></table></figure>
+<h5 id="4-挂载分区"><a href="#4-挂载分区" class="headerlink" title="4. 挂载分区"></a>4. 挂载分区</h5><p>所有分区格式化完成之后，挂载分区到/mnt/gentoo下：<br> <strong><code>注意：EFI 引导需要在 boot 下创建一个 efi 目录</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">＃创建boot home目录<br>mkdir -p /mnt/gentoo/boot/efi<br>mkdir /mnt/gentoo/home<br>mount /dev/nvme0n1p3 /mnt/gentoo<br>mount /dev/nvme0n1p2 /mnt/gentoo/boot/efi<br>mount /dev/sda3 /mnt/gentoo/home<br></code></pre></td></tr></table></figure>
 <p>挂载完之后可以使用<code>mount 命令</code>检查一下挂载是否成功，没有挂载成功的需要重新挂载一下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount<br></code></pre></td></tr></table></figure>
 <h5 id="5-下载stage3"><a href="#5-下载stage3" class="headerlink" title="5.下载stage3"></a>5.下载stage3</h5><h6 id="a-验证时间"><a href="#a-验证时间" class="headerlink" title="a. 验证时间"></a>a. 验证时间</h6><p>当前时间：9月22日 17:08 2018</p>
@@ -434,7 +442,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cp --dereference /etc/resolv.conf /mnt/gentoo/etc/<br></code></pre></td></tr></table></figure>
 <h6 id="g-挂载文件系统"><a href="#g-挂载文件系统" class="headerlink" title="g. 挂载文件系统"></a>g. 挂载文件系统</h6><p>gentoo默认的init系统是OpenRC类型，所有要挂载相关系统文件，不然有些命令无法使用，在以后修复系统的时候，也要记得挂载一下。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount --types proc /proc /mnt/gentoo/proc<br>mount --rbind /sys /mnt/gentoo/sys<br>mount --rbind /dev /mnt/gentoo/dev<br></code></pre></td></tr></table></figure>
-<p>如果是安装init系统为systemd的，则需要加  <strong><code>--make-rslave</code></strong> </p>
+<p>如果是安装init系统为systemd的，则需要加  <strong><code>--make-rslave</code></strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount --types proc /proc /mnt/gentoo/proc<br>mount --rbind /sys /mnt/gentoo/sys<br>mount --make-rslave /mnt/gentoo/sys<br>mount --rbind /dev /mnt/gentoo/dev<br>mount --make-rslave /mnt/gentoo/dev<br></code></pre></td></tr></table></figure>
 <h6 id="h-进入新环境"><a href="#h-进入新环境" class="headerlink" title="h. 进入新环境"></a>h. 进入新环境</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">chroot /mnt/gentoo /bin/bash<br><span class="hljs-built_in">source</span> /etc/profile<br><span class="hljs-built_in">export</span> PS1=<span class="hljs-string">&quot;(chroot) <span class="hljs-variable">$&#123;PS1&#125;</span>&quot;</span><br></code></pre></td></tr></table></figure>
 <h6 id="i-从Web安装ebuild存储库快照"><a href="#i-从Web安装ebuild存储库快照" class="headerlink" title="i. 从Web安装ebuild存储库快照"></a>i. 从Web安装ebuild存储库快照</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge-webrsync<br></code></pre></td></tr></table></figure>
@@ -514,7 +522,7 @@
 <ul>
 <li>6.1 安装DHCP客户端<br>为了使系统能够使用netifrc脚本自动获取一个或多个网络接口的IP地址，必须安装DHCP客户端。我们建议使用<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-misc/dhcpcd">net-misc / dhcpcd，</a>尽管通过Gentoo存储库可以获得许多其他DHCP客户端：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask net-misc/dhcpcd<br></code></pre></td></tr></table></figure>
 <ul>
-<li>6.2安装无线网络工具<br><code>如果不需要无线可以跳过此步骤</code><br>如果系统将连接到无线网络，请为Open或WEP网络安装：<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-wireless/iw">net-wireless / iw</a>；<br>WPA或WPA2网络安装：<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-wireless/wpa_supplicant">net-wireless / wpa_supplicant</a>；<br>iw也是用于扫描无线网络的有用的基本诊断工具。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask net-wireless/iw <br>emerge --ask net-wireless/wpa_supplicant<br></code></pre></td></tr></table></figure>
+<li>6.2安装无线网络工具<br><code>如果不需要无线可以跳过此步骤</code><br>如果系统将连接到无线网络，请为Open或WEP网络安装：<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-wireless/iw">net-wireless / iw</a>；<br>WPA或WPA2网络安装：<a target="_blank" rel="noopener" href="https://packages.gentoo.org/packages/net-wireless/wpa_supplicant">net-wireless / wpa_supplicant</a>；<br>iw也是用于扫描无线网络的有用的基本诊断工具。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask net-wireless/iw<br>emerge --ask net-wireless/wpa_supplicant<br></code></pre></td></tr></table></figure>
 <h6 id="y-配置引导加载程序"><a href="#y-配置引导加载程序" class="headerlink" title="y. 配置引导加载程序"></a>y. 配置引导加载程序</h6></li>
 </ul>
 </li>
@@ -545,14 +553,14 @@ GRUB2软件现已合并到系统中，但尚未安装。</li>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-install --target=x86_64-efi --efi-directory=/boot/efi --removable<br></code></pre></td></tr></table></figure>
 <p>这将创建由UEFI规范定义的默认目录，然后自动将 grubx64.efi 文件复制到由相同规范定义的“默认”EFI文件位置。<br>我的电脑主板是华硕的，只支持EFI系统分区（ESP）中的.EFI文件的 /boot/efi 目录位置(挂载的引导分区目录)。所以得加   <strong><code>--removable</code></strong><br>如果发现自己的系统引导不了，出现 GRUB 字样，则尝试加  <strong><code>--removable</code></strong><br><img src="/images/%E6%A0%B9%E6%8D%AEGentoo%20handbook%E5%AE%89%E8%A3%85%E2%80%94%E2%80%94gentoo%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F+UEFI%E5%BC%95%E5%AF%BC/%E5%AE%89%E8%A3%85EFI%E5%BC%95%E5%AF%BC.png" srcset="/img/loading.gif" lazyload alt="安装EFI引导"></p>
 <ul>
-<li>BIOS用户：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-install /dev/sda <br>＃/dev/sda 为 /boot 挂载分区<br></code></pre></td></tr></table></figure></li>
+<li>BIOS用户：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-install /dev/sda<br>＃/dev/sda 为 /boot 挂载分区<br></code></pre></td></tr></table></figure></li>
 </ul>
 <ol start="3">
 <li>GRUB2配置</li>
 </ol>
 <p>注意：如果是安装win10 与gentoo 双系统，需要另外安装 <code>os-prober</code> 用以检测 win10 的引导：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">emerge --ask os-prober<br></code></pre></td></tr></table></figure>
-<p>然后执行 </p>
+<p>然后执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">os-prober<br></code></pre></td></tr></table></figure>
 
 <p>接下来，根据 /etc/default/grub 文件和 /etc/grub.d 脚本中指定的用户配置生成GRUB2配置。<br>在大多数情况下，用户不需要配置，因为GRUB2将自动检测要引导的内核来生成最终的GRUB2配置，<br>请运行 grub-mkconfig 命令：</p>
@@ -590,12 +598,12 @@ GRUB2软件现已合并到系统中，但尚未安装。</li>
     
       <span class="category-chain">
         
-  <a href="/categories/Technology/" class="category-chain-item">Technology</a>
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
   
   
     <span>></span>
     
-  <a href="/categories/Technology/Linux/" class="category-chain-item">Linux</a>
+  <a href="/categories/Linux/Gentoo/" class="category-chain-item">Gentoo</a>
   
   
 

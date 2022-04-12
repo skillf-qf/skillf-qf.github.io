@@ -24,9 +24,9 @@
 <meta property="og:description" content="在Archlinux官方源安装了sox之后，发现并没有对mp3的支持， 123456$ file tmpc0n6yqzh.mp3tmpc0n6yqzh.mp3: MPEG ADTS, layer III, v2,  64 kbps, 16 kHz, Monaural$ play tmpc0n6yqzh.mp3play FAIL formats: no handler for file extens">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-03-24T16:35:32.000Z">
-<meta property="article:modified_time" content="2021-04-25T01:53:15.475Z">
+<meta property="article:modified_time" content="2022-04-12T09:11:35.650Z">
 <meta property="article:author" content="南方老F">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="ArchLinux">
 <meta property="article:tag" content="Sox">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -72,7 +72,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"skillf.live","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"skillf.live","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -186,7 +186,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -266,6 +266,14 @@
             <!-- SEO header -->
             <h1 style="display: none">关于Sox不能播放mp3文件</h1>
             
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年4月12日 下午
+                  
+                
+              </p>
+            
             <div class="markdown-body">
               
               <p>在Archlinux官方源安装了sox之后，发现并没有对mp3的支持，</p>
@@ -276,7 +284,7 @@
 <li>解压<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ tar -zxvf  sox-14.4.2.tar.gz<br></code></pre></td></tr></table></figure></li>
 <li>编译&amp;&amp;安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#  进入sox-14.4.2文件夹</span><br> $ <span class="hljs-built_in">cd</span> sox-14.4.2<br>$ ./configure<br>$ make<br>$ sudo make install<br></code></pre></td></tr></table></figure></li>
 <li>重新安装sox<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sudo pacman -S sox<br></code></pre></td></tr></table></figure></li>
-<li>测试 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ play tmpc0n6yqzh.mp3<br><br>play WARN mp3-util: MAD lost sync<br>play WARN mp3-util: MAD lost sync<br><br>tmpc0n6yqzh.mp3:<br><br> File Size: 61.6k     Bit Rate: 49.6k<br>  Encoding: MPEG audio    <br>  Channels: 1 @ 16-bit   <br>Samplerate: 16000Hz      <br>Replaygain: off         <br>  Duration: 00:00:09.94  <br><br>In:100%  00:00:09.94 [00:00:00.00] Out:159k  [      |      ] Hd:3.6 Clip:0    <br>Done.<br></code></pre></td></tr></table></figure>
+<li>测试<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ play tmpc0n6yqzh.mp3<br><br>play WARN mp3-util: MAD lost sync<br>play WARN mp3-util: MAD lost sync<br><br>tmpc0n6yqzh.mp3:<br><br> File Size: 61.6k     Bit Rate: 49.6k<br>  Encoding: MPEG audio<br>  Channels: 1 @ 16-bit<br>Samplerate: 16000Hz<br>Replaygain: off<br>  Duration: 00:00:09.94<br><br>In:100%  00:00:09.94 [00:00:00.00] Out:159k  [      |      ] Hd:3.6 Clip:0<br>Done.<br></code></pre></td></tr></table></figure>
 完成。</li>
 </ol>
 
@@ -296,12 +304,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Technology/" class="category-chain-item">Technology</a>
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
   
   
     <span>></span>
     
-  <a href="/categories/Technology/Linux/" class="category-chain-item">Linux</a>
+  <a href="/categories/Linux/ArchLinux/" class="category-chain-item">ArchLinux</a>
   
   
 
@@ -318,7 +326,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Linux/">#Linux</a>
+        <a href="/tags/ArchLinux/">#ArchLinux</a>
       
         <a href="/tags/Sox/">#Sox</a>
       

@@ -24,7 +24,7 @@
 <meta property="og:description" content="使用 python版本： 12➜   python3 -VPython 3.6.4 测试平台：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-04-04T09:55:29.000Z">
-<meta property="article:modified_time" content="2021-04-25T01:54:19.117Z">
+<meta property="article:modified_time" content="2022-04-12T09:21:14.851Z">
 <meta property="article:author" content="南方老F">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary_large_image">
@@ -71,7 +71,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"skillf.live","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"skillf.live","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -185,7 +185,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -265,6 +265,14 @@
             <!-- SEO header -->
             <h1 style="display: none">百度语音合成模块</h1>
             
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年4月12日 下午
+                  
+                
+              </p>
+            
             <div class="markdown-body">
               
               <p>使用 python版本：</p>
@@ -272,7 +280,7 @@
 <p>测试平台：</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ArchLinux</span><br></code></pre></td></tr></table></figure>
 <p>Source code：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># !/usr/bin/env python3</span><br><span class="hljs-comment">#  -*- coding:utf-8 -*-</span><br><span class="hljs-keyword">from</span> aip <span class="hljs-keyword">import</span> AipSpeech<br><span class="hljs-keyword">import</span> subprocess,time,tempfile<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaiduTTS</span>():</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br><br>        <span class="hljs-string">&quot;&quot;&quot; 你的 APPID AK SK &quot;&quot;&quot;</span><br>        self.APP_ID = <span class="hljs-string">&#x27;此处填入个人 ID&#x27;</span><br>        self.API_KEY = <span class="hljs-string">&#x27;此处填入个人 KEY&#x27;</span><br>        self.SECRET_KEY = <span class="hljs-string">&#x27;此处填入个人 SECRET KEY&#x27;</span><br>        self.client = AipSpeech(self.APP_ID, self.API_KEY, self.SECRET_KEY)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">send_request</span>(<span class="hljs-params">self,words</span>):</span><br><br>        result  = self.client.synthesis(words, <span class="hljs-string">&#x27;zh&#x27;</span>, <span class="hljs-number">1</span>, &#123;<span class="hljs-string">&#x27;vol&#x27;</span> : <span class="hljs-number">5</span>, <span class="hljs-string">&#x27;per&#x27;</span> : <span class="hljs-number">4</span>&#125; )<br>        <br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">isinstance</span>(result, <span class="hljs-built_in">dict</span>):<br>            <span class="hljs-keyword">with</span> tempfile.NamedTemporaryFile(suffix=<span class="hljs-string">&#x27;.mp3&#x27;</span>,delete=<span class="hljs-literal">False</span>) <span class="hljs-keyword">as</span> f:<br>                f.write(result)<br>                tmpfile = f.name<br>                <span class="hljs-keyword">return</span> tmpfile<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">say</span>(<span class="hljs-params">self,words</span>):</span><br><br>        tmpfile = self.send_request(words)<br>        <span class="hljs-comment">#time.sleep(0.5)</span><br>        subprocess.call(<span class="hljs-string">&quot;play -q %s&quot;</span>%tmpfile,shell=<span class="hljs-literal">True</span>)<br><br><span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:<br><br>    b = BaiduTTS()<br>    b.say(<span class="hljs-string">&#x27;我们去打羽毛球吧！&#x27;</span>)<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># !/usr/bin/env python3</span><br><span class="hljs-comment">#  -*- coding:utf-8 -*-</span><br><span class="hljs-keyword">from</span> aip <span class="hljs-keyword">import</span> AipSpeech<br><span class="hljs-keyword">import</span> subprocess,time,tempfile<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaiduTTS</span>():</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br><br>        <span class="hljs-string">&quot;&quot;&quot; 你的 APPID AK SK &quot;&quot;&quot;</span><br>        self.APP_ID = <span class="hljs-string">&#x27;此处填入个人 ID&#x27;</span><br>        self.API_KEY = <span class="hljs-string">&#x27;此处填入个人 KEY&#x27;</span><br>        self.SECRET_KEY = <span class="hljs-string">&#x27;此处填入个人 SECRET KEY&#x27;</span><br>        self.client = AipSpeech(self.APP_ID, self.API_KEY, self.SECRET_KEY)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">send_request</span>(<span class="hljs-params">self,words</span>):</span><br><br>        result  = self.client.synthesis(words, <span class="hljs-string">&#x27;zh&#x27;</span>, <span class="hljs-number">1</span>, &#123;<span class="hljs-string">&#x27;vol&#x27;</span> : <span class="hljs-number">5</span>, <span class="hljs-string">&#x27;per&#x27;</span> : <span class="hljs-number">4</span>&#125; )<br><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">isinstance</span>(result, <span class="hljs-built_in">dict</span>):<br>            <span class="hljs-keyword">with</span> tempfile.NamedTemporaryFile(suffix=<span class="hljs-string">&#x27;.mp3&#x27;</span>,delete=<span class="hljs-literal">False</span>) <span class="hljs-keyword">as</span> f:<br>                f.write(result)<br>                tmpfile = f.name<br>                <span class="hljs-keyword">return</span> tmpfile<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">say</span>(<span class="hljs-params">self,words</span>):</span><br><br>        tmpfile = self.send_request(words)<br>        <span class="hljs-comment">#time.sleep(0.5)</span><br>        subprocess.call(<span class="hljs-string">&quot;play -q %s&quot;</span>%tmpfile,shell=<span class="hljs-literal">True</span>)<br><br><span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:<br><br>    b = BaiduTTS()<br>    b.say(<span class="hljs-string">&#x27;我们去打羽毛球吧！&#x27;</span>)<br><br></code></pre></td></tr></table></figure>
 <p>获得文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> /tmp;ls<br>tmpuew_6sy9.mp3<br>$ file tmpuew_6sy9.mp3<br>tmpuew_6sy9.mp3: MPEG ADTS, layer III, v2,  16 kbps, 16 kHz, Monaural<br></code></pre></td></tr></table></figure>
 <p> 语音合成方法：</p>
@@ -353,12 +361,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Technology/" class="category-chain-item">Technology</a>
+  <a href="/categories/Language/" class="category-chain-item">Language</a>
   
   
     <span>></span>
     
-  <a href="/categories/Technology/Python/" class="category-chain-item">Python</a>
+  <a href="/categories/Language/Python/" class="category-chain-item">Python</a>
   
   
 
@@ -430,7 +438,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/p/fd21ac97a597.html" title="在Arch下通过jekyll搭建github pages个人博客">
+                      <a href="/p/ec863f6df76f.html" title="在Arch下通过jekyll搭建github pages个人博客">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">在Arch下通过jekyll搭建github pages个人博客</span>
                         <span class="visible-mobile">上一篇</span>
